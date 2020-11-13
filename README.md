@@ -7,7 +7,7 @@ To preview files this plugin converts the previewed file content to either
  - text, or
  - xml
  
-The appropriate conversion type is uop to the plugin developer. The available conversion option can be chosen on the plugin configuration page. Currently, there exist the following plugins:
+The appropriate conversion type(s) is/are up to the plugin developer. The available conversion option can be chosen on the plugin configuration page. Currently, there exist the following plugins:
 
 ![Libre](doc/libre/logo.png "Libre")
 
