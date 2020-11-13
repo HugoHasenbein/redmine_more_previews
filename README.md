@@ -7,7 +7,10 @@ To preview files this plugin converts the previewed file content to either
  - text, or
  - xml
  
-The appropriate conversion type(s) is/are up to the plugin developer. The available conversion option can be chosen on the plugin configuration page. Currently, there exist the following plugins:
+The appropriate conversion type(s) is/are up to the plugin developer. The available conversion option can be chosen on the plugin configuration page. 
+The plugin was developed with thread safety in mind. With caching enabled, it should stand even higher loads.
+
+Currently, there exist the following plugins:
 
 ![Libre](doc/libre/logo.png "Libre")
 
@@ -49,9 +52,10 @@ Peek lets you preview pdf-Files in the browser. Peek uses imagemagick to do the 
 
 Peek lets you preview zip, tgz or tar-Files in the browser. Click on an entry to download one individual file from within the compressed file.
 
-![NilText](doc/nil_text/logo.png "NilText")
+![NilText](doc/nil_text/logo.png "NilText") *DO NOT USE IN PRODUCTION* 
 
-NilText lets you see, which data are availabkle for a file conversion. NilText not suitedd for production use. You can peruse this plugin to learn about the plugin functionality. Please note, that this plugin may reveal a password of a repository. DO NOT USE IN PRODUCTION.
+NilText lets you see, which data are available for a file conversion. NilText not suited for production use. You can peruse this plugin to learn about the plugin functionality. Please note, that this plugin may reveal a password of a repository. Like all other plugins, this plugin is deactivated by default.
+
 
 ### Install
 
@@ -61,7 +65,7 @@ NilText lets you see, which data are availabkle for a file conversion. NilText n
 
 `bundle install`
 
-to install necessary gems. 
+to install necessary gems. Install LibreOfiice (for Libre) and/or Pandoc for (for Mark)
 
 3. restart server f.i.  
 
@@ -84,9 +88,9 @@ to install necessary gems.
 Choose the following options
 
  - use <embed>-tag or <iframe>-tag
- - cache previews (may bloat your rails root's tmp folder)
+ - cache previews (speeds views, may bloat your rails root's tmp folder a bit)
  - activate sub plugins above
- - for each sub plugin activate the file extension for files you want to preview (if you choose two sub plugins converting the same file type, then a warning will be issued and the last activated sub plugin will do the conversion.
+ - for each sub plugin activate the file extension for files you want to preview (if you choose two sub plugins converting the same file type, then a warning will be issued and the last activated sub plugin will do the conversion).
 
 **Have fun!**
 
@@ -102,7 +106,7 @@ Choose the following options
 * Russian
 * Chinese
 
-Native speakers: please help to improve localizations)
+Native speakers: please help to improve localizations
 
 ### Change-Log* 
 
@@ -121,4 +125,8 @@ This plugin ideally works together with
  - redmine_preview_inline
  - redmine_all_thumbnails
  
+# a note on caching
+This plugin caches conversions in the Rail tmp-directory. For large repositories (f.i. firm file servers) each conversion will store a copy of the conversion file in the Rails tmp directory and thus the tmp directory may become as large or even larger as the original repository. There are two ways to handdle such a situation: 1. swipe Rails tmp/more_previews directory frequently, 2. change the storage path in the plugin's init.rb file to choose a mass storage, which can handel the amount of data.
+
+If two users choose to reload (do a ne conversion), then thread safety is honored.
  
