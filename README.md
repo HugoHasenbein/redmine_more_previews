@@ -94,11 +94,20 @@ Choose the following options
 
 * English
 * German
+* Spanish
+* French
+* Japanese
+* Portugese (Brazil)
+* Portugese
+* Russian
+* Chinese
+
+Native speakers: please help to improve localizations)
 
 ### Change-Log* 
 
-**1.0.3** enhanced compatibility with my other plugins
 **2.0.0** Recoded and published, supports redmine 3+, redmine 4+
+
 **1.0.0** Running on Redmine 3.4.6, never published
 
 # replaces
