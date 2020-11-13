@@ -1,0 +1,11 @@
+<%-if RedmineMorePreviews::Converter.responsible( @attachment.filename, :pathonly => true )&.id == :cliff %>
+<%- unsafereloadpath = url_for(
+      :controller    => "attachments",
+      :action        => 'show',
+      :id            => @attachment.id,
+      :reload        => 1,
+      :unsafe        => 1
+    )
+%>
+<%= link_to l(:button_unsafe_update), unsafereloadpath, :class => "icon icon-warning" %>
+<% end %>

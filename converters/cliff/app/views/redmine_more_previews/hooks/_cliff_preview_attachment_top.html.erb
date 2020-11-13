@@ -1,0 +1,46 @@
+<%-if RedmineMorePreviews::Converter.responsible( attachment.filename, :pathonly => true )&.id == :cliff %>
+  
+  <% html_id = SecureRandom.uuid.to_s
+    js = "$('##{html_id}-show, ##{html_id}-hide').toggle(); $('##{html_id}').fadeToggle(150);"
+    toggler = ''.html_safe
+    toggler << link_to_function("...", js, :id => "#{html_id}-show", :class => 'collapsible collapsed')
+    toggler << link_to_function(" x", js, :id => "#{html_id}-hide", :class => 'collapsible', :style => 'display:none;')
+  %>
+  
+  <% if RedmineMorePreviews::Converter.cache_previews? && !params[:unsafe] %>
+  
+    <% if html = attachment.more_asset( params.merge( :asset => "headers.html" )) %>
+      <div class="box"><%= html.html_safe %></div>
+    <%- end %>
+    
+    <% if html = attachment.more_asset( params.merge( :asset => "fields.html" )) %>
+      <%= toggler.html_safe %>
+      <div class="box" id="<%= html_id %>" style="display:none;"><%= html.html_safe %></div>
+    <%- end %>
+    
+    <% if html = attachment.more_asset( params.merge( :asset => "attachments.html" )) %>
+      <div class="box"><%= html.html_safe %></div>
+    <%- end %>
+    
+  <% else %>
+  
+    <%- attachment.more_asset( :assets => ["headers.html", "fields.html", "attachments.html"] ) do |html, asset, email_headers, email_fields, email_attachments| %>
+    
+      <% if email_headers %>
+        <div class="box"><%= email_headers.html_safe %></div>
+      <%- end %>
+      
+      <% if email_fields %>
+        <%= toggler.html_safe %>
+        <div class="box" id="<%= html_id %>" style="display:none;"><%= email_fields.html_safe %></div>
+      <%- end %>
+      
+      <% if email_attachments %>
+        <div class="box"><%= email_attachments.html_safe %></div>
+      <%- end %>
+    <%- end %>
+    
+  <% end %>
+  
+<% end %>
+

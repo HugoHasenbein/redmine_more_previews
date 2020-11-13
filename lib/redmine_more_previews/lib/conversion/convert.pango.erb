@@ -1,0 +1,9 @@
+<span size='49152'>Hello World!</span>
+
+<span>You were trying to preview the following object: <%= @object["object"].class.name %></span>
+
+<span>The following parameters were available for conversion of the object:</span>
+<% instance_variables.each do |ivar| %>
+<tt><span><%= ivar.to_s.ljust(20, " ") %><%= CGI.escapeHTML(CGI.escapeHTML(instance_variable_get(ivar).to_s)) %></span></tt>
+<% end %>
+

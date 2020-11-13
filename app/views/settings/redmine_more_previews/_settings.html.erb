@@ -1,0 +1,64 @@
+<div>
+  <%= image_tag 'Logo.png', :plugin => "redmine_more_previews", :alt => l(:label_redmine_more_previews), :title => l(:label_redmine_more_previews), :width => 100, :style => "float:left;margin-right:10px;" %>
+  <div><%= render :partial => "/settings/redmine_more_previews/welcome/greeting" %></div>
+</div><div style="clear:both;margin-bottom:10px;"></div>
+
+<h3><%= l(:label_redmine_more_previews_global_settings) %></h3>
+
+<fieldset class="box tabular settings"><legend><%= l(:text_more_previews_embed_setting) %></legend>
+  <p>  
+    <label><%= l(:text_more_previews_use_object_embed)  %></label>
+      <%= radio_button_tag 'settings[embedding]', 0, (settings["embedding"] == "0" ) %>
+  </p>
+  <p>
+    <label><%= l(:text_more_previews_use_iframe)  %></label>
+      <%= radio_button_tag 'settings[embedding]', 1, (settings["embedding"] == "1" ) %>
+  </p>
+  <p>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_redmine_more_previews_embed_settings").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_redmine_more_previews_embed_settings" class="info" style="display: none;">
+      <em class="info"><%= l(:text_help_redmine_more_previews_embed_settings) %></em>
+    </span>
+  </p>
+</fieldset>
+
+<fieldset class="box tabular settings"><legend><%= l(:text_more_previews_cache) %></legend>
+  <p>  
+    <label><%= l(:label_use_cache)  %></label>
+      <%= check_box_tag 'settings[cache_previews]', 1, (settings["cache_previews"] == "1" ) %>
+  </p>
+  <p>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_redmine_more_previews_cache").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_redmine_more_previews_cache" class="info" style="display: none;">
+      <em class="info"><%= l(:text_help_redmine_more_previews_cache) %></em>
+    </span>
+  </p>
+</fieldset>
+
+<h3><%= l(:label_redmine_more_previews_plugins_settings) %></h3>
+<% RedmineMorePreviews::Converter.all.each do |converter| %>
+<%- next unless RedmineMorePreviews::Converter.installed?(converter.id) %>
+<fieldset class="box tabular settings"><legend><%= converter.name %> <%= check_box_tag "settings[converter][#{converter.id}][active]", 1, (settings.dig("converter", "#{converter.id}", "active") == "1"), :onclick => "$('#converter_#{converter.id}').toggle();" %></legend>
+  <div id="converter_<%= converter.id %>" style="<%= 'display:none;' if settings.dig("converter", "#{converter.id}", "active") != "1" %>">
+  <%- if converter.settings && converter.settings[:logo] %>
+    <div><%= tag :img, :src => "#{converter.public_web_directory}/images/#{converter.settings[:logo]}", :alt => converter.name, :title => converter.name, :width => 100 %></div>
+  <% end %>
+  <%- if converter.configurable? %>
+    <div id="converter_settings_<%= converter.id %>">
+      <%= render :partial => converter.settings[:partial], :locals => {:settings => converter.settings[:default].to_h.merge(settings.dig("converter", "#{converter.id}").to_h).stringify_keys} %>
+    </div>
+    <hr>
+  <% end %>
+  <% converter.mime_types.each do |mime_type, opts| %>
+    <div class="<%= if settings.dig("converter", "#{converter.id}", "mime_types", "#{mime_type}", "active") == "1" && RedmineMorePreviews::Converter.mime_doublette?(converter, mime_type); 'flash warning'; end %>">
+      <p>
+        <label><%= ".#{mime_type}" %> <%= check_box_tag "settings[converter][#{converter.id}][mime_types][#{mime_type}][active]", 1, (settings.dig("converter", "#{converter.id}", "mime_types", "#{mime_type}", "active") == "1" ) %></label>
+        <%= select_tag   "settings[converter][#{converter.id}][mime_types][#{mime_type}][format]", options_for_select(RedmineMorePreviews::Converter.formats_for_select(opts[:formats]), settings.dig("converter", "#{converter.id}", "mime_types", "#{mime_type}", "format")) %>
+      </p>
+    </div>
+  <% end %>
+  </div>
+</fieldset>
+<% end %>

@@ -1,0 +1,39 @@
+# encoding: utf-8
+# frozen_string_literal: true
+#
+# Redmine plugin to preview various file types in redmine's preview pane
+#
+# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+fr:
+  label_redmine_more_previews:                             "Redmine More Previews"
+  
+  label_redmine_more_previews_global_settings:             "Configuration globaux"
+  
+  text_more_previews_embed_setting:                        "Intégrer l'aperçu dans la page d'aperçu"
+  text_more_previews_use_object_embed:                     "dans <object><embed>-tag"
+  text_more_previews_use_iframe:                           "dans <iframe>-tag"
+  text_help_redmine_more_previews_embed_settings:          "L'option <objet>-tag avec le repli vers <embed>-tag n'est pas un HTML valide, mais fonctionne sur la plupart des navigateurs, y compris les anciens. L'option <iframe>-tag est un HTML valide."
+  
+  label_use_cache:                                         "Cache"
+  text_more_previews_cache:                                "Mise en cache de l'aperçu généré"
+  text_help_redmine_more_previews_cache:                   "La mise en cache rend l'affichage répété des prévisualisations beaucoup plus rapide, mais peut gonfler le répertoire /tmp dans le répertoire racine de Redmine."
+  
+  label_redmine_more_previews_plugins_settings:            "Configuration des plugins"
+  
+  button_unsafe_update:                                    "Recharger en toute sécurité"

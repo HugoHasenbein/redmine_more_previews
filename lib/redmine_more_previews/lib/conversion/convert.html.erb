@@ -1,0 +1,17 @@
+<h2>Hello World!</h2>
+<p>You were trying to preview the following object: <%= @object["object"].class.name %></p>
+<p>The following parameters were available for conversion of the object:</p>
+<table>
+  <tbody>
+    <tr>
+      <td>random image</td>
+      <td><img src="<%= @emoji  %>" width="50"></td>
+    </tr>
+    <% instance_variables.each do |ivar| %>
+      <tr>
+        <td><%= ivar %></td>
+        <td><%= CGI.escapeHTML(instance_variable_get(ivar).to_s) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

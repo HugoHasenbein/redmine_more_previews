@@ -1,0 +1,86 @@
+<%= call_hook(:view_repositories_show_contextual, { :repository => @repository, :project => @project }) %>
+
+<div class="contextual">
+  <%= render :partial => 'navigation' %>
+</div>
+
+<h2><%= render :partial => 'breadcrumbs', :locals => { :path => @path, :kind => 'file', :revision => @rev } %></h2>
+
+<%= render :partial => 'link_to_functions' %>
+
+<%- reloadpath = url_for(
+      :controller    => "repositories",
+      :action        => "entry",
+      :id            => @project.identifier,
+      :repository_id => @repository.identifier_param,
+      :rev           => @rev,
+      :path          => @path,
+      :reload        => 1
+      )
+%>
+
+<%- case RedmineMorePreviews::Converter.conversion_ext(@entry.name, :pathonly => true) %>
+  <%- when "inline" %>
+    <div>
+      <p class="contextual">
+        <%= link_to l(:button_update), reloadpath, :class => "icon icon-reload" %>
+        <%= call_hook(:preview_repository_entry_contextual, :repository => @repository, :path => @path, :rev => @rev, :entry => @entry, :project => @project ) %>
+      </p>
+    </div><div style="clear:both;"></div>
+    <div id="preview_repository_entry_top">
+      <%= call_hook(:preview_repository_entry_top, :repository => @repository, :path => @path, :rev => @rev, :entry => @entry, :project => @project, :params => request.query_parameters.merge(:format => "inline", :request => request).symbolize_keys ) %>
+    </div>
+    <div>
+    <% if RedmineMorePreviews::Converter.cache_previews? %>
+      <%= @repository.more_preview( @path, @rev, request.query_parameters.merge(:format => "inline", :request => request).symbolize_keys ).html_safe %>
+    <% else %>
+      <%  @repository.more_preview( @path, @rev, request.query_parameters.merge(:format => "inline", :request => request).symbolize_keys ) do |html| %>
+        <%= html.html_safe %>
+      <% end %>
+    <% end %>
+    </div>
+    
+  <%- else %>
+    <script type="text/javascript">  
+      function resizeObject(obj) {
+       obj.style.height = obj.contentWindow.document.body.scrollHeight + 32 + 'px';
+       obj.style.overflow = 'hidden';
+      }
+    </script>
+    <div>
+      <p class="contextual">
+        <%= link_to l(:button_update), reloadpath, :class => "icon icon-reload" %>
+        <%= call_hook(:preview_repository_entry_contextual, :repository => @repository, :path => @path, :rev => @rev, :entry => @entry, :project => @project ) %>
+      </p>
+    </div><div style="clear:both;"></div>
+    <div id="preview_repository_entry_top">
+      <%= call_hook(:preview_repository_entry_top, :repository => @repository, :path => @path, :rev => @rev, :entry => @entry, :project => @project, :params => request.query_parameters.merge(:request => request).symbolize_keys ) %>
+    </div>
+    <div>
+    <%= more_previews_tag(
+           url_for({
+                 :controller    => "repositories",
+                 :action        => "more_preview",
+                 :id            => @project.identifier,
+                 :repository_id => @repository.identifier_param,
+                 :rev           => @rev,
+                 :path          => @path,
+                 :format        => RedmineMorePreviews::Converter.conversion_ext( @entry.name, :pathonly => true), 
+                 }.merge(request.query_parameters)
+           ),
+           @entry.name,
+          :type => RedmineMorePreviews::Converter.conversion_mime(@entry.name, :pathonly => true)
+        ) %>
+    </div>
+<% end %>
+
+<span class="pagination filepreview">
+  <%= render_pagination %>
+</span>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag "scm" %>
+<% end %>
+
+
+

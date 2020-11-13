@@ -1,0 +1,2 @@
+gem 'rubyzip'
+gem 'zlib'

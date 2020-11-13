@@ -1,0 +1,59 @@
+<%- reloadpath = url_for(
+      :controller    => "attachments",
+      :action        => 'show',
+      :id            => @attachment.id,
+      :reload        => 1)
+%>
+
+<%= render :layout => 'layouts/file' do %>
+  <%- case RedmineMorePreviews::Converter.conversion_ext(@attachment.diskfile) %>
+  <%- when "inline" %>
+    <div>
+      <p class="contextual">
+        <%= link_to l(:button_update), reloadpath, :class => "icon icon-reload" %>
+        <%= call_hook(:preview_attachment_contextual, :attachment => @attachment, :project => @project ) %>
+      </p>
+    </div><div style="clear:both;"></div>
+    <div id="preview_repository_entry_top">
+      <%= call_hook(:preview_attachment_top, :attachment => @attachment, :project => @project, :params => request.query_parameters.merge(:format => "inline", :request => request).symbolize_keys ) %>
+    </div>
+    <div>
+    <% if RedmineMorePreviews::Converter.cache_previews? %>
+      <%= @attachment.more_preview( request.query_parameters.merge(:format => "inline", :request => request).symbolize_keys ).html_safe %>
+    <% else %>
+      <%  @attachment.more_preview( request.query_parameters.merge(:format => "inline", :request => request).symbolize_keys ) do |html| %>
+        <%= html.html_safe %>
+      <% end %>
+    <% end %>
+    </div>
+    
+  <%- else %>
+    <script type="text/javascript">  
+      function resizeObject(obj) {
+       obj.style.height = obj.contentWindow.document.body.scrollHeight + 32 + 'px';
+       obj.style.overflow = 'hidden';
+      }
+    </script>
+    <div>
+      <p class="contextual">
+        <%= link_to l(:button_update), reloadpath, :class => "icon icon-reload" %>
+        <%= call_hook(:preview_attachment_contextual, :attachment => @attachment, :project => @project ) %>
+      </p>
+    </div><div style="clear:both;"></div>
+    <div id="preview_repository_entry_top">
+      <%= call_hook(:preview_attachment_top, :attachment => @attachment, :project => @project, :params => request.query_parameters.merge(:request => request).symbolize_keys ) %>
+    </div>
+    <div>
+    <%= more_previews_tag(
+          more_preview_path(
+            @attachment, 
+            RedmineMorePreviews::Converter.conversion_ext(@attachment.diskfile), 
+            request.query_parameters
+          ), 
+          @attachment.filename,
+         :type => RedmineMorePreviews::Converter.conversion_mime(@attachment.diskfile)
+        ) %>
+    </div>
+  <% end %>
+<%- end %>
+

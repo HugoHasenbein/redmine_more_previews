@@ -1,0 +1,14 @@
+<%-if RedmineMorePreviews::Converter.responsible( entry.name, :pathonly => true )&.id == :cliff %>
+<%- unsafereloadpath = url_for(
+      :controller    => "repositories",
+      :action        => "entry",
+      :id            => project.identifier,
+      :repository_id => repository.identifier_param,
+      :rev           => rev,
+      :path          => path,
+      :reload        => 1,
+      :unsafe        => 1
+      )
+%>
+<%= link_to l(:button_unsafe_update), unsafereloadpath, :class => "icon icon-warning" %>
+<% end %>

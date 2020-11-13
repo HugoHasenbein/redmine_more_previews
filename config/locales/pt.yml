@@ -1,0 +1,39 @@
+# encoding: utf-8
+# frozen_string_literal: true
+
+# Redmine plugin to preview various file types in redmine's preview pane
+#
+# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+pt-br:
+  label_redmine_more_previews:                             "Redmine More Previews"
+  
+  label_redmine_more_previews_global_settings:             "Configurações globais"
+  
+  text_more_previews_embed_setting:                        "Embutir a visualização na página de visualização"
+  text_more_previews_use_object_embed:                     "em <objecto>>embed>-tag"
+  text_more_previews_use_iframe:                           "em < se for de >-tag"
+  text_help_redmine_more_previews_embed_settings:          "A opção <objeto>-tag com retorno para <embed>-tag não é HTML válido, mas funciona na maioria dos navegadores, incluindo navegadores mais antigos. A opção <iframe>-tag é HTML válida."
+  
+  label_use_cache:                                         "Cache"
+  text_more_previews_cache:                                "Caching da visualização gerada"
+  text_help_redmine_more_previews_cache:                   "O cache torna a exibição repetida de visualizações muito mais rápida, mas pode inchar o diretório /tmp no diretório raiz da Redmine."
+  
+  label_redmine_more_previews_plugins_settings:            "Configurações dos Plugins"
+  
+  button_unsafe_update:                                    "Atualização insegura"
