@@ -3,7 +3,6 @@
 <% if s = values['icon'] %>
 <% converter = RedmineMorePreviews::Converter.find values['converter'] %>
 <% mime = values['mime'] %>
-<% Rails.logger.info values %>
 <%= ".icon-file.#{mime.gsub(/[^a-z^A-Z^0-9]/,'-')} {background-image: url(#{converter.public_web_directory}/images/#{values['icon']});}" %>
 <% if values['synonyms'] %>
 <% values['synonyms'].each do |mime| %>
