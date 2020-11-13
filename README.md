@@ -88,7 +88,7 @@ to install necessary gems. Install LibreOfiice (for Libre) and/or Pandoc for (fo
 
 Choose the following options
 
- - use <embed>-tag or <iframe>-tag
+ - use embed-tag or iframe-tag
  - cache previews (speeds views, may bloat your rails root's tmp folder a bit)
  - activate sub plugins above
  - for each sub plugin activate the file extension for files you want to preview (if you choose two sub plugins converting the same file type, then a warning will be issued and the last activated sub plugin will do the conversion).
