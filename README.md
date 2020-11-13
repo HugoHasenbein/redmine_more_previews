@@ -53,8 +53,53 @@ Peek lets you preview zip, tgz or tar-Files in the browser. Click on an entry to
 
 NilText lets you see, which data are availabkle for a file conversion. NilText not suitedd for production use. You can peruse this plugin to learn about the plugin functionality. Please note, that this plugin may reveal a password of a repository. DO NOT USE IN PRODUCTION.
 
-# install
-Copy 
+### Install
+
+1. download plugin and copy plugin folder redmine_more_previews go to Redmine's plugins folder
+
+2. go to redmine root folder
+
+`bundle install`
+
+to install necessary gems. 
+
+3. restart server f.i.  
+
+`sudo /etc/init.d/apache2 restart`
+
+### Uninstall
+
+1. go to plugins folder, delete plugin folder redmine_attachment_categories
+
+`rm -r redmine_more_previews`
+
+3. restart server f.i.  
+
+`sudo /etc/init.d/apache2 restart`
+
+### Use
+
+* Go to Administration -> Plugins -> Redmine More Previews Configuration 
+
+Choose the following options
+
+ - use <embed>-tag or <iframe>-tag
+ - cache previews (may bloat your rails root's tmp folder)
+ - activate sub plugins above
+ - for each sub plugin activate the file extension for files you want to preview (if you choose two sub plugins converting the same file type, then a warning will be issued and the last activated sub plugin will do the conversion.
+
+**Have fun!**
+
+### Localisations
+
+* English
+* German
+
+### Change-Log* 
+
+**1.0.3** enhanced compatibility with my other plugins
+**2.0.0** Recoded and published, supports redmine 3+, redmine 4+
+**1.0.0** Running on Redmine 3.4.6, never published
 
 # replaces
 This plugin replaces 
@@ -66,4 +111,5 @@ This plugin replaces
 This plugin ideally works together with
  - redmine_preview_inline
  - redmine_all_thumbnails
+ 
  
