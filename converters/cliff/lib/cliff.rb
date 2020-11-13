@@ -87,7 +87,7 @@ class Cliff < RedmineMorePreviews::Conversion
       attachments = save_attachments( mail ) 
       
       # modify cid:links in html and save 
-      html = link( Nokogiri::HTML( html ), attachments ).to_html
+      html = link( Nokogiri::HTML( html ), Array(attachments) ).to_html
       
       # create list of attachments and save
       att_html = list( attachments )
@@ -221,12 +221,13 @@ class Cliff < RedmineMorePreviews::Conversion
   # save_attachments
   #---------------------------------------------------------------------------------------
   def save_attachments( message )
-    attachments = {}
+    attachments      = {}
     message.attachments.each_with_index do | attachment, i |
-      filename   = RmpFile.sanitize(attachment.filename)
-      filename   = RmpFile.unique_filename( Dir.children(tmpdir), filename)
-      content_id = attachment.content_id.to_s.match(/^\<(.*?)\>$/)
-      content_id = content_id && content_id[1]
+      filename       = RmpFile.sanitize(attachment.filename)
+      filename       = RmpFile.unique_filename( Dir.children(tmpdir), filename)
+      content_id     = attachment.content_id.to_s.match(/^\<(.*?)\>$/)
+      content_id   ||= [0, attachment.content_id.to_s]
+      content_id     = content_id && content_id[1]
       attachments[i] = {:filename     => filename,
                         :content_id   => content_id,
                         :content_type => attachment.content_type
@@ -350,8 +351,8 @@ class Cliff < RedmineMorePreviews::Conversion
       node.keys.each do |attribute|
         if attribute =~ /src/i && node[attribute] =~ /\Acid:/i
           cidmatch = node[attribute].match(/^cid:(.*)/i); cid = cidmatch && cidmatch[1]
-          if att = attachments.find{|key,value| value[:content_id] == cid}[1]
-            node[attribute] = att[:filename]
+          if att = attachments.find{|key,value| value && value[:content_id] == cid}
+            node[attribute] = att[1][:filename]
           end
         end
       end

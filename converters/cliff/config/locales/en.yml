@@ -20,7 +20,7 @@
 #
 
 en:
-  label_mail_field_date:                         "ate"
+  label_mail_field_date:                         "Date"
   label_mail_field_from:                         "From"
   label_mail_field_to:                           "To"
   label_mail_field_cc:                           "Cc"
