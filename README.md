@@ -55,7 +55,7 @@ Peek lets you preview zip, tgz or tar-Files in the browser. Click on an entry to
 
 ![NilText](doc/nil_text/logo.png "NilText") *DO NOT USE IN PRODUCTION* 
 
-NilText lets you see, which data are available for a file conversion. NilText not suited for production use. You can peruse this plugin to learn about the plugin functionality. Please note, that this plugin may reveal a password of a repository. Like all other plugins, this plugin is deactivated by default.
+NilText lets you see, which data are available for a file conversion. NilText not suited for production use. You can peruse this plugin to learn about the plugin functionality. Please note, that this plugin may reveal a password of a repository. Like all other plugins, **this plugin is deactivated by default**.
 
 
 ### Install
