@@ -1,6 +1,6 @@
 # redmine_more_previews
 
-Redmine plugin to preview various file types in redmine's preview pane. This plugin is designed to work with own plugins. That is plugins for plugins.
+Redmine plugin to preview various file types in redmine's preview pane. Works for issue attachments, documents module, files module and repositories. This plugin is designed to work with own plugins. That is plugins for plugins.
 To preview files this plugin converts the previewed file content to either
  - pdf
  - png, jpg or gif
