@@ -1,5 +1,5 @@
 <style>
-<% RedmineMorePreviews::Converter.active_mime_types.each do |ext, values| %>
+<% RedmineMorePreviews::Converter.active_mime_types.to_h.each do |ext, values| %>
 <% if s = values['icon'] %>
 <% converter = RedmineMorePreviews::Converter.find values['converter'] %>
 <% mime = values['mime'] %>
