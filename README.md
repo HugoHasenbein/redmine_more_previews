@@ -1,6 +1,6 @@
 # redmine_more_previews
 
-Redmine plugin to preview various file types in redmine's preview pane. This plugin is designed to work with own plugins. That is plugins for plugins.
+Redmine plugin to preview various file types in redmine's preview pane. Works for issue attachments, documents module, files module and repositories. This plugin is designed to work with own plugins. That is plugins for plugins.
 To preview files this plugin converts the previewed file content to either
  - pdf
  - png, jpg or gif
@@ -55,7 +55,7 @@ Peek lets you preview zip, tgz or tar-Files in the browser. Click on an entry to
 
 ![NilText](doc/nil_text/logo.png "NilText") *DO NOT USE IN PRODUCTION* 
 
-NilText lets you see, which data are available for a file conversion. NilText not suited for production use. You can peruse this plugin to learn about the plugin functionality. Please note, that this plugin may reveal a password of a repository. Like all other plugins, this plugin is deactivated by default.
+NilText lets you see, which data are available for a file conversion. NilText not suited for production use. You can peruse this plugin to learn about the plugin functionality. Please note, that this plugin may reveal a password of a repository. Like all other plugins, **this plugin is deactivated by default**.
 
 
 ### Install
