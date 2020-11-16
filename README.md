@@ -111,6 +111,8 @@ Native speakers: please help to improve localizations
 
 ### Change-Log* 
 
+**2.0.1** fixed last minute issues
+
 **2.0.0** Recoded and published, supports redmine 3+, redmine 4+
 
 **1.0.0** Running on Redmine 3.4.6, never published

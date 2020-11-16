@@ -41,11 +41,18 @@
     </div>
     
   <%- else %>
-    <script type="text/javascript">  
-      function resizeObject(obj) {
-       obj.style.height = obj.contentWindow.document.body.scrollHeight + 32 + 'px';
-       obj.style.overflow = 'hidden';
-      }
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        $('#preview_frame').load(function() {
+            iResize();
+            $('#ajax-indicator').hide();
+        });
+        function iResize() {
+            document.getElementById('preview_frame').height = 
+            document.getElementById('preview_frame').contentWindow.document.body.offsetHeight + 'px';
+            document.getElementById('preview_frame').style.overflow = 'hidden';
+        }
+      });
     </script>
     <div>
       <p class="contextual">

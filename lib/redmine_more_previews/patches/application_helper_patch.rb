@@ -32,15 +32,14 @@ module RedmineMorePreviews
           
             if RedmineMorePreviews::Converter.embed?
               content_tag(:div, 
-                content_tag(:script, "$( document ).ready(function() { $('#ajax-indicator').show()});".html_safe) + 
                 content_tag(
                   :object,
-                  tag(:embed, :href => path, :type => options[:type], :onload  => "resizeObject(this);"),
+                  tag(:embed, :href => path, :type => options[:type]),
                   { :style   => "position:absolute;top:0;left:0;width:95%;height:100%;",
                     :title   => filename,
                     :type    => options[:type],
                     :data    => path,
-                    :onload  => "resizeObject(this); $('#ajax-indicator').hide();"
+                    :id      => 'preview_object',
                    }.merge(options)
                 ),
                 :id     => "preview_pane",
@@ -48,7 +47,7 @@ module RedmineMorePreviews
               )
             else
               content_tag(:div, 
-                content_tag(:script, "$( document ).ready(function() { $('#ajax-indicator').show()});".html_safe) + 
+                content_tag(:script, "$(document).ready(function() { $('#ajax-indicator').show()});".html_safe) +
                 content_tag(
                   :iframe,
                   "",
@@ -59,7 +58,7 @@ module RedmineMorePreviews
                     :allowtransparency    => "true",
                     :title                => filename,
                     :src                  => path,
-                    :onload               => "resizeObject(this); $('#ajax-indicator').hide();"
+                    :id                   => 'preview_frame'
                    }.merge(options)
                 ),
                 :id    => "preview_pane",
