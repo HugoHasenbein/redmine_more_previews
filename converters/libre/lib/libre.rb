@@ -44,7 +44,11 @@ class Libre < RedmineMorePreviews::Conversion
   end #def
   
   def soffice( src, user_installation )
+    if Redmine::Platform.mswin?
+    "#{LIBRE_OFFICE_BIN} --headless --convert-to #{preview_format} --outdir #{shell_quote tmpdir} #{shell_quote src}"
+    else
     "#{LIBRE_OFFICE_BIN} --headless --convert-to #{preview_format} --outdir #{shell_quote tmpdir} -env:UserInstallation=file://#{user_installation} #{shell_quote src}"
+    end
   end #def
   
 end #class

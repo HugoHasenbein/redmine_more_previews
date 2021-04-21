@@ -362,7 +362,7 @@ module RedmineMorePreviews
     end #def
     
     def self.active_mime_types
-      mime_types_of(active_converters).map{|h| select_active(h) }.reduce(&:merge)
+      mime_types_of(active_converters).map{|h| select_active(h) }.reduce(&:merge).to_h
     end #def
     
     def self.mime_types_of( converters )

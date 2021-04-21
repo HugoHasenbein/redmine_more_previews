@@ -27,6 +27,9 @@
 # 2.0.0
 #        - recoded Redmine Preview Office and renamed; now supports own plugins 
 #
+# 2.0.1
+#        - fixed virgin startup bug. On some events plugin crashes on first time use
+#        - removed UserInstallation parameter in libre for windows platforms
 
 require 'redmine'
 
