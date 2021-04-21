@@ -23,11 +23,14 @@
 #
 # 1.0.4
 #        -support redmine 4
-#
-# 2.0.0
+#        
+# 2.0.0  
 #        - recoded Redmine Preview Office and renamed; now supports own plugins 
-#
-# 2.0.1
+#        
+# 2.0.1  
+#        - fixed last minute issues
+#        
+# 2.0.2  
 #        - fixed virgin startup bug. On some events plugin crashes on first time use
 #        - removed UserInstallation parameter in libre for windows platforms
 
@@ -40,7 +43,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '2.0.1'
+  version '2.0.2'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   
