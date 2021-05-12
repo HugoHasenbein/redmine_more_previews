@@ -111,6 +111,8 @@ Native speakers: please help to improve localizations
 
 ### Change-Log* 
 
+**2.0.2** fixed missing assets bug for html conversion in non-cache mode
+
 **2.0.1** fixed last minute issues
 
 **2.0.0** Recoded and published, supports redmine 3+, redmine 4+
