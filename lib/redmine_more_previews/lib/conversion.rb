@@ -168,7 +168,8 @@ module RedmineMorePreviews
       Dir.mktmpdir do |tdir|
         files = []
         self.tmptarget,self.tmpdir,self.tmpfile,self.tmpext = path_set( tdir, target )
-        preview_format =~ /debug/ ? debug : convert
+        convert
+        debug if RedmineMorePreviews::Converter.debug?
         results = [target, asset, assets].flatten.map do |f|
           self.tmptarget,self.tmpdir,self.tmpfile,self.tmpext = path_set( tdir, f )
           File.exist?( tmptarget ) && File.file?( tmptarget ) ? File.read( tmptarget ) : nil
@@ -184,7 +185,8 @@ module RedmineMorePreviews
       if !valid || reload
         Dir.mktmpdir do |tdir| 
           self.tmptarget, self.tmpdir, self.tmpfile, self.tmpext = path_set(tdir, ["index", preview_format].join("."))
-          preview_format =~ /debug/ ? debug : convert
+          convert
+          debug if RedmineMorePreviews::Converter.debug?
           copy_over
         end
       end
@@ -369,8 +371,13 @@ module RedmineMorePreviews
     end #def
     
     def debug
+    
+      # create some more data
+      
+      @tmpdir_content = Dir.glob(File.join(@tmpdir, "*")).join("<br>").html_safe
+      
       case preview_format
-      when "html", "inline", "debug"
+      when "html", "inline"
       
         # copy emojis
         @emoji = "emoji#{rand(1..5)}.png"

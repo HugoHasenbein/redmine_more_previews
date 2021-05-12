@@ -37,3 +37,6 @@ zh:
   label_redmine_more_previews_plugins_settings:            "插件设置"
   
   button_unsafe_update:                                    "不安全的重装"
+  
+  label_debug:                                             "调试"
+  text_help_redmine_more_previews_debug:                   "显示调试信息而不是转换后的文件"

@@ -37,3 +37,6 @@ en:
   label_redmine_more_previews_plugins_settings:            "Plugins settings"
   
   button_unsafe_update:                                    "Unsafe reload"
+  
+  label_debug:                                             "Debug"
+  text_help_redmine_more_previews_debug:                   "Show debug information instead of a converted file"

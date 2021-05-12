@@ -37,4 +37,8 @@ jp:
   label_redmine_more_previews_plugins_settings:            "プラグインの設定"
   
   button_unsafe_update:                                    "安全でないリロード"
+  
+  label_debug:                                             "デバッグ"
+  text_help_redmine_more_previews_debug:                   "変換したファイルの代わりにデバッグ情報を表示する"
+  
 

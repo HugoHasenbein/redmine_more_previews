@@ -64,12 +64,11 @@ module RedmineMorePreviews
     # constants
     #
     ######################################################################################
-    FORMATS      = %i(html inline txt pdf png jpg gif xml debug)
+    FORMATS      = %i(html inline txt pdf png jpg gif xml)
     FORMAT_MIMES = {"html"  => "text/html",  "inline" => "text/html", 
                     "txt"   => "text/plain", "pdf"    => "application/pdf", 
                     "png"   => "image/png",  "jpg"    => "image/jpeg",
-                    "gif"   => "image/gif",  "xml"    => "text/xml",
-                    "debug" => "txt/html"}
+                    "gif"   => "image/gif",  "xml"    => "text/xml" }
     
     ######################################################################################
     #
@@ -299,6 +298,10 @@ module RedmineMorePreviews
     
     def self.embed?
       ::Setting['plugin_redmine_more_previews']['embedding'].to_i == 0
+    end #def
+    
+    def self.debug?
+      ::Setting['plugin_redmine_more_previews']['debug'].to_i > 0
     end #def
     
     def self.mime( filepath, options={} )

@@ -37,3 +37,6 @@ es:
   label_redmine_more_previews_plugins_settings:            "Configuración de los plugins"
   
   button_unsafe_update:                                    "Recarga insegura"
+  
+  label_debug:                                             "Debug"
+  text_help_redmine_more_previews_debug:                   "Mostrar información de debug en lugar de un archivo convertido"

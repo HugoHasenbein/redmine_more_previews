@@ -37,6 +37,20 @@
   </p>
 </fieldset>
 
+<fieldset class="box tabular settings"><legend><%= l(:label_debug) %></legend>
+  <p>  
+    <label><%= l(:label_debug)  %></label>
+      <%= check_box_tag 'settings[debug]', 1, (settings["debug"] == "1" ) %>
+  </p>
+  <p>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_redmine_more_previews_debug").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_redmine_more_previews_debug" class="info" style="display: none;">
+      <em class="info"><%= l(:text_help_redmine_more_previews_debug) %></em>
+    </span>
+  </p>
+</fieldset>
+
 <h3><%= l(:label_redmine_more_previews_plugins_settings) %></h3>
 <% RedmineMorePreviews::Converter.all.each do |converter| %>
 <%- next unless RedmineMorePreviews::Converter.installed?(converter.id) %>

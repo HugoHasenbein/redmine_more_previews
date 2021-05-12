@@ -20,15 +20,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-pt:
+pt-br:
   label_redmine_more_previews:                             "Redmine More Previews"
   
   label_redmine_more_previews_global_settings:             "Configurações globais"
   
-  text_more_previews_embed_setting:                        "Embutir a visualização na página de pré-visualização"
-  text_more_previews_use_object_embed:                     "utilizando marcador <object><embed>"
-  text_more_previews_use_iframe:                           "utilizando marcador <iframe>"
-  text_help_redmine_more_previews_embed_settings:          "A opção de marcador <object> com contingência para marcador <embed> não é HTML válido, mas funciona na maioria dos navegadores, incluindo navegadores mais antigos. A opção do marcador <iframe> é HTML válido."
+  text_more_previews_embed_setting:                        "Embutir a visualização na página de visualização"
+  text_more_previews_use_object_embed:                     "em <objecto>>embed>-tag"
+  text_more_previews_use_iframe:                           "em < se for de >-tag"
+  text_help_redmine_more_previews_embed_settings:          "A opção <objeto>-tag com retorno para <embed>-tag não é HTML válido, mas funciona na maioria dos navegadores, incluindo navegadores mais antigos. A opção <iframe>-tag é HTML válida."
   
   label_use_cache:                                         "Cache"
   text_more_previews_cache:                                "Caching da visualização gerada"
@@ -37,3 +37,6 @@ pt:
   label_redmine_more_previews_plugins_settings:            "Configurações dos Plugins"
   
   button_unsafe_update:                                    "Atualização insegura"
+  
+  field_debug:                                             "Debug"
+  text_help_redmine_more_previews_debug:                   "Mostrar informações de debug em vez de um arquivo convertido"
