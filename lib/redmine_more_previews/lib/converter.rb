@@ -64,11 +64,12 @@ module RedmineMorePreviews
     # constants
     #
     ######################################################################################
-    FORMATS      = %i(html inline txt pdf png jpg gif xml)
-    FORMAT_MIMES = {"html" => "text/html",  "inline" => "text/html", 
-                    "txt"  => "text/plain", "pdf"    => "application/pdf", 
-                    "png"  => "image/png",  "jpg"    => "image/jpeg",
-                    "gif"  => "image/gif",  "xml"    => "text/xml" }
+    FORMATS      = %i(html inline txt pdf png jpg gif xml debug)
+    FORMAT_MIMES = {"html"  => "text/html",  "inline" => "text/html", 
+                    "txt"   => "text/plain", "pdf"    => "application/pdf", 
+                    "png"   => "image/png",  "jpg"    => "image/jpeg",
+                    "gif"   => "image/gif",  "xml"    => "text/xml",
+                    "debug" => "txt/html"}
     
     ######################################################################################
     #
@@ -177,7 +178,7 @@ module RedmineMorePreviews
         end
       end if c.mime_types.is_a?(Hash)
       
-      # copy converter assets to plugin 'redmine_moore_previews' directory
+      # copy converter assets to plugin 'redmine_more_previews' directory
       c.mirror_assets
       
       registered_converters[id] = c
