@@ -168,7 +168,7 @@ module RedmineMorePreviews
       Dir.mktmpdir do |tdir|
         files = []
         self.tmptarget,self.tmpdir,self.tmpfile,self.tmpext = path_set( tdir, target )
-        convert
+        preview_format =~ /debug/ ? debug : convert
         results = [target, asset, assets].flatten.map do |f|
           self.tmptarget,self.tmpdir,self.tmpfile,self.tmpext = path_set( tdir, f )
           File.exist?( tmptarget ) && File.file?( tmptarget ) ? File.read( tmptarget ) : nil
@@ -184,7 +184,7 @@ module RedmineMorePreviews
       if !valid || reload
         Dir.mktmpdir do |tdir| 
           self.tmptarget, self.tmpdir, self.tmpfile, self.tmpext = path_set(tdir, ["index", preview_format].join("."))
-          convert
+          preview_format =~ /debug/ ? debug : convert
           copy_over
         end
       end
@@ -364,8 +364,13 @@ module RedmineMorePreviews
       #
       # when here, then do conversion
       #
+      debug # we just do debug
+      
+    end #def
+    
+    def debug
       case preview_format
-      when "html", "inline"
+      when "html", "inline", "debug"
       
         # copy emojis
         @emoji = "emoji#{rand(1..5)}.png"
@@ -390,9 +395,7 @@ module RedmineMorePreviews
       else
         raise ConverterWrongArgument
       end
-      
       File.open(tmptarget, "wb") {|f| f.write( obj ) }
-      
     end #def
     
   end #class
