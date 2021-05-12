@@ -33,7 +33,6 @@
 # 2.0.2  
 #        - fixed virgin startup bug. On some events plugin crashes on first time use
 #        - removed UserInstallation parameter in libre for windows platforms
-#        - fixed missing assets bug
 
 require 'redmine'
 
