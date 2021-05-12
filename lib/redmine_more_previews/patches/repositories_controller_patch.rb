@@ -116,7 +116,7 @@ module RedmineMorePreviews
                   :disposition => @disposition || 'inline'
               end
             else #no cache
-              @repository.more_asset(@path, @rev, preview_params) do |asset_data|
+              @repository.more_asset(@path, @rev, preview_params) do |preview_data, asset_data|
                  send_data asset_data,
                    :filename    => filename_for_content_disposition( File.basename(@asset) ),
                    :type        => Rack::Mime.mime_type( File.extname(@asset) ),
