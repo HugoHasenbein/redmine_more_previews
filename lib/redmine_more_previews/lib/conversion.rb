@@ -410,14 +410,21 @@ module RedmineMorePreviews
     def debug
     
       # create some more data
+      @emoji          = asset_path("emoji#{rand(1..5)}.png")
+      @tmpdir_content = Dir.glob(File.join(@tmpdir, "*")).to_s
+      @dir_content    = Dir.glob(File.join(@dir,    "*")).to_s
+      @url            = @request.url
+      @rails_root     = Rails.root
+      @controller     = request.parameters['controller']
+      @action         = request.parameters['action']
+      
+      instance_variables.each do |ivar| 
+      Rails.logger.info "#{ivar}: #{instance_variable_get(ivar)}"
+      end
       
       case preview_format
       when "html", "inline"
-      
-        # copy emojis
-        @emoji = asset_path("emoji#{rand(1..5)}.png")
         Dir.glob( File.join(__dir__, 'conversion', "*.png")).each{|f| FileUtils.cp(f,tmpdir)}
-        
         erb  = ERB.new(File.read(File.join(__dir__, 'conversion', 'convert.html.erb')))
         obj  = erb.result(binding).html_safe
         
@@ -438,13 +445,6 @@ module RedmineMorePreviews
         raise ConverterWrongArgument
       end
       File.open(tmptarget, "wb") {|f| f.write( obj ) }
-      
-      @tmpdir_content = Dir.glob(File.join(@tmpdir, "*")).to_s
-      @dir_content    = Dir.glob(File.join(@dir,    "*")).to_s
-      @url            = @request.url
-      @rails_root     = Rails.root
-      @controller     = request.parameters['controller']
-      @action         = request.parameters['action']
       
     end #def
     
