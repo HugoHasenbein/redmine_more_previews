@@ -35,6 +35,11 @@ module RedmineMorePreviews
     include RedmineMorePreviews::Modules::Shell
     
     #-------------------------------------------------------------------------------------
+    # delegations
+    #-------------------------------------------------------------------------------------
+    delegate :url_helpers, :to => "Rails.application.routes"
+    
+    #-------------------------------------------------------------------------------------
     # instance variables
     #-------------------------------------------------------------------------------------
     attr_accessor :id, :name, :threadsafe, :semaphore, :mime_types, :project, :object, 
@@ -253,6 +258,33 @@ module RedmineMorePreviews
       [fullpath, directory, filename, extension]
     end #def
     
+    #-------------------------------------------------------------------------------------
+    # urls for assets
+    #-------------------------------------------------------------------------------------
+    def asset_path(asset)
+      asset_format = File.extname(asset)
+      asset_base   = File.basename(asset, asset_format)
+      case object['type']
+      when :attachment
+        url_helpers.more_asset_path(object['object'].id, :asset => asset_base, :assetformat => asset_format)
+      when :repository
+        ext  = File.extname(object['path'])
+        path = File.join(File.dirname(object['path']),File.basename(object['path'], ext))
+        url_helpers.url_for(
+          :controller    => "repositories", 
+          :action        => "more_asset",
+          :id            => object['object'].project.identifier,
+          :repository_id => object['object'].identifier,
+          :rev           => object['rev'],
+          :path          => path,
+          :baseformat    => ext.gsub(/\A\./, ""), # remove preceeding dot,
+          :asset         => asset_base,
+          :assetformat   => asset_format.gsub(/\A\./, ""), # remove preceeding dot,
+          :only_path     => true
+        )
+      end
+    end #def
+    
     ######################################################################################
     #
     # unix and windows command line helpers
@@ -374,13 +406,11 @@ module RedmineMorePreviews
     
       # create some more data
       
-      @tmpdir_content = Dir.glob(File.join(@tmpdir, "*")).join("<br>").html_safe
-      
       case preview_format
       when "html", "inline"
       
         # copy emojis
-        @emoji = "emoji#{rand(1..5)}.png"
+        @emoji = asset_path("emoji#{rand(1..5)}.png")
         Dir.glob( File.join(__dir__, 'conversion', "*.png")).each{|f| FileUtils.cp(f,tmpdir)}
         
         erb  = ERB.new(File.read(File.join(__dir__, 'conversion', 'convert.html.erb')))
@@ -403,6 +433,11 @@ module RedmineMorePreviews
         raise ConverterWrongArgument
       end
       File.open(tmptarget, "wb") {|f| f.write( obj ) }
+      
+      @tmpdir_content = Dir.glob(File.join(@tmpdir, "*")).to_s
+      @dir_content    = Dir.glob(File.join(@dir,    "*")).to_s
+      @url            = @request.url
+      @rails_root     = Rails.root
     end #def
     
   end #class
