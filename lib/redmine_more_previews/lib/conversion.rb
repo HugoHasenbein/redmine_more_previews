@@ -48,7 +48,8 @@ module RedmineMorePreviews
                   :asset,     :assetdir, :assetfile, :assetext, :assets,
                   :tmptarget, :tmpdir,   :tmpfile,   :tmpext, 
                   :settings, :unique_id,
-                  :transient, :reload, :unsafe
+                  :transient, :reload, :unsafe,
+                  :version, :plugin_version
     
     #-------------------------------------------------------------------------------------
     # initialize
@@ -59,6 +60,8 @@ module RedmineMorePreviews
       
       self.id             = id.to_s
       self.name           = options[:name].to_s
+      self.version        = options[:version].to_s
+      self.plugin_version = Redmine::Plugin.registered_plugins[:redmine_more_previews].version
       
       self.settings       = options[:settings].presence || {}
       raise ConverterWrongArgument unless settings.is_a?(Hash)
@@ -264,12 +267,14 @@ module RedmineMorePreviews
     def asset_path(asset)
       asset_format = File.extname(asset)
       asset_base   = File.basename(asset, asset_format)
+      asset_format.gsub!(/\A\./, "") # remove preceeding dot
       case object['type']
       when :attachment
         url_helpers.more_asset_path(object['object'].id, :asset => asset_base, :assetformat => asset_format)
       when :repository
         ext  = File.extname(object['path'])
         path = File.join(File.dirname(object['path']),File.basename(object['path'], ext))
+        ext..gsub!(/\A\./, "") # remove preceeding dot
         url_helpers.url_for(
           :controller    => "repositories", 
           :action        => "more_asset",
@@ -277,9 +282,9 @@ module RedmineMorePreviews
           :repository_id => object['object'].identifier,
           :rev           => object['rev'],
           :path          => path,
-          :baseformat    => ext.gsub(/\A\./, ""), # remove preceeding dot,
+          :baseformat    => ext.gsub(/\A\./, ""), 
           :asset         => asset_base,
-          :assetformat   => asset_format.gsub(/\A\./, ""), # remove preceeding dot,
+          :assetformat   => asset_format,
           :only_path     => true
         )
       end
@@ -440,6 +445,7 @@ module RedmineMorePreviews
       @rails_root     = Rails.root
       @controller     = request.parameters['controller']
       @action         = request.parameters['action']
+      
     end #def
     
   end #class
