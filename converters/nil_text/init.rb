@@ -31,6 +31,7 @@ RedmineMorePreviews::Converter.register :nil_text do
                  :partial => 'settings/redmine_more_previews/nil_text/settings',
                  :logo   => "logo.png"
                  
-  mime_types     :txt  =>    {:formats => [:html, :inline, :pdf, :jpg, :png, :gif], :mime => "text/plain", :synonyms => [] }
+  mime_types     :txt  =>    {:formats => [:html, :inline, :pdf, :jpg, :png, :gif], :mime => "text/plain", :synonyms => [] },
+                 :xlsx =>    {:formats => [:html, :txt, :pdf, :png, :jpg], :mime => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", :icon => "xlsx.png"}
 end
 

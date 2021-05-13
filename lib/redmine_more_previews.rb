@@ -22,7 +22,7 @@
 
 
 
-# helpers (loa before controller patches)
+# helpers (load before controller patches)
 require 'redmine_more_previews/lib/controller_helper'
 
 # patches

@@ -123,6 +123,7 @@ module RedmineMorePreviews
       c.name(id.to_s.humanize) if c.name.nil?
       # Set a default class if it was not provided during registration
       c.class_name(id.to_s.classify) if c.class_name.nil?
+      # Set the version of the plugin
       # Set a default directory if it was not provided during registration
       c.directory(File.join(self.directory, id.to_s)) if c.directory.nil?
       # create a semaphore unless threadsafe
@@ -469,7 +470,7 @@ module RedmineMorePreviews
     end #def
     
     def worker_attributes
-      [:name, :preview_format, :threadsafe, :semaphore, :timeout, :shell_api, :mime_types, :settings].map{|k| [k, try(k)] }.to_h
+      [:name, :preview_format, :threadsafe, :semaphore, :timeout, :shell_api, :mime_types, :settings, :version].map{|k| [k, try(k)] }.to_h
     end #def
     
     def worker(options={})
