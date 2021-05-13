@@ -21,6 +21,17 @@
       <em class="info"><%= l(:text_help_redmine_more_previews_embed_settings) %></em>
     </span>
   </p>
+  <p>  
+    <label><%= l(:label_use_absolute_path)  %></label>
+      <%= check_box_tag 'settings[absolute]', 1, (settings["absolute"] == "1" ) %>
+  </p>
+  <p>
+    <a class='icon icon-help' href='#' title='<%= "#{l(:label_help)}" %>' onclick='$("#help_redmine_more_previews_absolute").toggle(); return false;'><%= l(:label_help) %></a>
+    <br>
+    <span id="help_redmine_more_previews_absolute" class="info" style="display: none;">
+      <em class="info"><%= l(:text_help_redmine_more_previews_absolute) %></em>
+    </span>
+  </p>
 </fieldset>
 
 <fieldset class="box tabular settings"><legend><%= l(:text_more_previews_cache) %></legend>

@@ -32,5 +32,6 @@ RedmineMorePreviews::Converter.register :nil_text do
                  :logo   => "logo.png"
                  
   mime_types     :txt  =>    {:formats => [:html, :inline, :pdf, :jpg, :png, :gif], :mime => "text/plain", :synonyms => [] }
+  
 end
 

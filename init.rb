@@ -49,7 +49,9 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   
   settings :default => {'embedding'      => '0',  # use <object><embed>-tag or <iframe>-tag
-                        'cache_previews' => '1'   # yes, cache previews
+                        'cache_previews' => '1',  # yes, cache previews
+                        'debug'          => '0',  # no, do not debug
+                        'absolute'       => '0',  # no, use relative paths for iFrame- and embed-tags
                        },
            :partial => 'settings/redmine_more_previews/settings'
 end

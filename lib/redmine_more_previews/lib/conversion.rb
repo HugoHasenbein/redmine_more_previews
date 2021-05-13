@@ -274,7 +274,7 @@ module RedmineMorePreviews
       when :repository
         ext  = File.extname(object['path'])
         path = File.join(File.dirname(object['path']),File.basename(object['path'], ext))
-        ext..gsub!(/\A\./, "") # remove preceeding dot
+        ext.gsub!(/\A\./, "") # remove preceeding dot
         url_helpers.url_for(
           :controller    => "repositories", 
           :action        => "more_asset",

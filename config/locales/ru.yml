@@ -40,3 +40,7 @@ ru:
   
   field_debug:                                             "Отладка"
   text_help_redmine_more_previews_debug:                   "Показывать отладочную информацию вместо преобразованного файла"
+  
+  
+  label_use_absolute_path:                                 "URL с хостом"
+  text_help_redmine_more_previews_absolute:                "(используйте URL со схемой и хостом) для <iframe>-тега или <embed>-тега."

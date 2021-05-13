@@ -58,13 +58,13 @@ module RedmineMorePreviews
                 end #respond
               else
                 respond_to do |format|
-                  format.html { send_more_preview }
-                  format.xml  { send_more_preview }
-                  format.text { send_more_preview }
-                  format.pdf  { send_more_preview }
-                  format.png  { send_more_preview }
-                  format.jpeg { send_more_preview }
-                  format.gif  { send_more_preview }
+                  format.html  { send_more_preview }
+                  format.xml   { send_more_preview }
+                  format.text  { send_more_preview }
+                  format.pdf   { send_more_preview }
+                  format.png   { send_more_preview }
+                  format.jpeg  { send_more_preview }
+                  format.gif   { send_more_preview }
                 end
               end
             else #no convertible document

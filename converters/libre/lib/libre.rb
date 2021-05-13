@@ -35,7 +35,7 @@ class Libre < RedmineMorePreviews::Conversion
   end
   
   def convert
-    
+  
     Dir.mktmpdir do |tdir| 
     user_installation = File.join(tdir, "user_installation")
     command(cd + join + soffice( source, user_installation ) + join + move(thisdir(outfile)) )

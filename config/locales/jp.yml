@@ -41,4 +41,5 @@ jp:
   label_debug:                                             "デバッグ"
   text_help_redmine_more_previews_debug:                   "変換したファイルの代わりにデバッグ情報を表示する"
   
-
+  label_use_absolute_path:                                 "ホスト付きURL"
+  text_help_redmine_more_previews_absolute:                "<iframe>タグまたは<embed>タグのための（スキームとホストを含むURLを使用する"

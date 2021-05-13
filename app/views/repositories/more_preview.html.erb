@@ -73,6 +73,7 @@
                  :rev           => @rev,
                  :path          => @path,
                  :format        => RedmineMorePreviews::Converter.conversion_ext( @entry.name, :pathonly => true), 
+                 :only_path     => ::Setting['plugin_redmine_more_previews']['absolute'].to_i == 0
                  }.merge(request.query_parameters)
            ),
            @entry.name,

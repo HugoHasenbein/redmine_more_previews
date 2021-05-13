@@ -40,3 +40,6 @@ es:
   
   label_debug:                                             "Debug"
   text_help_redmine_more_previews_debug:                   "Mostrar información de debug en lugar de un archivo convertido"
+  
+  label_use_absolute_path:                                 "URL con host"
+  text_help_redmine_more_previews_absolute:                "(usar URL con esquema y host) para la etiqueta <iframe> o la etiqueta <embed>"

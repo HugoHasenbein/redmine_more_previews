@@ -52,6 +52,12 @@
     </div>
     <div>
     <%= more_previews_tag(
+          ::Setting['plugin_redmine_more_previews']['absolute'].to_i > 0 ?
+          more_preview_url(
+            @attachment, 
+            RedmineMorePreviews::Converter.conversion_ext(@attachment.diskfile), 
+            request.query_parameters
+          ) :
           more_preview_path(
             @attachment, 
             RedmineMorePreviews::Converter.conversion_ext(@attachment.diskfile), 
