@@ -438,8 +438,6 @@ module RedmineMorePreviews
       @dir_content    = Dir.glob(File.join(@dir,    "*")).to_s
       @url            = @request.url
       @rails_root     = Rails.root
-      @controller     = request.parameters['controller']
-      @action         = request.parameters['action']
     end #def
     
   end #class
