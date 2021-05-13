@@ -418,10 +418,6 @@ module RedmineMorePreviews
       @controller     = request.parameters['controller']
       @action         = request.parameters['action']
       
-      instance_variables.each do |ivar| 
-      Rails.logger.info "#{ivar}: #{instance_variable_get(ivar)}"
-      end
-      
       case preview_format
       when "html", "inline"
         Dir.glob( File.join(__dir__, 'conversion', "*.png")).each{|f| FileUtils.cp(f,tmpdir)}
