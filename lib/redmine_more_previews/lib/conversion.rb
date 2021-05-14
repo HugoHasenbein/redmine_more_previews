@@ -181,7 +181,6 @@ module RedmineMorePreviews
         results = [target, asset, assets].flatten.map do |f|
           self.tmptarget,self.tmpdir,self.tmpfile,self.tmpext = path_set( tdir, f )
           File.open(tmptarget, "rb") {|io| io.read}if File.exist?( tmptarget ) && File.file?( tmptarget )
-         #File.exist?( tmptarget ) && File.file?( tmptarget ) ? File.read( tmptarget ) : nil
         end
         yield *results
       end
@@ -232,12 +231,10 @@ module RedmineMorePreviews
     def read_safe
       if asset && File.exist?(asset)
         semaphore.owned? ? File.open(asset, "rb") {|io| io.read} : semaphore.synchronize { File.open(asset, "rb") {|io| io.read} }
-       #semaphore.owned? ? File.read(asset) : semaphore.synchronize { File.read(asset) }
       elsif asset
         nil
       elsif target && File.exist?(target)
         semaphore.owned? ? File.open(target, "rb") {|io| io.read}  : semaphore.synchronize { File.open(target, "rb") {|io| io.read} }
-       #semaphore.owned? ? File.read(target) : semaphore.synchronize { File.read(target) }
       else
         nil
       end
