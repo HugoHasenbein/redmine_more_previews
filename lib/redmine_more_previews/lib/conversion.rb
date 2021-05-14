@@ -180,7 +180,7 @@ module RedmineMorePreviews
         debug if RedmineMorePreviews::Converter.debug?
         results = [target, asset, assets].flatten.map do |f|
           self.tmptarget,self.tmpdir,self.tmpfile,self.tmpext = path_set( tdir, f )
-          File.exist?( tmptarget ) && File.file?( tmptarget ) ? open(tmptarget, 'rb') {|io| a = a + io.read}
+          File.open(tmptarget, "rb") {|io| io.read}if File.exist?( tmptarget ) && File.file?( tmptarget )
          #File.exist?( tmptarget ) && File.file?( tmptarget ) ? File.read( tmptarget ) : nil
         end
         yield *results
@@ -231,12 +231,12 @@ module RedmineMorePreviews
     #-------------------------------------------------------------------------------------
     def read_safe
       if asset && File.exist?(asset)
-        semaphore.owned? ? open(asset, 'rb') {|io| a = a + io.read} : semaphore.synchronize { open(asset, 'rb') {|io| a = a + io.read} }
+        semaphore.owned? ? File.open(asset, "rb") {|io| io.read} : semaphore.synchronize { File.open(asset, "rb") {|io| io.read} }
        #semaphore.owned? ? File.read(asset) : semaphore.synchronize { File.read(asset) }
       elsif asset
         nil
       elsif target && File.exist?(target)
-        semaphore.owned? ? open(target, 'rb') {|io| a = a + io.read} : semaphore.synchronize { open(target, 'rb') {|io| a = a + io.read} }
+        semaphore.owned? ? File.open(target, "rb") {|io| io.read}  : semaphore.synchronize { File.open(target, "rb") {|io| io.read} }
        #semaphore.owned? ? File.read(target) : semaphore.synchronize { File.read(target) }
       else
         nil
