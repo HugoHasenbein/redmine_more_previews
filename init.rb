@@ -34,6 +34,8 @@
 #        - fixed virgin startup bug. On some events plugin crashes on first time use
 #        - removed UserInstallation parameter in libre for windows platforms
 #        - fixed missing assets bug
+# 2.0.3  
+#        - fixed windows glitch for File.read
 
 require 'redmine'
 
@@ -44,7 +46,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '2.0.2d.3'
+  version '2.0.3'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   
