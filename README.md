@@ -111,11 +111,22 @@ Native speakers: please help to improve localizations
 
 ### Change-Log* 
 
-**2.0.1** fixed last minute issues
+**2.0.3**
+  - fixed windows glitch for File.read
+  
+**2.0.2**
+  - fixed virgin startup bug. On some events plugin crashes on first time use
+  - removed UserInstallation parameter in libre for windows platforms
+  - fixed missing assets bug
+  
+**2.0.1** 
+  - fixed last minute issues
 
-**2.0.0** Recoded and published, supports redmine 3+, redmine 4+
+**2.0.0** 
+  - Recoded and published, supports redmine 3+, redmine 4+
 
-**1.0.0** Running on Redmine 3.4.6, never published
+**1.0.0** 
+  - Running on Redmine 3.4.6, never published
 
 # replaces
 This plugin replaces 
