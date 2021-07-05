@@ -111,6 +111,9 @@ Native speakers: please help to improve localizations
 
 ### Change-Log* 
 
+**2.0.4**
+  - fixed mimemagick dependency after license change
+
 **2.0.3**
   - fixed windows glitch for File.read
   
