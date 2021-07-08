@@ -38,6 +38,8 @@
 #        - fixed windows glitch for File.read
 # 2.0.4
 #        - fixed dependency on mimemagick after license change
+# 2.0.5
+#        - fixed dependency on mimemagick after license change
 
 require 'redmine'
 
@@ -48,7 +50,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '2.0.4'
+  version '2.0.5'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   
