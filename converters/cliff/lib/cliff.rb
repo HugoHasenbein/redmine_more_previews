@@ -92,14 +92,14 @@ class Cliff < RedmineMorePreviews::Conversion
       # create list of attachments and save
       att_html = list( attachments )
       attachments_path = File.join( File.dirname(tmptarget), "attachments.html")
-      File.open(attachments_path, "wb") {|f| f.write att_html }
+      File.open(attachments_path, "w") {|f| f.write att_html }
       
     end
     
-    File.open(tmptarget, "wb") {|f| f.write html }
+    File.open(tmptarget, "w") {|f| f.write html }
     
   rescue Exception => e
-    File.open(tmptarget, "wb") {|f| f.write (([e.message] + e.backtrace).join("<br>\n")) }
+    File.open(tmptarget, "w") {|f| f.write (([e.message] + e.backtrace).join("<br>\n")) }
   end #def
   
   #---------------------------------------------------------------------------------------
@@ -244,7 +244,7 @@ class Cliff < RedmineMorePreviews::Conversion
     @mail      = message
     erb        = ERB.new(File.read(File.join(__dir__, 'cliff', 'headers.html.erb')))
     headers    = erb.result(binding).html_safe
-    File.open(File.join(tmpdir, "headers.html"), "w+b", 0644) {|f| f.write headers }
+    File.open(File.join(tmpdir, "headers.html"), "w+", 0644) {|f| f.write headers }
   end #def
   
   #---------------------------------------------------------------------------------------
@@ -254,7 +254,7 @@ class Cliff < RedmineMorePreviews::Conversion
     @mail      = message
     erb        = ERB.new(File.read(File.join(__dir__, 'cliff', 'fields.html.erb')))
     fields     = erb.result(binding).html_safe
-    File.open(File.join(tmpdir, "fields.html"), "w+b", 0644) {|f| f.write fields }
+    File.open(File.join(tmpdir, "fields.html"), "w+", 0644) {|f| f.write fields }
   end #def
   
   #---------------------------------------------------------------------------------------

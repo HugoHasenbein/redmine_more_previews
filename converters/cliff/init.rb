@@ -21,12 +21,14 @@
 
 # 1.0.1
 #        - added timezone support for mail dates in cliff
+# 1.0.2
+#        - added support for non-ascii email headers 
 
 RedmineMorePreviews::Converter.register :cliff do
   name           'Cliff'
   author         'Stephan Wenzel'
   description    'Preview email files in preview pane'
-  version        '1.0.1'
+  version        '1.0.2'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_cliff'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_cliff'
                  

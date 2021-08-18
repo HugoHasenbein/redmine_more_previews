@@ -180,7 +180,7 @@ module RedmineMorePreviews
         debug if RedmineMorePreviews::Converter.debug?
         results = [target, asset, assets].flatten.map do |f|
           self.tmptarget,self.tmpdir,self.tmpfile,self.tmpext = path_set( tdir, f )
-          File.open(tmptarget, "rb") {|io| io.read}if File.exist?( tmptarget ) && File.file?( tmptarget )
+          File.open(tmptarget, "r") {|io| io.read}if File.exist?( tmptarget ) && File.file?( tmptarget )
          #File.exist?( tmptarget ) && File.file?( tmptarget ) ? File.read( tmptarget ) : nil
         end
         yield *results
