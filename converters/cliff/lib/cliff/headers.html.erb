@@ -8,9 +8,10 @@
           
             <% if @mail.has_date? %>
               <%- datestr = I18n.localize(@mail.date) rescue @mail.date.to_s %>
+              <%- tzone   = @mail.date.strftime("%:::z") rescue "" %>
               <tr >
                 <td style="width:5%;font-weight:bold;"><%= I18n.translate(:label_mail_field_date) %></td>
-                <td style="word-break: break-all;" ><%= datestr %></td>
+                <td style="word-break: break-all;" ><%= datestr %>(<%= tzone %>)</td>
               </tr>
             <% end %>
             

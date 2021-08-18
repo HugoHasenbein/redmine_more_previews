@@ -19,11 +19,14 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
+# 1.0.1
+#        - added timezone support for mail dates in cliff
+
 RedmineMorePreviews::Converter.register :cliff do
   name           'Cliff'
   author         'Stephan Wenzel'
   description    'Preview email files in preview pane'
-  version        '1.0.0'
+  version        '1.0.1'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_cliff'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_cliff'
                  

@@ -40,6 +40,8 @@
 #        - fixed dependency on mimemagick after license change
 # 2.0.5
 #        - fixed dependency on mimemagick after license change
+# 2.0.6
+#        - added timezone support for mail dates in cliff
 
 require 'redmine'
 
