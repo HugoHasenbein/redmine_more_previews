@@ -10,16 +10,16 @@
   <% if RedmineMorePreviews::Converter.cache_previews? && !params[:unsafe] %>
   
     <% if html = repository.more_asset( path, rev, params.merge( :asset => "headers.html" )) %>
-      <div class="box"><%= html.html_safe %></div>
+      <div class="box"><%= RedmineMorePreviews::Lib::RmpText.to_utf8(html).html_safe %></div>
     <%- end %>
     
     <% if html = repository.more_asset( path, rev, params.merge( :asset => "fields.html" )) %>
       <%= toggler.html_safe %>
-      <div class="box" id="<%= html_id %>" style="display:none;"><%= html.html_safe %></div>
+      <div class="box" id="<%= html_id %>" style="display:none;"><%= RedmineMorePreviews::Lib::RmpText.to_utf8(html).html_safe %></div>
     <%- end %>
     
     <% if html = repository.more_asset( path, rev, params.merge( :asset => "attachments.html" )) %>
-      <div class="box"><%= html.html_safe %></div>
+      <div class="box"><%= RedmineMorePreviews::Lib::RmpText.to_utf8(html).html_safe %></div>
     <%- end %>
     
   <% else %>
@@ -27,16 +27,16 @@
     <%- repository.more_asset( path, rev, :assets => ["headers.html", "fields.html", "attachments.html"] ) do |html, asset, email_headers, email_fields, email_attachments| %>
     
       <% if email_headers %>
-        <div class="box"><%= email_headers.html_safe %></div>
+        <div class="box"><%= RedmineMorePreviews::Lib::RmpText.to_utf8(email_headers).html_safe %></div>
       <%- end %>
       
       <% if email_fields %>
         <%= toggler.html_safe %>
-        <div class="box" id="<%= html_id %>" style="display:none;"><%= email_fields.html_safe %></div>
+        <div class="box" id="<%= html_id %>" style="display:none;"><%= RedmineMorePreviews::Lib::RmpText.to_utf8(email_fields).html_safe %></div>
       <%- end %>
       
       <% if email_attachments %>
-        <div class="box"><%= email_attachments.html_safe %></div>
+        <div class="box"><%= RedmineMorePreviews::Lib::RmpText.to_utf8(email_attachments).html_safe %></div>
       <%- end %>
       
     <%- end %>

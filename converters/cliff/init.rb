@@ -23,7 +23,9 @@
 #        - added timezone support for mail dates in cliff
 # 1.0.2
 #        - added support for non-ascii email headers 
-
+# 1.0 3
+#        - fixed mail charset handling
+#
 RedmineMorePreviews::Converter.register :cliff do
   name           'Cliff'
   author         'Stephan Wenzel'

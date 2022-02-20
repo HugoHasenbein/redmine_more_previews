@@ -25,7 +25,7 @@ module RedmineMorePreviews
     module MimeTypePatch
       def self.included(base)
         base.class_eval do
-          unloadable
+          #unloadable
           
           # Returns the css class associated to
           # the mime type of name

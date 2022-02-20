@@ -44,9 +44,12 @@ module RedmineMorePreviews
     #-------------------------------------------------------------------------------------
     attr_accessor :id, :name, :threadsafe, :semaphore, :mime_types, :project, :object, 
                   :source, :format, :preview_format, :request, :timeout, :shell_api,
-                  :target,    :dir,      :file,      :ext, 
-                  :asset,     :assetdir, :assetfile, :assetext, :assets,
-                  :tmptarget, :tmpdir,   :tmpfile,   :tmpext, 
+                  :target,    :dir,         :file,        :ext,        :targetpath,
+                  :asset,     :assetdir,    :assetfile,   :assetext,   :assetpath,
+                  :assets,                                             :assetspaths,
+                  :tmptarget, :tmpdir,      :tmpfile,     :tmpext, 
+                  :tmpasset,  :tmpassetdir, :tmpassetfile,:tmpassetext,
+                  :tmpassetspaths,
                   :settings, :unique_id,
                   :transient, :reload, :unsafe,
                   :version, :plugin_version
@@ -98,6 +101,9 @@ module RedmineMorePreviews
       self.preview_format = options[:preview_format].to_s.downcase
       self.request        = options[:request]
       
+      # preview 
+      self.target         = options[:target]
+      
       # should preview asset be served instead of preview
       self.assets         = options[:assets].presence
       self.asset          = options[:asset].presence
@@ -108,12 +114,10 @@ module RedmineMorePreviews
       # should an unsafe reload be one
        self.unsafe        = options[:unsafe].presence || false
       
-      # create path_set for cache storage
-      self.target,  self.dir,        self.file,       self.ext      = path_set( options[:target],      nil, :nocreate => true )
-      self.asset,   self.assetdir,   self.assetfile,  self.assetext = path_set( File.join(dir, asset), nil, :nocreate => true ) if asset
-      assets.map! do |ass|
-        ass, assdir, assfile, assext = path_set( File.join(dir, ass), nil, :nocreate => true ); ass
-      end  if assets
+      # create path_sets for cache storage
+      self.targetpath, self.dir,        self.file,       self.ext      = path_set( target,                :nocreate => true )
+      self.assetpath,  self.assetdir,   self.assetfile,  self.assetext = path_set( File.join(dir, asset), :nocreate => true ) if asset
+      self.assetspaths = assets.to_a.map{ |ass| path_set( File.join(dir, ass), nil, :nocreate => true )}
     end #def
     
     #-------------------------------------------------------------------------------------
@@ -175,15 +179,19 @@ module RedmineMorePreviews
     def transient_preview( &block )
       Dir.mktmpdir do |tdir|
         files = []
-        self.tmptarget,self.tmpdir,self.tmpfile,self.tmpext = path_set( tdir, target )
+        self.tmptarget, self.tmpdir,     self.tmpfile,     self.tmpext      = path_set(tdir, ["index", preview_format].join("."))
+        self.tmpasset,  self.tmpassetdir,self.tmpassetfile,self.tmpassetext = path_set(tmpdir, asset )
+        self.tmpassetspaths = assets.to_a.map do |ass|
+          path_set( File.join(tmpdir, ass), nil, :nocreate => true )
+        end 
         convert
         debug if RedmineMorePreviews::Converter.debug?
-        results = [target, asset, assets].flatten.map do |f|
-          self.tmptarget,self.tmpdir,self.tmpfile,self.tmpext = path_set( tdir, f )
-          File.open(tmptarget, "r") {|io| io.read}if File.exist?( tmptarget ) && File.file?( tmptarget )
-         #File.exist?( tmptarget ) && File.file?( tmptarget ) ? File.read( tmptarget ) : nil
+        if block_given?
+          result = [tmptarget, tmpasset, tmpassetspaths.map(&:first)].flatten.compact.map do |f|
+            File.open(f, "rb") {|io| io.read} if File.exist?( f ) && File.file?( f )
+          end
+          yield *result
         end
-        yield *results
       end
     end #def
     
@@ -191,14 +199,7 @@ module RedmineMorePreviews
     # cached_preview
     #-------------------------------------------------------------------------------------
     def cached_preview
-      if !valid || reload
-        Dir.mktmpdir do |tdir| 
-          self.tmptarget, self.tmpdir, self.tmpfile, self.tmpext = path_set(tdir, ["index", preview_format].join("."))
-          convert
-          debug if RedmineMorePreviews::Converter.debug?
-          copy_over
-        end
-      end
+      begin; transient_preview{|*files| copy_over}; end if !valid || reload
       read_safe
     end #def
     
@@ -213,9 +214,9 @@ module RedmineMorePreviews
           # Dir.glob() also produces "." ".."
           # therefore get files and directories with 
           # Dir.children() and reassemble paths
-          Dir.children(tmpdir).each do |f|
-            FileUtils.copy_entry(File.join(tmpdir,f), File.join(dir,f), true, false, true)
-          end
+            Dir.children(tmpdir).each do |f|
+              FileUtils.copy_entry(File.join(tmpdir,f), File.join(dir,f), true, false, true)
+            end
         else 
           semaphore.synchronize do
             Dir.children(tmpdir).each do |f|
@@ -230,14 +231,10 @@ module RedmineMorePreviews
     # read safe
     #-------------------------------------------------------------------------------------
     def read_safe
-      if asset && File.exist?(asset)
-        semaphore.owned? ? File.open(asset, "rb") {|io| io.read} : semaphore.synchronize { File.open(asset, "rb") {|io| io.read} }
-       #semaphore.owned? ? File.read(asset) : semaphore.synchronize { File.read(asset) }
-      elsif asset
-        nil
-      elsif target && File.exist?(target)
-        semaphore.owned? ? File.open(target, "rb") {|io| io.read}  : semaphore.synchronize { File.open(target, "rb") {|io| io.read} }
-       #semaphore.owned? ? File.read(target) : semaphore.synchronize { File.read(target) }
+      if asset && File.exist?(assetpath)
+        semaphore.owned? ? File.open(assetpath,  "rb") {|io| io.read} : semaphore.synchronize { File.open(assetpath,  "rb") {|io| io.read} }
+      elsif target && File.exist?(targetpath)
+        semaphore.owned? ? File.open(targetpath, "rb") {|io| io.read} : semaphore.synchronize { File.open(targetpath, "rb") {|io| io.read} }
       else
         nil
       end
@@ -253,7 +250,7 @@ module RedmineMorePreviews
     #-------------------------------------------------------------------------------------
     # pathset create path, director
     #-------------------------------------------------------------------------------------
-    def path_set( path, filename=nil, options={} )
+    def path_set( path, filename=nil, **options)
       return [nil, nil, nil, nil] if path.nil?
       raise ConverterBadArgument unless path.present?
       fullpath = filename ? File.join(path, filename) : path

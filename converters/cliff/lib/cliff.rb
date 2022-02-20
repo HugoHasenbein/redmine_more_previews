@@ -66,7 +66,7 @@ class Cliff < RedmineMorePreviews::Conversion
     
     # sweep bad stuff from html
     unless unsafe
-    html = sweep( Nokogiri::HTML( html ) ).to_html 
+    html = sweep( html )
     end
     
     # save headers, users usually want to see
@@ -92,14 +92,15 @@ class Cliff < RedmineMorePreviews::Conversion
       # create list of attachments and save
       att_html = list( attachments )
       attachments_path = File.join( File.dirname(tmptarget), "attachments.html")
-      File.open(attachments_path, "w") {|f| f.write att_html }
+      File.open(attachments_path, "wb") {|f| f.write att_html }
       
     end
     
-    File.open(tmptarget, "w") {|f| f.write html }
+    
+    File.open(tmptarget, "wb") {|f| f.write html }
     
   rescue Exception => e
-    File.open(tmptarget, "w") {|f| f.write (([e.message] + e.backtrace).join("<br>\n")) }
+    File.open(tmptarget, "wb") {|f| f.write (([e.message] + e.backtrace).join("<br>\n")) }
   end #def
   
   #---------------------------------------------------------------------------------------
@@ -244,7 +245,7 @@ class Cliff < RedmineMorePreviews::Conversion
     @mail      = message
     erb        = ERB.new(File.read(File.join(__dir__, 'cliff', 'headers.html.erb')))
     headers    = erb.result(binding).html_safe
-    File.open(File.join(tmpdir, "headers.html"), "w+", 0644) {|f| f.write headers }
+    File.open(File.join(tmpdir, "headers.html"), "w+b", 0644) {|f| f.write headers }
   end #def
   
   #---------------------------------------------------------------------------------------
@@ -254,7 +255,7 @@ class Cliff < RedmineMorePreviews::Conversion
     @mail      = message
     erb        = ERB.new(File.read(File.join(__dir__, 'cliff', 'fields.html.erb')))
     fields     = erb.result(binding).html_safe
-    File.open(File.join(tmpdir, "fields.html"), "w+", 0644) {|f| f.write fields }
+    File.open(File.join(tmpdir, "fields.html"), "w+b", 0644) {|f| f.write fields }
   end #def
   
   #---------------------------------------------------------------------------------------
@@ -262,12 +263,15 @@ class Cliff < RedmineMorePreviews::Conversion
   #---------------------------------------------------------------------------------------
   UNSAFETAGS   = %w(script)
   
-  def sweep( xml )
+  def sweep( html )
+  
+    doc = Nokogiri::HTML(html)
+    
     #
     # remove unsafe tags
     #
     UNSAFETAGS.each do |ust|
-      xml.xpath("//*[self::#{ust}]").each do |node|
+      doc.xpath("//*[self::#{ust}]").each do |node|
         node.remove
       end
     end
@@ -275,7 +279,7 @@ class Cliff < RedmineMorePreviews::Conversion
     #
     # remove link= attribute of style tags
     #
-    xml.xpath("//style").each do |node|
+    doc.xpath("//style").each do |node|
       node.keys.each do |attribute|
         if attribute =~ /link/i
           node.delete attribute
@@ -286,14 +290,14 @@ class Cliff < RedmineMorePreviews::Conversion
     #
     # remove url(.*) attribute within css style tags
     #
-    xml.xpath("//style/text()").each do |node|
+    doc.xpath("//style/text()").each do |node|
       node.replace(node.content.gsub(/url\(.*?\)/, ""))
     end
     
     #
     # remove url(.*) attribute within css style attributes
     #
-    xml.xpath("//*").each do |node|
+    doc.xpath("//*").each do |node|
       node.keys.each do |attribute|
         if attribute =~ /style/i
           node[attribute] = node[attribute].to_s.gsub(/url\(.*?\)/, "")
@@ -304,7 +308,7 @@ class Cliff < RedmineMorePreviews::Conversion
     #
     # remove src= attribute of external images
     #
-    xml.xpath("//img").each do |node|
+    doc.xpath("//img").each do |node|
       node.keys.each do |attribute|
         if attribute =~ /src/i && node[attribute] !~ /\Acid:/i
           node.delete attribute
@@ -315,7 +319,7 @@ class Cliff < RedmineMorePreviews::Conversion
     #
     # remove href= attribute of external links
     #
-    xml.xpath("//a").each do |node|
+    doc.xpath("//a").each do |node|
       node.keys.each do |attribute|
         if attribute =~ /href/i
           node.delete attribute
@@ -331,13 +335,16 @@ class Cliff < RedmineMorePreviews::Conversion
                 "//@*[@*[starts-with(name(), 'on')]]",
       "//namespace::*[@*[starts-with(name(), 'on')]]"
     ].join(" | ")
-    xml.xpath(patterns).each do |node|
+    doc.xpath(patterns).each do |node|
       node.keys.each do |attribute|
         node.delete attribute if attribute =~ /\Aon/i
       end
     end
     
-    xml
+    # to_html will automatically correct 
+    # <meta http-equiv="Content-Type" content="text/html; charset=<CHARSET>"
+    # took me a day to find that out
+    doc.to_html
   end #def
   
   #---------------------------------------------------------------------------------------

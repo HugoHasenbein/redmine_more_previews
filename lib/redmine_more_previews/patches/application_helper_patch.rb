@@ -26,7 +26,7 @@ module RedmineMorePreviews
       def self.included(base)
         base.class_eval do
         
-          unloadable 
+          #unloadable 
           
           def more_previews_tag(path, filename, options={})
           

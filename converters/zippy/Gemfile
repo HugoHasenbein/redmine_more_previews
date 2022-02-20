@@ -1,2 +1,2 @@
-gem 'rubyzip'
+#gem 'rubyzip'
 gem 'zlib'

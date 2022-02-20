@@ -133,9 +133,10 @@ class Zippy < RedmineMorePreviews::Conversion
   # tarcontent
   #---------------------------------------------------------------------------------------
   def tarcontent( tarball )
-    tarball.seek( assetpath ) do |entry|
-      FileUtils.mkdir_p(File.dirname(File.join(tmpdir, assetpath )))
-      File.open(File.join(tmpdir, assetpath ), "wb") do |f| 
+    tarball.seek( asset ) do |entry|
+      FileUtils.rm_rf(tmpasset) if File.exist?(tmpasset)
+      FileUtils.mkdir_p(File.dirname(tmpasset)) 
+      File.open(tmpasset, "wb") do |f| 
         while( chunk = entry.read(8192)) do
           f.write chunk
         end
@@ -214,9 +215,10 @@ class Zippy < RedmineMorePreviews::Conversion
   # zipasset
   #---------------------------------------------------------------------------------------
   def zipcontent( zip_file )
-    if entry = zip_file.find_entry(assetpath)
-      FileUtils.mkdir_p(File.dirname(File.join(tmpdir, assetpath ))) 
-      zip_file.extract( entry, File.join(tmpdir, assetpath ))
+    if entry = zip_file.find_entry(asset)
+      FileUtils.rm_rf(tmpasset) if File.exist?(tmpasset)
+      FileUtils.mkdir_p(File.dirname(tmpasset)) 
+      zip_file.extract( entry, tmpasset)
     end #def
   end #def
   

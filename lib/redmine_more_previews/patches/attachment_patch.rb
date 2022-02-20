@@ -28,7 +28,7 @@ module RedmineMorePreviews
     module AttachmentPatch
       def self.included(base)
         base.class_eval do
-          unloadable
+          #unloadable
           
           ################################################################################
           #

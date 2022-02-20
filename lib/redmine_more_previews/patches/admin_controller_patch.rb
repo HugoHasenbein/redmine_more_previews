@@ -26,7 +26,7 @@ module RedmineMorePreviews
         base.send(:include, InstanceMethods)
         
         base.class_eval do
-          unloadable
+          #unloadable
             
           alias_method :info_without_more_previews, :info
           alias_method :info, :info_with_more_previews
