@@ -46,6 +46,8 @@
 #        - added support for non-ascii email headers in cliff
 # 2.0.8
 #        - fixed tmpfile scheme (internals)
+# 2.0.9
+#        - simplified hooks views for cliff
 
 require 'redmine'
 
@@ -56,7 +58,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '2.0.8'
+  version '2.0.9'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   
