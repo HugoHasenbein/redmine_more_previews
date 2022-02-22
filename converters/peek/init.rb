@@ -18,12 +18,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
+# 1.0.0
+#       - initial version
+# 1.0.1
+#       - required files for non eager loading
 
 RedmineMorePreviews::Converter.register :peek do
   name           'Peek'
   author         'Stephan Wenzel'
   description    'Preview PDF in preview pane'
-  version        '1.0.0'
+  version        '1.0.1'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_peek'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_peek'
                  
@@ -32,3 +36,4 @@ RedmineMorePreviews::Converter.register :peek do
   mime_types     :pdf  =>    {:formats => [:pdf, :jpg, :png, :gif], :mime => "application/pdf" }
 end
 
+require 'peek'

@@ -18,12 +18,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
+# 1.0.0
+#       - initial version
+# 1.0.1
+#       - required files for non eager loading
 
 RedmineMorePreviews::Converter.register :mark do
   name           'Mark'
   author         'Stephan Wenzel'
   description    'Preview markup text files'
-  version        '1.0.0'
+  version        '1.0.1'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_mark'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_mark'
                  
@@ -33,3 +37,5 @@ RedmineMorePreviews::Converter.register :mark do
                  :textile => {:formats => [:html, :inline      ], :mime => "text/x-web-textile", :icon => "textile.png"  },
                  :html    => {:formats => [:html, :inline, :txt], :mime => "text/html"                                   }
 end
+
+require 'mark'

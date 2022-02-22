@@ -22,12 +22,14 @@
 #       - initial version
 # 1.0.1
 #       - adapted to different tmpfile scheme of Conversion
-#
+# 1.0.2
+#       - required files for non eager loading
+
 RedmineMorePreviews::Converter.register :zippy do
   name           'Zippy'
   author         'Stephan Wenzel'
   description    'Zip Converter'
-  version        '1.0.1'
+  version        '1.0.2'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_zippy'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_zippy'
                    
@@ -38,3 +40,5 @@ RedmineMorePreviews::Converter.register :zippy do
                  :tgz    => {:formats => [:html, :inline], :mime => "application/gtar", :synonyms => ["application/x-gtar"], :icon => "tgz.png" }
 end
 
+require 'array'
+require 'zippy'

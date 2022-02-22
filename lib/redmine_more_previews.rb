@@ -40,9 +40,14 @@ require 'redmine_more_previews/lib/rmp_file'
 require 'redmine_more_previews/lib/rmp_img'
 require 'redmine_more_previews/lib/rmp_pdf'
 require 'redmine_more_previews/lib/rmp_shell'
+require 'redmine_more_previews/lib/rmp_text'
 require 'redmine_more_previews/lib/exceptions'
 
 # workers
 require 'redmine_more_previews/lib/converter'
 require 'redmine_more_previews/lib/conversion'
+
+# hooks
+require 'redmine_more_previews/hooks/icon_css'
+
 

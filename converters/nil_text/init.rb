@@ -18,12 +18,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
+# 1.0.0
+#       - initial version
+# 1.0.1
+#       - required files for non eager loading
 
 RedmineMorePreviews::Converter.register :nil_text do
   name           'Nil Text'
   author         'Stephan Wenzel'
   description    'Empty Converter'
-  version        '1.0.0'
+  version        '1.0.1'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_nil_text'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_nil_text'
                  
@@ -35,3 +39,4 @@ RedmineMorePreviews::Converter.register :nil_text do
   
 end
 
+require 'nil_text'

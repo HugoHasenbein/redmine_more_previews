@@ -139,7 +139,7 @@ module RedmineMorePreviews
       module InstanceMethods
       
         def show_with_more_previews
-          if @attachment.preview_convertible?
+          if request.format.html? && @attachment.preview_convertible?
             render :action => 'more_preview', :formats => :html
           else
             show_without_more_previews

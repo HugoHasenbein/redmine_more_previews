@@ -18,11 +18,14 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
-
+# 1.0.0
+#       - initial version
 # 1.0.1
-#        - added timezone support for mail dates in cliff
+#       - added timezone support for mail dates in cliff
 # 1.0.2
-#        - simplified hooks views
+#       - simplified hooks views
+# 1.0.3
+#       - required files for non eager loading
 
 RedmineMorePreviews::Converter.register :cliff do
   name           'Cliff'
@@ -38,3 +41,4 @@ RedmineMorePreviews::Converter.register :cliff do
                  :mime  =>   {:formats => [:html], :mime => "message/rfc822", :icon => "eml.png" }
 end
 
+require 'lib'

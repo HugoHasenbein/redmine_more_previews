@@ -18,14 +18,18 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
-# 1.0.1 removed UserInstallation param for Windows
-#
+# 1.0.0
+#        - initial version
+# 1.0.1 
+#        - removed UserInstallation param for Windows
+# 1.0.2
+#        - required files for non eager loading
 
 RedmineMorePreviews::Converter.register :libre do
   name           'Libre'
   author         'Stephan Wenzel'
   description    'Preview office files with LibreOffice'
-  version        '1.0.1'
+  version        '1.0.2'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_libre'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_libre'
                  
@@ -96,3 +100,5 @@ RedmineMorePreviews::Converter.register :libre do
   #
   
 end
+
+require 'libre'

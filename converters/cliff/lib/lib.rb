@@ -19,5 +19,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
+# lib
+require 'cliff'
+
+# hooks
 require 'hooks/cliff_eml_top_hook'
 require 'hooks/cliff_eml_contextual_hook'
