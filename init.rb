@@ -50,8 +50,12 @@
 #        - simplified hooks views for cliff
 # 2.0.10
 #        - fixed broken api calls for attachment
-
-require 'redmine'
+# 2.0.11
+#        - amended autoload paths
+# 3.0.0b
+#        - rearranged code and files to better match zeitwerk
+#        - made compatible with development mode
+#        - beta quality
 
 #-----------------------------------------------------------------------------------------
 # Register plugin
@@ -60,7 +64,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '2.0.10'
+  version '3.0.0b'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   
@@ -73,19 +77,23 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
 end
 
 #-----------------------------------------------------------------------------------------
-# Constants
+# Load stuff, which needs to be loaded on boot and on each request in development mode
 #-----------------------------------------------------------------------------------------
-MORE_PREVIEWS_STORAGE_PATH = File.join(Rails.root, "tmp", "more_previews")
+Rails.application.config.to_prepare do
 
-#-----------------------------------------------------------------------------------------
-# Plugin Library
-#-----------------------------------------------------------------------------------------
-require "redmine_more_previews"
+  #---------------------------------------------------------------------------------------
+  # Constants
+  #---------------------------------------------------------------------------------------
+  unless defined?(MORE_PREVIEWS_STORAGE_PATH)
+    MORE_PREVIEWS_STORAGE_PATH = File.join(Rails.root, "tmp", "more_previews")
+  end
+  
+  #---------------------------------------------------------------------------------------
+  # Load Converters
+  #---------------------------------------------------------------------------------------
+  RedmineMorePreviews::Converter.load
+end
 
-#-----------------------------------------------------------------------------------------
-# Load Converters
-#-----------------------------------------------------------------------------------------
-RedmineMorePreviews::Converter.load
 
 #-----------------------------------------------------------------------------------------
 # Add permissions

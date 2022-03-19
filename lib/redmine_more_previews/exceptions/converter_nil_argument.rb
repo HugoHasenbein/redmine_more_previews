@@ -20,9 +20,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-class ConverterWrongArgument < StandardError; end
-class ConverterNilArgument   < StandardError; end
-class ConverterBadArgument   < StandardError; end
-class ConverterNoConverter   < StandardError; end
-class ConverterLockTimeOut   < StandardError; end
-class ConverterShellError    < StandardError; end
+module RedmineMorePreviews
+  module Exceptions
+    class ConverterNilArgument < StandardError; end
+  end
+end

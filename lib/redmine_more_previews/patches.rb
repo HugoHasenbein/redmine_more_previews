@@ -20,12 +20,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-
-
-# helpers (load before controller patches)
-require 'redmine_more_previews/lib/controller_helper'
-
-# patches
 require 'redmine_more_previews/patches/entry_patch'
 require 'redmine_more_previews/patches/mime_type_patch'
 require 'redmine_more_previews/patches/repository_patch'
@@ -34,20 +28,3 @@ require 'redmine_more_previews/patches/admin_controller_patch'
 require 'redmine_more_previews/patches/application_helper_patch'
 require 'redmine_more_previews/patches/attachments_controller_patch'
 require 'redmine_more_previews/patches/repositories_controller_patch'
-
-# libraries
-require 'redmine_more_previews/lib/rmp_file'
-require 'redmine_more_previews/lib/rmp_img'
-require 'redmine_more_previews/lib/rmp_pdf'
-require 'redmine_more_previews/lib/rmp_shell'
-require 'redmine_more_previews/lib/rmp_text'
-require 'redmine_more_previews/lib/exceptions'
-
-# workers
-require 'redmine_more_previews/lib/converter'
-require 'redmine_more_previews/lib/conversion'
-
-# hooks
-require 'redmine_more_previews/hooks/icon_css'
-
-

@@ -24,45 +24,37 @@ require 'mimemagic'
 require 'mimemagic/overlay'
 
 module RedmineMorePreviews
-  
-  ########################################################################################
-  #
-  # Exceptions
-  #
-  ########################################################################################
-  # Exception raised when a converter cannot be found given its id.
-  class ConverterNotFound < StandardError; end
-  
-  # Exception raised when a converter requirement is not met.
-  class ConverterRequirementError < StandardError; end
-  
-  # Base class for Converters.
-  # Converters are registered using the <tt>register</tt> class method that acts as the public constructor.
-  #
-  #   RedmineMorePreviews::Converter.register :textmate do
-  #     name 'Example text to html converter'
-  #     author 'John Smith'
-  #     description 'This is an example converter for RedmineMorePreviews'
-  #     version '0.0.1'
-  #     settings :default => {'foo'=>'bar'}, :partial => 'settings/settings'
-  #     class_name 'Textmate'
-  #     mime_types(:txt => {:formats => [:html], :mime => 'text/plain'})
-  #   end
-  #
-  # === Converter attributes
-  #
-  # +settings+ is an optional attribute that let the converter be configurable.
-  # It must be a hash with the following keys:
-  # * <tt>:default</tt>: default value for the plugin settings
-  # Example:
-  #   settings :default => {'foo'=>'bar'}
-  #
   class Converter
   
+    # Base class for Converters.
+    # Converters are registered using the <tt>register</tt> class method that acts as the public constructor.
+    #
+    #   RedmineMorePreviews::Converter.register :textmate do
+    #     name 'Example text to html converter'
+    #     author 'John Smith'
+    #     description 'This is an example converter for RedmineMorePreviews'
+    #     version '0.0.1'
+    #     settings :default => {'foo'=>'bar'}, :partial => 'settings/settings'
+    #     class_name 'Textmate'
+    #     mime_types(:txt => {:formats => [:html], :mime => 'text/plain'})
+    #   end
+    #
+    # === Converter attributes
+    #
+    # +settings+ is an optional attribute that let the converter be configurable.
+    # It must be a hash with the following keys:
+    # * <tt>:default</tt>: default value for the plugin settings
+    # Example:
+    #   settings :default => {'foo'=>'bar'}
+    #
+    
     ######################################################################################
-    #
+    # includes
+    ######################################################################################
+    include RedmineMorePreviews::Exceptions
+    
+    ######################################################################################
     # constants
-    #
     ######################################################################################
     FORMATS      = %i(html inline txt pdf png jpg gif xml)
     FORMAT_MIMES = {"html"  => "text/html",  "inline" => "text/html", 
@@ -71,9 +63,7 @@ module RedmineMorePreviews
                     "gif"   => "image/gif",  "xml"    => "text/xml" }
     
     ######################################################################################
-    #
     # variables
-    #
     ######################################################################################
     cattr_accessor :directory
     self.directory = File.join(Redmine::Plugin.find(:redmine_more_previews).directory, "converters")
@@ -86,9 +76,7 @@ module RedmineMorePreviews
     @used_partials = {}
     
     ######################################################################################
-    #
     # fields
-    #
     ######################################################################################
     class << self
     
@@ -111,11 +99,12 @@ module RedmineMorePreviews
     attr_accessor :mime_types, :converter_class, :semaphore
     
     ######################################################################################
-    #
-    # class functions
-    #
+    # class methods
     ######################################################################################
-    def self.register(id, &block)
+    def self.register(id, **options, &block)
+    
+      return if registered_converters[id.to_sym] && !options[:force] == true # make registration idempotent
+      
       c = new(id)
       c.instance_eval(&block)
       
@@ -151,10 +140,14 @@ module RedmineMorePreviews
       # Add the plugin directories to rails autoload paths
       engine_cfg = Rails::Engine::Configuration.new(c.directory)
       engine_cfg.paths.add 'lib', eager_load: true
-      Rails.application.config.eager_load_paths += engine_cfg.eager_load_paths
+#     engine_cfg.paths['lib'].eager_load! # create all paths
+      Rails.application.config.eager_load_paths    += engine_cfg.eager_load_paths
       Rails.application.config.autoload_once_paths += engine_cfg.autoload_once_paths
-      Rails.application.config.autoload_paths += engine_cfg.autoload_paths
-      ActiveSupport::Dependencies.autoload_paths += engine_cfg.eager_load_paths + engine_cfg.autoload_once_paths + engine_cfg.autoload_paths
+      Rails.application.config.autoload_paths      += engine_cfg.autoload_paths
+      ActiveSupport::Dependencies.autoload_paths   += (engine_cfg.eager_load_paths + 
+                                                       engine_cfg.autoload_once_paths + 
+                                                       engine_cfg.autoload_paths -
+                                                       [File.join(c.directory, 'lib')]) # lib was already added in self.load
       
       # Warn for potential settings[:partial] collisions
       if c.configurable?
@@ -284,9 +277,7 @@ module RedmineMorePreviews
     end
     
     ######################################################################################
-    #
-    # convert functions
-    #
+    # convert methods
     ######################################################################################
     def self.convertible?( filename )
       ext = File.extname( filename ).gsub(/\A\./,"").downcase
@@ -342,18 +333,14 @@ module RedmineMorePreviews
     end #def
     
     ######################################################################################
-    #
-    # view functions
-    #
+    # view methods
     ######################################################################################
     def self.formats_for_select(formats=[])
       (FORMATS & Array(formats)).map{|f| [f.to_s,f.to_s]}
     end #def
     
     ######################################################################################
-    #
-    # class functions: these deal only with settings, not with converter instances
-    #
+    # class methods: these deal only with settings, not with converter instances
     ######################################################################################
     def self.configured_converters
       begin 
@@ -409,9 +396,7 @@ module RedmineMorePreviews
     end #def
     
     ######################################################################################
-    #
-    # instance functions
-    #
+    # instance methods
     ######################################################################################
     def initialize(id)
       @id = id.to_sym
@@ -448,9 +433,7 @@ module RedmineMorePreviews
     end
     
     ######################################################################################
-    #
-    # field functions
-    #
+    # field methods
     ######################################################################################
     def mime_types(*args)
       if args.empty?
@@ -478,9 +461,7 @@ module RedmineMorePreviews
     end #def
     
     ######################################################################################
-    #
-    # special functions
-    #
+    # special methods
     ######################################################################################
     # Sets a requirement on Redmine version
     # Raises a ConverterRequirementError exception if the requirement is not met
