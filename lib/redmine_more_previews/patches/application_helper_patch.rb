@@ -51,14 +51,15 @@ module RedmineMorePreviews
                 content_tag(
                   :iframe,
                   "",
-                  { :style                => "position:absolute;top:0;left:0;width:95%;height:100%;",
+                  { :style                => "position:absolute;top:0;left:0;width:95%;height:16px;",
                     :seamless             => "seamless",
                     :scrolling            => "no",
                     :frameborder          => "0",
                     :allowtransparency    => "true",
                     :title                => filename,
                     :src                  => path,
-                    :id                   => 'preview_frame'
+                    :id                   => 'preview_frame',
+                    :onload               => "$(document).ready(function() {var height = $(window).height(); $('#preview_frame').css('height', height)});".html_safe 
                    }.merge(options)
                 ),
                 :id    => "preview_pane",

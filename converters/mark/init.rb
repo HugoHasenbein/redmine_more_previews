@@ -22,12 +22,14 @@
 #       - initial version
 # 1.0.1
 #       - required files for non eager loading
+# 1.0.2
+#        - fixed 'File' bug
 
 RedmineMorePreviews::Converter.register :mark do
   name           'Mark'
   author         'Stephan Wenzel'
   description    'Preview markup text files'
-  version        '1.0.1'
+  version        '1.0.2'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_mark'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_mark'
                  

@@ -56,6 +56,10 @@
 #        - rearranged code and files to better match zeitwerk
 #        - made compatible with development mode
 #        - beta quality
+#        
+# 3.0.1  
+#        - fixed 'File' bug for converter 'mark'
+#
 
 #-----------------------------------------------------------------------------------------
 # Register plugin
@@ -64,7 +68,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '3.0.0b'
+  version '3.0.1'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   

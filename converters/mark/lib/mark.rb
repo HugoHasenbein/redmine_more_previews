@@ -60,18 +60,33 @@ class Mark < RedmineMorePreviews::Conversion
     
     case format
     when "html"
-      base_url = url_for({
-        :controller    => "repositories",
-        :action        => "raw",
-        :id            => object["object"].project.identifier,
-        :repository_id => object["object"].identifier_param,
-        :rev           => object["rev"],
-        :path          => object["path"],
-        :only_path     => true
-        }
-      )
-      base = "<base href='#{base_url}'>"
-      "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -s -V header-includes=#{shell_quote base} -o #{outfile}"
+      base_url = case object["object"]
+      when Repository
+        url_for( :controller    => "repositories",
+                 :action        => "raw",
+                 :id            => object["object"].project.identifier,
+                 :repository_id => object["object"].identifier_param,
+                 :rev           => object["rev"],
+                 :path          => object["path"],
+                 :only_path     => true
+        )
+      when Attachment
+        url_for( :controller    => "attachments",
+                 :action        => "download",
+                 :id            => object["object"].id,
+                 :filename      => object["object"].filename,
+                 :only_path     => true
+        )
+      else
+        nil
+      end
+      
+      if base_url
+        base = "<base href='#{base_url}'>"
+        "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -s -V header-includes=#{shell_quote base} -o #{outfile}"
+      else
+        "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -s -V -o #{outfile}"
+      end
       
     when "inline"
       "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -o #{outfile}"
