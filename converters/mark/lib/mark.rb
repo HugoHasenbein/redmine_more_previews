@@ -71,7 +71,7 @@ class Mark < RedmineMorePreviews::Conversion
           :only_path     => true
           }
         )
-      else
+      elif object["object"].class <= Attachment
         base_url = url_for({
           :controller    => "attachments",
           :action        => "show",
