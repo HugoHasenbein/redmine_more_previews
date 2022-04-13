@@ -60,16 +60,27 @@ class Mark < RedmineMorePreviews::Conversion
     
     case format
     when "html"
-      base_url = url_for({
-        :controller    => "repositories",
-        :action        => "raw",
-        :id            => object["object"].project.identifier,
-        :repository_id => object["object"].identifier_param,
-        :rev           => object["rev"],
-        :path          => object["path"],
-        :only_path     => true
-        }
-      )
+      if object["object"].class <= Repository
+        base_url = url_for({
+          :controller    => "repositories",
+          :action        => "raw",
+          :id            => object["object"].project.identifier,
+          :repository_id => object["object"].identifier_param,
+          :rev           => object["rev"],
+          :path          => object["path"],
+          :only_path     => true
+          }
+        )
+      else
+        base_url = url_for({
+          :controller    => "attachments",
+          :action        => "show",
+          :id            => object["object"].id,
+          :filename      => object["object"].filename,
+          :only_path     => true
+          }
+        )
+      end
       base = "<base href='#{base_url}'>"
       "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -s -V header-includes=#{shell_quote base} -o #{outfile}"
       
