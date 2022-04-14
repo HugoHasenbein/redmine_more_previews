@@ -12,3 +12,4 @@ Dir.glob File.expand_path("../converters/*/{Gemfile,PluginGemfile}", __FILE__) d
   eval_gemfile file
 end
 
+gem 'rubyzip', require: 'zip'
