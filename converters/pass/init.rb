@@ -29,7 +29,8 @@ RedmineMorePreviews::Converter.register :pass do
   url            'https://github.com/HugoHasenbein/redmine_more_previews_pass'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_pass'
                  
-  settings       :logo   => "logo.png"
+  settings       :logo    => "logo.png",
+                 :partial => 'settings/redmine_more_previews/pass/settings'
                  
   mime_types     :html  =>    {:formats => [:html], :mime => "text/html", :icon => "html.png" }
 end
