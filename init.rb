@@ -68,7 +68,8 @@
 #        - improved rendering of conversions to images
 #        - added new converter Maggie, which converts images to one another
 #        - updated nil text comments
-#
+# 3.1.1  
+#        - added fix to zippy's Gemfile
 
 #-----------------------------------------------------------------------------------------
 # Register plugin
@@ -77,7 +78,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '3.1.0'
+  version '3.1.1'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   

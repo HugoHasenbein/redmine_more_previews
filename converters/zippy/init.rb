@@ -26,7 +26,8 @@
 #       - required files for non eager loading
 # 1.1.0
 #       - added internationalization for de, en, es, fr, pt, ru, jp, zh
-#
+# 1.1.1
+#       - added fix to Gemfile
 
 RedmineMorePreviews::Converter.register :zippy do
   name           'Zippy'
