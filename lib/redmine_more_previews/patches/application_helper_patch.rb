@@ -59,7 +59,8 @@ module RedmineMorePreviews
                     :title                => filename,
                     :src                  => path,
                     :id                   => 'preview_frame',
-                    :onload               => "$(document).ready(function() {var height = $(window).height(); $('#preview_frame').css('height', height)});".html_safe 
+                    :onload               => "$(document).ready(function() {$('#preview_frame').css('height', $(window).height())});".html_safe 
+                                             
                    }.merge(options)
                 ),
                 :id    => "preview_pane",
