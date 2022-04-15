@@ -83,15 +83,15 @@ class Mark < RedmineMorePreviews::Conversion
       
       if base_url
         base = "<base href='#{base_url}'>"
-        "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -s -V header-includes=#{shell_quote base} -o #{outfile}"
+        "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -s -V header-includes=#{shell_quote base} -o #{shell_quote outfile}"
       else
-        "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -s -o #{outfile}"
+        "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -s -o #{shell_quote outfile}"
       end
       
     when "inline"
-      "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -o #{outfile}"
+      "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t html -o #{shell_quote outfile}"
     when "txt"
-      "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t plain -o #{outfile}"
+      "#{PANDOC_BIN} #{shell_quote source} -f #{frompts} -t plain -o #{shell_quote outfile}"
     end.to_s
     
   end #def

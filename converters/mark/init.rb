@@ -24,12 +24,14 @@
 #       - required files for non eager loading
 # 1.0.2
 #        - fixed 'File' bug
+# 1.0.3
+#        - fixed handling filenames with whitespace
 
 RedmineMorePreviews::Converter.register :mark do
   name           'Mark'
   author         'Stephan Wenzel'
   description    'Preview markup text files'
-  version        '1.0.2'
+  version        '1.0.3'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_mark'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_mark'
                  
