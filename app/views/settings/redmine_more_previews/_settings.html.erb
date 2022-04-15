@@ -73,6 +73,10 @@
   <%- if converter.configurable? %>
     <div id="converter_settings_<%= converter.id %>">
       <%= render :partial => converter.settings[:partial], :locals => {:settings => converter.settings[:default].to_h.merge(settings.dig("converter", "#{converter.id}").to_h).stringify_keys} %>
+      <% status = RedmineMorePreviews::Converter.find(converter.id).worker.check %>
+      <% if status; label,result = status %>
+      <p><%= label.is_a?(Symbol) ? l(label) : label %> <span class="icon-only <%= (result ? 'icon-ok' : 'icon-error') %>"></span></p>
+      <% end %>
     </div>
     <hr>
   <% end %>
@@ -80,7 +84,7 @@
     <div class="<%= if settings.dig("converter", "#{converter.id}", "mime_types", "#{mime_type}", "active") == "1" && RedmineMorePreviews::Converter.mime_doublette?(converter, mime_type); 'flash warning'; end %>">
       <p>
         <label><%= ".#{mime_type}" %> <%= check_box_tag "settings[converter][#{converter.id}][mime_types][#{mime_type}][active]", 1, (settings.dig("converter", "#{converter.id}", "mime_types", "#{mime_type}", "active") == "1" ) %></label>
-        <%= select_tag   "settings[converter][#{converter.id}][mime_types][#{mime_type}][format]", options_for_select(RedmineMorePreviews::Converter.formats_for_select(opts[:formats]), settings.dig("converter", "#{converter.id}", "mime_types", "#{mime_type}", "format")) %>
+        <%= select_tag  "settings[converter][#{converter.id}][mime_types][#{mime_type}][format]", options_for_select(RedmineMorePreviews::Converter.formats_for_select(opts[:formats]), settings.dig("converter", "#{converter.id}", "mime_types", "#{mime_type}", "format")) %>
       </p>
     </div>
   <% end %>

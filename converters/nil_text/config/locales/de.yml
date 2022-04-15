@@ -22,3 +22,7 @@
 de:
   label_example:                                   "Beispiel"
   text_nil_program_available:                      "Beispiel-Programm verfügbar"
+  text_warning_do_not_use_in_production:           "Nicht im Produktions-Modus verwenden, weil interne Daten dargestellt werden!"
+  redmine_more_previews:
+    nil_text:
+      text_explanation:                            "Beispiel Plugin, um die Funktionalität zum Schreiben eigener Plugins zu erkunden."

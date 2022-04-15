@@ -20,12 +20,14 @@
 #
 # 1.0.0
 #       - initial version
+# 1.0.1
+#       - simplified code
 
 RedmineMorePreviews::Converter.register :pass do
   name           'Pass'
   author         'Stephan Wenzel'
   description    'Passthrough HTML'
-  version        '1.0.0'
+  version        '1.0.1'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_pass'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_pass'
                  

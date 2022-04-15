@@ -26,16 +26,20 @@
 #        - fixed 'File' bug
 # 1.0.3
 #        - fixed handling filenames with whitespace
+# 1.1.0
+#       - added internationalization for de, en, es, fr, pt, ru, jp, zh
+#
 
 RedmineMorePreviews::Converter.register :mark do
   name           'Mark'
   author         'Stephan Wenzel'
   description    'Preview markup text files'
-  version        '1.0.3'
+  version        '1.1.0'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_mark'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_mark'
                  
-  settings       :logo   => "logo.png"
+  settings       :logo   => "logo.png",
+                 :partial => 'settings/redmine_more_previews/mark/settings'
                  
   mime_types     :md      => {:formats => [:html, :inline      ], :mime => "text/markdown",      :icon => "markdown.png" },
                  :textile => {:formats => [:html, :inline      ], :mime => "text/x-web-textile", :icon => "textile.png"  },

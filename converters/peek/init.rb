@@ -22,16 +22,20 @@
 #       - initial version
 # 1.0.1
 #       - required files for non eager loading
+# 1.1.0
+#       - added internationalization for de, en, es, fr, pt, ru, jp, zh
+#
 
 RedmineMorePreviews::Converter.register :peek do
   name           'Peek'
   author         'Stephan Wenzel'
   description    'Preview PDF in preview pane'
-  version        '1.0.1'
+  version        '1.1.0'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_peek'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_peek'
                  
-  settings       :logo   => "logo.png"
+  settings       :logo    => "logo.png",
+                 :partial => 'settings/redmine_more_previews/peek/settings'
                  
   mime_types     :pdf  =>    {:formats => [:pdf, :jpg, :png, :gif], :mime => "application/pdf" }
 end

@@ -6,14 +6,15 @@
 %>
 
 <%= render :layout => 'layouts/file' do %>
+  <div>
+    <p class="contextual">
+      <%= link_to l(:button_update), reloadpath, :class => "icon icon-reload" %>
+      <%= call_hook(:preview_attachment_contextual, :attachment => @attachment, :project => @project ) %>
+    </p>
+  </div><div style="clear:both;"></div>
+  
   <%- case RedmineMorePreviews::Converter.conversion_ext(@attachment.diskfile) %>
   <%- when "inline" %>
-    <div>
-      <p class="contextual">
-        <%= link_to l(:button_update), reloadpath, :class => "icon icon-reload" %>
-        <%= call_hook(:preview_attachment_contextual, :attachment => @attachment, :project => @project ) %>
-      </p>
-    </div><div style="clear:both;"></div>
     <div id="preview_repository_entry_top">
       <%= call_hook(:preview_attachment_top, :attachment => @attachment, :project => @project, :params => request.query_parameters.merge(:format => "inline", :request => request).symbolize_keys ) %>
     </div>
@@ -26,27 +27,35 @@
       <% end %>
     <% end %>
     </div>
-    
+  <%- when "jpg", "jpeg", "png", "gif" %>
+    <div id="preview_repository_entry_top">
+      <%= call_hook(:preview_attachment_top, :attachment => @attachment, :project => @project, :params => request.query_parameters.merge(:request => request).symbolize_keys ) %>
+    </div>
+    <div>
+    <%= image_tag(
+          ::Setting['plugin_redmine_more_previews']['absolute'].to_i > 0 ?
+          more_preview_url(
+            @attachment, 
+            RedmineMorePreviews::Converter.conversion_ext(@attachment.diskfile), 
+            request.query_parameters
+          ) :
+          more_preview_path(
+            @attachment, 
+            RedmineMorePreviews::Converter.conversion_ext(@attachment.diskfile), 
+            request.query_parameters
+          ), 
+          :alt => @attachment.filename,
+          :style => "max-width:95%"
+        ) %>
+    </div>
   <%- else %>
     <script type="text/javascript">  
       $( document ).ready(function() {
         $('#preview_frame').load(function() {
-            // iResize();
             $('#ajax-indicator').hide();
         });
-        function iResize() {
-            document.getElementById('preview_frame').height = 
-            document.getElementById('preview_frame').contentWindow.document.body.offsetHeight + 'px';
-            document.getElementById('preview_frame').style.overflow = 'hidden';
-        }
       });
     </script>
-    <div>
-      <p class="contextual">
-        <%= link_to l(:button_update), reloadpath, :class => "icon icon-reload" %>
-        <%= call_hook(:preview_attachment_contextual, :attachment => @attachment, :project => @project ) %>
-      </p>
-    </div><div style="clear:both;"></div>
     <div id="preview_repository_entry_top">
       <%= call_hook(:preview_attachment_top, :attachment => @attachment, :project => @project, :params => request.query_parameters.merge(:request => request).symbolize_keys ) %>
     </div>

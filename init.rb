@@ -64,6 +64,11 @@
 #        - added converter named 'pass'
 # 3.0.3  
 #        - fixed handling filenames with whitespace for converter 'mark'
+# 3.1.0  
+#        - improved rendering of conversions to images
+#        - added new converter Maggie, which converts images to one another
+#        - updated nil text comments
+#
 
 #-----------------------------------------------------------------------------------------
 # Register plugin
@@ -72,7 +77,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '3.0.3'
+  version '3.1.0'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   

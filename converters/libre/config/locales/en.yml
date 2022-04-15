@@ -18,5 +18,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
+
 en:
-  text_libre_office_available:                             "Libre Office available"
+  text_libre_office_available:   "LibreOffice available"
+  redmine_more_previews:
+    libre:
+      text_explanation:          "preview office files with LibreOffice"

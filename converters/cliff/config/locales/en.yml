@@ -26,3 +26,6 @@ en:
   label_mail_field_cc:                           "Cc"
   label_mail_field_subject:                      "Subject"
   
+  redmine_more_previews:
+    cliff:
+      text_explanation:                          "preview internet email files"  

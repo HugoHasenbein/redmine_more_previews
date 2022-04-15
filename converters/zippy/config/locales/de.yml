@@ -20,8 +20,11 @@
 #
 
 de:
-  label_zippy:                                   "Zippy"
-  label_filepath:                                "Pfad"
-  label_filename:                                "Datei"
-  label_filesize:                                "Größe"
-  label_compressed_filesize:                     "komprimierte Größe"
+  label_zippy:                   "Zippy"
+  label_filepath:                "Pfad"
+  label_filename:                "Datei"
+  label_filesize:                "Größe"
+  label_compressed_filesize:     "komprimierte Größe"
+  redmine_more_previews:
+    zippy:
+      text_explanation:          "Vorschau von zip-Dateien"

@@ -1,3 +1,11 @@
+<p><strong><span style="color:red"><%= l(:text_warning_do_not_use_in_production) %></span></strong></p>
+<p><%= l(:"redmine_more_previews.nil_text.text_explanation") %></p>
+
+<!-- to add your own parameters, you may add settings form elements like below.
+     This view is provided with a settings hash of your converter plugin.
+     To save data, the name of the form element should be 'settings[converter][<id of converter>][<variable name>]'
+     In your class being a subclass of RedmineMorePreviews::Conversion with converter_settings (Hash)
+-->
 <p>
   <label><%= l(:label_example) %></label>
   <%= text_field_tag "settings[converter][nil_text][example]", settings['example'] %>

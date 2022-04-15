@@ -22,9 +22,9 @@
 class Pass < RedmineMorePreviews::Conversion
 
   def convert
-    cp  = Redmine::Platform.mswin? ? "copy" : "cp"
-    cmd = "#{cp} #{shell_quote source} #{shell_quote outfile} "
-    command(cmd + join + move(outfile))
+    # just copy the html to tmptarget, which is then copied to final 
+    # destination by the super clas
+    command copy( source )
   end #def
 
 end #class

@@ -1,0 +1,5 @@
+<p><%= l(:"redmine_more_previews.maggie.text_explanation") %></p>
+<p>
+  <label><%= l(:label_resample) %></label>
+  <%= select_tag "settings[converter][maggie][density]", options_for_select(MAGGIES_DENSITIES, settings['density']) %>
+</p>

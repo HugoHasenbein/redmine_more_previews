@@ -153,7 +153,7 @@ module RedmineMorePreviews
       if c.configurable?
         partial = c.settings[:partial]
         if @used_partials[partial]
-          Rails.logger.warn "WARNING: cnverter settings partial '#{partial}' is declared in '#{c.id}' converter but it is already used by converter '#{@used_partials[partial]}'. Only one settings view will be used. You may want to contact those converter authors to fix this."
+          Rails.logger.warn "WARNING: converter settings partial '#{partial}' is declared in '#{c.id}' converter but it is already used by converter '#{@used_partials[partial]}'. Only one settings view will be used. You may want to contact those converter authors to fix this."
         end
         @used_partials[partial] = c.id
       end

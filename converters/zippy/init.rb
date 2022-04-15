@@ -24,16 +24,20 @@
 #       - adapted to different tmpfile scheme of Conversion
 # 1.0.2
 #       - required files for non eager loading
+# 1.1.0
+#       - added internationalization for de, en, es, fr, pt, ru, jp, zh
+#
 
 RedmineMorePreviews::Converter.register :zippy do
   name           'Zippy'
   author         'Stephan Wenzel'
   description    'Zip Converter'
-  version        '1.0.2'
+  version        '1.1.0'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_zippy'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_zippy'
                    
-  settings       :logo   => "logo.png"
+  settings       :logo   => "logo.png",
+                 :partial => 'settings/redmine_more_previews/zippy/settings'
                  
   mime_types     :zip    => {:formats => [:html, :inline], :mime => "application/zip" },
                  :tar    => {:formats => [:html, :inline], :mime => "application/tar",  :synonyms => ["application/x-tar" ], :icon => "tar.png" },

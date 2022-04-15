@@ -26,19 +26,22 @@
 #       - simplified hooks views
 # 1.0.3
 #       - required files for non eager loading
-
+# 1.1.0
+#       - added internationalization for de, en, es, fr, pt, ru, jp, zh
+#
 RedmineMorePreviews::Converter.register :cliff do
   name           'Cliff'
   author         'Stephan Wenzel'
   description    'Preview email files in preview pane'
-  version        '1.0.2'
+  version        '1.1.0'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_cliff'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_cliff'
                  
-  settings       :logo   => "logo.png"
+  settings       :logo    => 'logo.png',
+                 :partial => 'settings/redmine_more_previews/cliff/settings'
                  
-  mime_types     :eml  =>    {:formats => [:html], :mime => "message/rfc822", :icon => "eml.png" },
-                 :mime  =>   {:formats => [:html], :mime => "message/rfc822", :icon => "eml.png" }
+  mime_types     :eml  =>    {:formats => [:html], :mime => 'message/rfc822', :icon => 'eml.png' },
+                 :mime  =>   {:formats => [:html], :mime => 'message/rfc822', :icon => 'eml.png' }
 end
 
 require 'lib'

@@ -24,16 +24,20 @@
 #        - removed UserInstallation param for Windows
 # 1.0.2
 #        - required files for non eager loading
+# 1.1.0
+#       - added internationalization for de, en, es, fr, pt, ru, jp, zh
+#
 
 RedmineMorePreviews::Converter.register :libre do
   name           'Libre'
   author         'Stephan Wenzel'
   description    'Preview office files with LibreOffice'
-  version        '1.0.2'
+  version        '1.1.0'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_libre'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_libre'
                  
-  settings       :logo   => "logo.png"
+  settings       :logo   => "logo.png",
+                 :partial => 'settings/redmine_more_previews/libre/settings'
   
   mime_types(
     :csv  => {:formats => [:html,       :pdf, :png, :jpg], :mime => "text/csv"},

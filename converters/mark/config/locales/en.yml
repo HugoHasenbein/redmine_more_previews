@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# RedmineMorePreviews converter to preview markup text files with pandoc
+# RedmineMorePreviews converter to preview markdown text files with pandoc
 #
 # Copyright © 2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
@@ -20,4 +20,7 @@
 #
 
 en:
-  text_pandoc_available:                                   "Pandoc available"
+  text_pandoc_available:         "Pandoc available"
+  redmine_more_previews:
+    mark:
+      text_explanation:          "preview markdown files with Pandoc"

@@ -186,7 +186,7 @@ module RedmineMorePreviews
           path_set( File.join(tmpdir, ass), nil, :nocreate => true )
         end 
         convert
-        debug if RedmineMorePreviews::Converter.debug?
+        debug if RedmineMorePreviews::Converter.debug? # debug will overwrite the result of convert
         if block_given?
           result = [tmptarget, tmpasset, tmpassetspaths.map(&:first)].flatten.compact.map do |f|
             File.open(f, "rb") {|io| io.read} if File.exist?( f ) && File.file?( f )
@@ -296,10 +296,16 @@ module RedmineMorePreviews
     # unix and windows command line helpers
     #
     ######################################################################################
-    # move source to tmparget
+    # move src to tmparget
     def move( src )
       mv  = Redmine::Platform.mswin? ? "move" : "mv"
       "#{mv} #{shell_quote src} #{shell_quote tmptarget} "
+    end #def
+    
+    # copy src to tmparget
+    def copy( src )
+      cp  = Redmine::Platform.mswin? ? "copy" : "cp"
+      "#{cp} #{shell_quote src} #{shell_quote tmptarget} "
     end #def
     
     # cd to tmpdir
@@ -307,6 +313,7 @@ module RedmineMorePreviews
       "cd #{shell_quote tmpdir}"
     end #def
     
+    # prepend thisdir to filename
     def thisdir( name )
       File.join(".", name)
     end #def
@@ -316,6 +323,12 @@ module RedmineMorePreviews
       Redmine::Platform.mswin? ? " & " : "; "
     end #def
     
+    # list files in dir
+    def ls( dir )
+      Dir.glob(File.join(dir, "*"))
+    end #def
+    
+    # execute command
     def command( cmd, options={})
       unless system(cmd)
         Rails.logger.error("Creating preview with #{name} failed (#{$?}):\nCommand: #{cmd}")
@@ -325,13 +338,20 @@ module RedmineMorePreviews
       true
     end #def
     
+    # create outfile name for programs that create conversions having the same basename
+    # of the converted file as the input file, f.i. LibreOffice creates a my.html file
+    # from a conversion of a my.odt file
     def outfile
       File.basename(source, File.extname(source)) + ".#{preview_format}"
     end #def
     
+    def converter_settings
+      Setting["plugin_redmine_more_previews"].to_h.dig("converter", id).to_h
+    end #def
+    
     ######################################################################################
     #
-    # overide these methods
+    # override these methods
     #
     ######################################################################################
     def status
