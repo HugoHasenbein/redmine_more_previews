@@ -114,50 +114,50 @@ Native speakers: please help to improve localizations
 
 **3.2.0**
   - added new previewer "vince" to preview vcf virtual business cards
-  - 
+ 
 **3.1.2**
   - minor code additions
-  - 
+ 
 **3.1.1**
   - added fix to zippy's Gemfile
-  - 
+ 
 **3.1.0**
   - improved rendering of conversions to images
   - added new converter Maggie, which converts images to one another
   - updated nil text comments
-  - 
+ 
 **3.0.3**
   - fixed handling filenames with whitespace for converter 'mark'
-  - 
+ 
 **3.0.2**
   - added converter named 'pass'
-  - 
+ 
 **3.0.1**
   - fixed 'File' bug for converter 'mark'
-  - 
+ 
 **3.0.0b
   - rearranged code and files to better match zeitwerk
   - made compatible with development mode
   - beta quality
-  - 
+ 
 **2.0.11
   - amended autoload paths
-  - 
+ 
 **2.0.10
   - fixed broken api calls for attachment
-  - 
+ 
 **2.0.9
   - simplified hooks views for cliff
-  - 
+ 
 **2.0.8
   - fixed tmpfile scheme (internals)
-  - 
+ 
 **2.0.7
   - added support for non-ascii email headers in cliff
-  - 
+ 
 **2.0.6
   - added timezone support for mail dates in cliff
-  - 
+ 
 **2.0.5
   - fixed dependency on mimemagick after license change
 
