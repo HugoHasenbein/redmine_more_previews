@@ -135,30 +135,30 @@ Native speakers: please help to improve localizations
 **3.0.1**
   - fixed 'File' bug for converter 'mark'
  
-**3.0.0b
+**3.0.0b**
   - rearranged code and files to better match zeitwerk
   - made compatible with development mode
   - beta quality
  
-**2.0.11
+**2.0.11**
   - amended autoload paths
  
-**2.0.10
+**2.0.10**
   - fixed broken api calls for attachment
  
-**2.0.9
+**2.0.9**
   - simplified hooks views for cliff
  
-**2.0.8
+**2.0.8**
   - fixed tmpfile scheme (internals)
  
-**2.0.7
+**2.0.7**
   - added support for non-ascii email headers in cliff
  
-**2.0.6
+**2.0.6**
   - added timezone support for mail dates in cliff
  
-**2.0.5
+**2.0.5**
   - fixed dependency on mimemagick after license change
 
 **2.0.4**
