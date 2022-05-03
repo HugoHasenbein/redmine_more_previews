@@ -23,23 +23,45 @@ en:
   vcard:
     VERSION:              "Version"
     PRODID:               "Product ID"
+                          
     N:                    "Name"
-    FN:                   "Full Name"
+    N_FIELD:              
+      familyname:         "LastName"
+      givenname:          "First name"
+      addtionalname:      "Other name(s)"
+      prefix:             "Title"
+      suffix:             "Addition"
+                          
+    FN:                   "Full. Name"
     TEL:                  "Phone"
+                          
     ADR:                  "Address"
-    LABEL:                "Address Label"
+    ADR_FIELD:            
+      pobox:              "P.O. Box"
+      ext:                "Department"
+      street:             "Street"
+      locality:           "City"
+      region:             "Region"
+      code:               "Postcode"
+      country:            "Country"
+                          
+    LABEL:                "Address label"
     ORG:                  "Organization"
     EMAIL:                "Email"
+    
     GENDER:               "Gender"
-    GENDER_VALUE:
+    GENDER_VALUE:         
       M:                  "Male"
       F:                  "Female"
       O:                  "Divers"
       U:                  "?"
       N:                  "-"
-     
-    KIND:                 "Type"
-    KIND_VALUE:
+    GENDER_FIELD:         
+      gender:             "Type"
+      identity:           "Identity"
+                          
+    KIND:                 "Kind"
+    KIND_VALUE:           
       GROUP:              "Group"
       ORG:                "Organization"
       ORGANISATION:       "Organization"
@@ -48,44 +70,55 @@ en:
       LOCATION:           "Location"
       IANA-TOKEN:         "IANA token"
       X-NAME:             "Other"
-      
+                          
     LANG:                 "Language"
-    LANG_VALUE:
+    LANG_VALUE:           
       de:                 "German"
       en:                 "English"
       es:                 "Spanish"
       fr:                 "French"
       pt:                 "Portuguese"
       ru:                 "Russian"
-      jp:                 "Japanese"
+      ja:                 "Japanese"
       zh:                 "Chinese"
-      
-    TEL:                  "telephone"
-    TYPE_PARAM_TEL:
-      TEXT:               "Text message"
-      VOICE:              "Language"
+                          
+    TEL:                  "Telephone"
+    TYPE_PARAM_TEL:       
+      TEXT:               "Text Message"
+      VOICE:              "Voice"
       FAX:                "Fax"
-      CELL:               "Mobile"
-      VIDEO:              "Video"
+      CELL:               "Cellular"
+      VIDEO:              "video"
       PAGER:              "Pager"
       TEXTPHONE:          "Voice text"
-      
+                          
     URL:                  "Web address"
+    GEO:                  "Geo-coordinates"
     NOTE:                 "Note"
-    NICKNAME:             "Pseudonym"
+    NICKNAME:             "Nickname"
     BDAY:                 "Birthday"
+    ANNIVERSARY:          "Anniversary"
+    ROLE:                 "Role"
     PHOTO:                "Photo"
+    LOGO:                 "Logo"
+    SOURCE:               "Source"
+    CATEGORIES:           "Categories"
+    XML:                  "XML"
     REV:                  "Revision"
     X:                    "Extra"
-    
-    TYPE_PARAM:
+                          
+    TYPE_PARAM:           
       WORK:               "Work"
       HOME:               "Home"
       OTHER:              "Other"
       PREF:               "Preferred"
-    
+                          
     PREF_PARAM:           "Preferred"
-    
-  redmine_more_previews:
-    vince:
-      text_explanation:   "Preview vcf-files (electronic business cards)"r
+                          
+    personal:             "Personal"
+                          
+  redmine_more_previews:  
+    vince:                
+      text_explanation:   "Preview vcf files (electronic business cards)"
+      label_iconize:      "Iconize"
+      

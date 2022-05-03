@@ -19,27 +19,49 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-ru:
+zh:
   vcard:
     VERSION:              "版本"
     PRODID:               "产品ID"
+                          
     N:                    "姓名"
+    N_FIELD:              
+      familyname:         "姓氏"
+      givenname:          "名字（们）"
+      addtionalname:      "其他名称（s）"
+      prefix:             "标题"
+      suffix:             "加法"
+                          
     FN:                   "满了。名称"
     TEL:                  "电话"
+                          
     ADR:                  "地址"
+    ADR_FIELD:            
+      pobox:              "P.O. Box"
+      ext:                "部门"
+      street:             "街道"
+      locality:           "城市"
+      region:             "区域"
+      code:               "邮政编码"
+      country:            "国家"
+                          
     LABEL:                "地址标签"
     ORG:                  "组织"
     EMAIL:                "电子邮件"
+    
     GENDER:               "性别"
-    GENDER_VALUE:
+    GENDER_VALUE:         
       M:                  "男性"
       F:                  "女性"
       O:                  "潜水员"
       U:                  "?"
       N:                  "-"
-     
+    GENDER_FIELD:         
+      gender:             "类型"
+      identity:           "身份"
+                          
     KIND:                 "类型"
-    KIND_VALUE:
+    KIND_VALUE:           
       GROUP:              "集团"
       ORG:                "组织"
       ORGANISATION:       "组织"
@@ -48,20 +70,20 @@ ru:
       LOCATION:           "位置"
       IANA-TOKEN:         "IANA标记"
       X-NAME:             "其他"
-      
+                          
     LANG:                 "语言"
-    LANG_VALUE:
+    LANG_VALUE:           
       de:                 "德国"
       en:                 "English"
       es:                 "西班牙人"
       fr:                 "法语"
       pt:                 "葡萄牙语"
       ru:                 "俄罗斯"
-      jp:                 "日本人"
+      ja:                 "日本人"
       zh:                 "中文"
-      
+                          
     TEL:                  "电话"
-    TYPE_PARAM_TEL:
+    TYPE_PARAM_TEL:       
       TEXT:               "文本信息"
       VOICE:              "语言"
       FAX:                "传真"
@@ -69,23 +91,34 @@ ru:
       VIDEO:              "视频"
       PAGER:              "传呼机"
       TEXTPHONE:          "语音文本"
-      
+                          
     URL:                  "网络地址"
+    GEO:                  "地理坐标"
     NOTE:                 "注意"
     NICKNAME:             "假名"
     BDAY:                 "生日"
+    ANNIVERSARY:          "周年纪念"
+    ROLE:                 "角色"
     PHOTO:                "照片"
+    LOGO:                 "标志"
+    SOURCE:               "来源"
+    CATEGORIES:           "类别"
+    XML:                  "XML"
     REV:                  "修订"
     X:                    "额外"
-    
-    TYPE_PARAM:
+                          
+    TYPE_PARAM:           
       WORK:               "工作"
       HOME:               "家"
       OTHER:              "其他"
       PREF:               "首选"
-    
+                          
     PREF_PARAM:           "首选"
-    
-  redmine_more_previews:
-    vince:
-      text_explanation:   "预览vcf-文件（电子名片）"
+                          
+    personal:             "个人"
+                          
+  redmine_more_previews:  
+    vince:                
+      text_explanation:   "预览vcf文件（电子名片）"
+      label_iconize:      "图标化"
+      

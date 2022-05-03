@@ -21,71 +21,104 @@
 
 ru:
   vcard:
-    VERSION:              "версия"
-    PRODID:               "ID продукта"
+    VERSION:              "Версия"
+    PRODID:               "Идентификатор продукта"
+                          
     N:                    "Имя"
-    FN:                   "Полный. Имя"
+    N_FIELD:              
+      familyname:         "LastName"
+      givenname:          "Имя"
+      addtionalname:      "Другое имя (имена)"
+      prefix:             "Название"
+      suffix:             "Дополнение"
+                          
+    FN:                   "Full. Имя"
     TEL:                  "Телефон"
+                          
     ADR:                  "Адрес"
-    LABEL:                "Адресная этикетка"
+    ADR_FIELD:            
+      pobox:              "абонентский ящик"
+      ext:                "Отдел"
+      street:             "Улица"
+      locality:           "Город"
+      region:             "Регион"
+      code:               "Почтовый индекс"
+      country:            "Страна"
+                          
+    LABEL:                "Адресная метка"
     ORG:                  "Организация"
-    EMAIL:                "E-mail"
+    EMAIL:                "Электронная почта"
+    
     GENDER:               "Пол"
-    GENDER_VALUE:
-      M:                  "Мужчина"
+    GENDER_VALUE:         
+      M:                  "Мужской"
       F:                  "Женщина"
-      O:                  "Водолазы"
+      O:                  "Дайверы"
       U:                  "?"
       N:                  "-"
-     
-    KIND:                 "Тип"
-    KIND_VALUE:
+    GENDER_FIELD:         
+      gender:             "Тип"
+      identity:           "Личность"
+                          
+    KIND:                 "Вид"
+    KIND_VALUE:           
       GROUP:              "Группа"
       ORG:                "Организация"
       ORGANISATION:       "Организация"
       ORGANIZATION:       "Организация"
-      INDIVIDUAL:         "Индивидуум"
-      LOCATION:           "Место"
-      IANA-TOKEN:         "IANA Token"
-      X-NAME:             "Другое"
-      
+      INDIVIDUAL:         "Individual"
+      LOCATION:           "Location"
+      IANA-TOKEN:         "Токен IANA"
+      X-NAME:             "Other"
+                          
     LANG:                 "Язык"
-    LANG_VALUE:
-      de:                 "немец"
-      en:                 "english"
-      es:                 "испанский"
-      fr:                 "французский"
-      pt:                 "португальский"
-      ru:                 "Русский"
-      jp:                 "Японский"
-      zh:                 "китайский"
-      
-    TEL:                  "телефон"
-    TYPE_PARAM_TEL:
-      TEXT:               "текстовое сообщение"
-      VOICE:              "язык"
-      FAX:                "факс"
-      CELL:               "мобильный"
-      VIDEO:              "Видео"
+    LANG_VALUE:           
+      de:                 "Немецкий"
+      en:                 "English"
+      es:                 "Испанский"
+      fr:                 "Французский"
+      pt:                 "Португальский"
+      ru:                 "русский"
+      ja:                 "японский"
+      zh:                 "Китайский"
+                          
+    TEL:                  "Телефон"
+    TYPE_PARAM_TEL:       
+      TEXT:               "Текстовое сообщение"
+      VOICE:              "Голос"
+      FAX:                "Факс"
+      CELL:               "Сотовый"
+      VIDEO:              "видео"
       PAGER:              "Пейджер"
       TEXTPHONE:          "Голосовой текст"
-      
+                          
     URL:                  "Веб-адрес"
-    NOTE:                 "Примечание"
-    NICKNAME:             "Псевдоним"
+    GEO:                  "Геокоординаты"
+    NOTE:                 "Заметка"
+    NICKNAME:             "Прозвище"
     BDAY:                 "День рождения"
+    ANNIVERSARY:          "Юбилей"
+    ROLE:                 "Роль"
     PHOTO:                "Фото"
-    REV:                  "Пересмотр"
-    X:                    "Экстра"
-    
-    TYPE_PARAM:
-      WORK:               "работа"
-      HOME:               "дом"
-      OTHER:              "другой"
-      PREF:               "предпочтительный"
-    
-    PREF_PARAM:           "предпочтительный"
-    
-  redmine_more_previews:
-    vince:
-      text_explanation:   "Предварительный просмотр vcf-файлов (электронные визитные карточки)"
+    LOGO:                 "Логотип"
+    SOURCE:               "Источник"
+    CATEGORIES:           "Категории"
+    XML:                  "XML"
+    REV:                  "Ревизия"
+    X:                    "Extra"
+                          
+    TYPE_PARAM:           
+      WORK:               "Работа"
+      HOME:               "Дом"
+      OTHER:              "Другой"
+      PREF:               "Предпочитаемый"
+                          
+    PREF_PARAM:           "Привилегированный"
+                          
+    personal:             "Личный"
+                          
+  redmine_more_previews:  
+    vince:                
+      text_explanation:   "Предварительный просмотр файлов vcf (электронные визитные карточки)"
+      label_iconize:      "Iconize"
+      

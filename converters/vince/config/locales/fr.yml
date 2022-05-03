@@ -23,69 +23,102 @@ fr:
   vcard:
     VERSION:              "Version"
     PRODID:               "ID du produit"
+                          
     N:                    "Nom"
-    FN:                   "Nom complet Nom"
+    N_FIELD:              
+      familyname:         "LastName"
+      givenname:          "Prénom"
+      addtionalname:      "Autre(s) nom(s)"
+      prefix:             "Titre"
+      suffix:             "Complément"
+                          
+    FN:                   "Nom. Nom"
     TEL:                  "Téléphone"
+                          
     ADR:                  "Adresse"
-    LABEL:                "Étiquette d'adresse"
+    ADR_FIELD:            
+      pobox:              "Boîte postale"
+      ext:                "Département"
+      street:             "Rue"
+      locality:           "Ville"
+      region:             "Région"
+      code:               "Code postal"
+      country:            "Pays"
+                          
+    LABEL:                "Libellé de l'adresse"
     ORG:                  "Organisation"
-    EMAIL:                "E-mail"
+    EMAIL:                "Email"
+    
     GENDER:               "Sexe"
-    GENDER_VALUE:
-      M:                  "Masculin"
-      F:                  "Féminin"
-      O:                  "Divers"
+    GENDER_VALUE:         
+      M:                  "Homme"
+      F:                  "Femme"
+      O:                  "Plongeurs"
       U:                  " ?"
       N:                  "-"
-     
-    KIND:                 "Type"
-    KIND_VALUE:
+    GENDER_FIELD:         
+      gender:             "Type"
+      identity:           "Identité"
+                          
+    KIND:                 "Genre"
+    KIND_VALUE:           
       GROUP:              "Groupe"
       ORG:                "Organisation"
       ORGANISATION:       "Organisation"
       ORGANIZATION:       "Organisation"
       INDIVIDUAL:         "Individu"
-      LOCATION:           "Lieu"
+      LOCATION:           "Localisation"
       IANA-TOKEN:         "Jeton IANA"
       X-NAME:             "Autre"
-      
+                          
     LANG:                 "Langue"
-    LANG_VALUE:
+    LANG_VALUE:           
       de:                 "Allemand"
       en:                 "Anglais"
       es:                 "Espagnol"
       fr:                 "Français"
       pt:                 "Portugais"
       ru:                 "Russe"
-      jp:                 "Japonais"
+      ja:                 "Japonais"
       zh:                 "Chinois"
-      
+                          
     TEL:                  "Téléphone"
-    TYPE_PARAM_TEL:
-      TEXT:               "SMS"
-      VOICE:              "Langue"
+    TYPE_PARAM_TEL:       
+      TEXT:               "Message texte"
+      VOICE:              "Voix"
       FAX:                "Fax"
-      CELL:               "Mobile"
+      CELL:               "Cellulaire"
       VIDEO:              "Vidéo"
       PAGER:              "Pager"
       TEXTPHONE:          "Texte vocal"
-      
+                          
     URL:                  "Adresse web"
+    GEO:                  "Coordonnées géographiques"
     NOTE:                 "Note"
-    NICKNAME:             "pseudonyme"
+    NICKNAME:             "Surnom"
     BDAY:                 "Anniversaire"
+    ANNIVERSARY:          "Anniversaire"
+    ROLE:                 "Rôle"
     PHOTO:                "Photo"
+    LOGO:                 "Logo"
+    SOURCE:               "Source"
+    CATEGORIES:           "Catégories"
+    XML:                  "XML"
     REV:                  "Révision"
     X:                    "Extra"
-    
-    TYPE_PARAM:
+                          
+    TYPE_PARAM:           
       WORK:               "Travail"
-      HOME:               "À la maison"
+      HOME:               "Accueil"
       OTHER:              "Autre"
       PREF:               "Préféré"
-    
+                          
     PREF_PARAM:           "Préféré"
-    
-  redmine_more_previews:
-    vince:
-      text_explanation:   "Preview vcf-files (electronic business cards)"
+                          
+    personal:             "Personnel"
+                          
+  redmine_more_previews:  
+    vince:                
+      text_explanation:   "Prévisualiser les fichiers vcf (cartes de visite électroniques)"
+      label_iconize:      "Iconiser"
+      

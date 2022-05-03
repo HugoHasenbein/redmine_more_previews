@@ -23,23 +23,45 @@ de:
   vcard:
     VERSION:              "Version"
     PRODID:               "Produkt-ID"
+                          
     N:                    "Name"
+    N_FIELD:              
+      familyname:         "Nachname"
+      givenname:          "Vorname"
+      addtionalname:      "weitere(e) Name(n)"
+      prefix:             "Titel"
+      suffix:             "Zusatz"
+                          
     FN:                   "Vollst. Name"
     TEL:                  "Telefon"
+                          
     ADR:                  "Adresse"
+    ADR_FIELD:            
+      pobox:              "Postfach"
+      ext:                "Abteilung"
+      street:             "Straße"
+      locality:           "Ort"
+      region:             "Region"
+      code:               "Postleitzahl"
+      country:            "Land"
+                          
     LABEL:                "Adress-Label"
     ORG:                  "Organisation"
     EMAIL:                "E-Mail"
+    
     GENDER:               "Geschlecht"
-    GENDER_VALUE:
+    GENDER_VALUE:         
       M:                  "Männlich"
       F:                  "Weiblich"
       O:                  "Divers"
       U:                  "?"
       N:                  "-"
-     
+    GENDER_FIELD:         
+      gender:             "Typ"
+      identity:           "Identität"
+                          
     KIND:                 "Typ"
-    KIND_VALUE:
+    KIND_VALUE:           
       GROUP:              "Gruppe"
       ORG:                "Organisation"
       ORGANISATION:       "Organisation"
@@ -48,20 +70,20 @@ de:
       LOCATION:           "Ort"
       IANA-TOKEN:         "IANA-Token"
       X-NAME:             "Andere"
-      
+                          
     LANG:                 "Sprache"
-    LANG_VALUE:
+    LANG_VALUE:           
       de:                 "deutsch"
       en:                 "englisch"
       es:                 "spanisch"
       fr:                 "französisch"
       pt:                 "portugiesisch"
       ru:                 "russisch"
-      jp:                 "japanisch"
+      ja:                 "japanisch"
       zh:                 "chinesisch"
-      
+                          
     TEL:                  "Telefon"
-    TYPE_PARAM_TEL:
+    TYPE_PARAM_TEL:       
       TEXT:               "SMS"
       VOICE:              "Sprache"
       FAX:                "Fax"
@@ -69,23 +91,34 @@ de:
       VIDEO:              "Video"
       PAGER:              "Pager"
       TEXTPHONE:          "Sprachtext"
-      
+                          
     URL:                  "Web-Adresse"
+    GEO:                  "Geo-Koordinaten"
     NOTE:                 "Notiz"
     NICKNAME:             "Pseudonym"
     BDAY:                 "Geburtstag"
+    ANNIVERSARY:          "Jubiläum"
+    ROLE:                 "Rolle"
     PHOTO:                "Foto"
+    LOGO:                 "Logo"
+    SOURCE:               "Quelle"
+    CATEGORIES:           "Kategorien"
+    XML:                  "XML"
     REV:                  "Revision"
     X:                    "Extra"
-    
-    TYPE_PARAM:
+                          
+    TYPE_PARAM:           
       WORK:               "Arbeit"
       HOME:               "zu Hause"
       OTHER:              "weitere"
       PREF:               "bevorzugt"
-    
+                          
     PREF_PARAM:           "bevorzugt"
-    
-  redmine_more_previews:
-    vince:
-      text_explanation:   "preview vcf-files (electronic business cards)"
+                          
+    personal:             "persönlich"
+                          
+  redmine_more_previews:  
+    vince:                
+      text_explanation:   "Vorschau von vcf-Dateien (elektronische Visitenkarten)"
+      label_iconize:      "Ikonisieren"
+      

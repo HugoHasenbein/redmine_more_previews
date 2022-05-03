@@ -21,71 +21,104 @@
 
 es:
   vcard:
-    VERSION:              "versión"
+    VERSION:              "Versión"
     PRODID:               "ID del producto"
+                          
     N:                    "Nombre"
-    FN:                   "Completo Nombre"
+    N_FIELD:              
+      familyname:         "Apellido"
+      givenname:          "Nombre"
+      addtionalname:      "Otro(s) nombre(s)"
+      prefix:             "Título"
+      suffix:             "Adición"
+                          
+    FN:                   "Nombre completo"
     TEL:                  "Teléfono"
+                          
     ADR:                  "Dirección"
+    ADR_FIELD:            
+      pobox:              "Apartado de correos"
+      ext:                "Departamento"
+      street:             "Calle"
+      locality:           "Ciudad"
+      region:             "Región"
+      code:               "Código postal"
+      country:            "País"
+                          
     LABEL:                "Etiqueta de dirección"
     ORG:                  "Organización"
     EMAIL:                "Correo electrónico"
+    
     GENDER:               "Género"
-    GENDER_VALUE:
+    GENDER_VALUE:         
       M:                  "Hombre"
-      F:                  "Mujer"
+      F:                  "Femenino"
       O:                  "Buzos"
       U:                  "?"
       N:                  "-"
-     
+    GENDER_FIELD:         
+      gender:             "Tipo"
+      identity:           "Identidad"
+                          
     KIND:                 "Tipo"
-    KIND_VALUE:
+    KIND_VALUE:           
       GROUP:              "Grupo"
       ORG:                "Organización"
       ORGANISATION:       "Organización"
       ORGANIZATION:       "Organización"
-      INDIVIDUAL:         "Individual"
+      INDIVIDUAL:         "Individuo"
       LOCATION:           "Ubicación"
-      IANA-TOKEN:         "Token IANA"
-      X-NAME:             "Otros"
-      
-    LANG:                 "Lengua"
-    LANG_VALUE:
+      IANA-TOKEN:         "Token de la IANA"
+      X-NAME:             "Otro"
+                          
+    LANG:                 "Idioma"
+    LANG_VALUE:           
       de:                 "Alemán"
       en:                 "Inglés"
       es:                 "Español"
       fr:                 "Francés"
       pt:                 "Portugués"
       ru:                 "Ruso"
-      jp:                 "Japonés"
+      ja:                 "Japonés"
       zh:                 "Chino"
-      
+                          
     TEL:                  "Teléfono"
-    TYPE_PARAM_TEL:
-      TEXT:               "Mensaje de Texto"
-      VOICE:              "Idioma"
+    TYPE_PARAM_TEL:       
+      TEXT:               "Mensaje de texto"
+      VOICE:              "Voz"
       FAX:                "Fax"
-      CELL:               "Móvil"
-      VIDEO:              "Video"
+      CELL:               "Celular"
+      VIDEO:              "Vídeo"
       PAGER:              "Buscapersonas"
       TEXTPHONE:          "Texto de voz"
-      
+                          
     URL:                  "Dirección web"
+    GEO:                  "Coordenadas geográficas"
     NOTE:                 "Nota"
-    NICKNAME:             "Pseudónimo"
+    NICKNAME:             "Apodo"
     BDAY:                 "Cumpleaños"
+    ANNIVERSARY:          "Aniversario"
+    ROLE:                 "Rol"
     PHOTO:                "Foto"
+    LOGO:                 "Logotipo"
+    SOURCE:               "Fuente"
+    CATEGORIES:           "Categorías"
+    XML:                  "XML"
     REV:                  "Revisión"
     X:                    "Extra"
-    
-    TYPE_PARAM:
+                          
+    TYPE_PARAM:           
       WORK:               "Trabajo"
-      HOME:               "Casa"
+      HOME:               "Inicio"
       OTHER:              "Otros"
       PREF:               "Preferido"
-    
+                          
     PREF_PARAM:           "Preferido"
-    
-  redmine_more_previews:
-    vince:
-      text_explanation:   "Vista previa de los archivos vcf (tarjetas de visita electrónicas)"
+                          
+    personal:             "Personal"
+                          
+  redmine_more_previews:  
+    vince:                
+      text_explanation:   "Vista previa de archivos vcf (tarjetas de visita electrónicas)"
+      label_iconize:      "Iconizar"
+      
