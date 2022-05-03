@@ -1,0 +1,91 @@
+# encoding: utf-8
+#
+# RedmineMorePreviews vcf (electronic business cards) previewer
+#
+# Copyright © 2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+ja:
+  vcard:
+    VERSION:              "バージョン"
+    PRODID:               "プロダクトID"
+    N:                    "名前"
+    FN:                   "フル です。名前"
+    TEL:                  "電話"
+    ADR:                  "アドレス"
+    LABEL:                "アドレスラベル"
+    ORG:                  "組織"
+    EMAIL:                "Eメール"
+    GENDER:               "ジェンダー"
+    GENDER_VALUE:
+      M:                  "男性"
+      F:                  "女性"
+      O:                  "ダイバーズ"
+      U:                  "?"
+      N:                  "-"
+     
+    KIND:                 "タイプ"
+    KIND_VALUE:
+      GROUP:              "グループ"
+      ORG:                "組織"
+      ORGANISATION:       "組織"
+      ORGANIZATION:       "組織"
+      INDIVIDUAL:         "個人"
+      LOCATION:           "場所"
+      IANA-TOKEN:         "IANAトークン"
+      X-NAME:             "その他"
+      
+    LANG:                 "言語"
+    LANG_VALUE:
+      de:                 "ドイツ語"
+      en:                 "「イングリッシュ"
+      es:                 "「スパニッシュ"
+      fr:                 "「ふつごう"
+      pt:                 "「ポルトギーゼ"
+      ru:                 "「ロシアン"
+      jp:                 "倭"
+      zh:                 "中国語"
+      
+    TEL:                  "電話"
+    TYPE_PARAM_TEL:
+      TEXT:               "テキストメッセージ"
+      VOICE:              "言語"
+      FAX:                "「ファクシミリ"
+      CELL:               "モバイル"
+      VIDEO:              "ビデオ"
+      PAGER:              "ページャー"
+      TEXTPHONE:          "ボイステキスト"
+      
+    URL:                  "ウェブアドレス"
+    NOTE:                 "ノート"
+    NICKNAME:             "偽名"
+    BDAY:                 "誕生日"
+    PHOTO:                "写真"
+    REV:                  "リビジョン"
+    X:                    "エクストラ"
+    
+    TYPE_PARAM:
+      WORK:               "仕事"
+      HOME:               "家路"
+      OTHER:              "その他"
+      PREF:               "好ましい"
+    
+    PREF_PARAM:           "好ましい"
+    
+  redmine_more_previews:
+    vince:
+      text_explanation:   "vcf-files（電子名刺）のプレビュー"

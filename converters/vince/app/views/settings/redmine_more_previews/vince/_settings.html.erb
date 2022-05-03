@@ -1,0 +1,6 @@
+<p><%= l(:"redmine_more_previews.vince.text_explanation") %></p>
+
+<p>
+  <label><%= l(:"redmine_more_previews.vince.label_iconize") %></label>
+  <%= check_box_tag "settings[converter][vince][iconize]", "1", settings['iconize'].to_i > 0 %>
+</p>

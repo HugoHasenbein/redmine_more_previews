@@ -1,0 +1,91 @@
+# encoding: utf-8
+#
+# RedmineMorePreviews vcf (electronic business cards) previewer
+#
+# Copyright © 2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+ru:
+  vcard:
+    VERSION:              "版本"
+    PRODID:               "产品ID"
+    N:                    "姓名"
+    FN:                   "满了。名称"
+    TEL:                  "电话"
+    ADR:                  "地址"
+    LABEL:                "地址标签"
+    ORG:                  "组织"
+    EMAIL:                "电子邮件"
+    GENDER:               "性别"
+    GENDER_VALUE:
+      M:                  "男性"
+      F:                  "女性"
+      O:                  "潜水员"
+      U:                  "?"
+      N:                  "-"
+     
+    KIND:                 "类型"
+    KIND_VALUE:
+      GROUP:              "集团"
+      ORG:                "组织"
+      ORGANISATION:       "组织"
+      ORGANIZATION:       "组织"
+      INDIVIDUAL:         "个人"
+      LOCATION:           "位置"
+      IANA-TOKEN:         "IANA标记"
+      X-NAME:             "其他"
+      
+    LANG:                 "语言"
+    LANG_VALUE:
+      de:                 "德国"
+      en:                 "English"
+      es:                 "西班牙人"
+      fr:                 "法语"
+      pt:                 "葡萄牙语"
+      ru:                 "俄罗斯"
+      jp:                 "日本人"
+      zh:                 "中文"
+      
+    TEL:                  "电话"
+    TYPE_PARAM_TEL:
+      TEXT:               "文本信息"
+      VOICE:              "语言"
+      FAX:                "传真"
+      CELL:               "移动"
+      VIDEO:              "视频"
+      PAGER:              "传呼机"
+      TEXTPHONE:          "语音文本"
+      
+    URL:                  "网络地址"
+    NOTE:                 "注意"
+    NICKNAME:             "假名"
+    BDAY:                 "生日"
+    PHOTO:                "照片"
+    REV:                  "修订"
+    X:                    "额外"
+    
+    TYPE_PARAM:
+      WORK:               "工作"
+      HOME:               "家"
+      OTHER:              "其他"
+      PREF:               "首选"
+    
+    PREF_PARAM:           "首选"
+    
+  redmine_more_previews:
+    vince:
+      text_explanation:   "预览vcf-文件（电子名片）"

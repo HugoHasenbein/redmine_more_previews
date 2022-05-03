@@ -56,10 +56,8 @@
 #        - rearranged code and files to better match zeitwerk
 #        - made compatible with development mode
 #        - beta quality
-#        
 # 3.0.1  
 #        - fixed 'File' bug for converter 'mark'
-#        
 # 3.0.2  
 #        - added converter named 'pass'
 # 3.0.3  
@@ -70,6 +68,10 @@
 #        - updated nil text comments
 # 3.1.1  
 #        - added fix to zippy's Gemfile
+# 3.1.2  
+#        - minor code additions
+# 3.2.0  
+#        - added new previewer "vince" to preview vcf virtual business cards
 
 #-----------------------------------------------------------------------------------------
 # Register plugin
@@ -78,7 +80,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '3.1.1'
+  version '3.2.0'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   

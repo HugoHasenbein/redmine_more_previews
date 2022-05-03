@@ -1,0 +1,265 @@
+/* ********************************************************* */
+/* general background color for highlighted boxes            */
+/* ********************************************************* */
+div.virtualbox {
+    padding:0.75em;
+    border: 1px solid #e4e4e4;
+}
+
+div.business-card {
+    background: #F3F5F7;
+/*  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75); */
+    background: -webkit-linear-gradient(rgba(204, 228, 255, 0.15), rgba(204, 228, 255, 0.25));
+    background: -moz-linear-gradient(rgba(204, 228, 255, 0.15), rgba(204, 228, 255, 0.25));
+    background: -ms-linear-gradient(rgba(204, 228, 255, 0.15), rgba(204, 228, 255, 0.25));
+    background: -o-linear-gradient(rgba(204, 228, 255, 0.15), rgba(204, 228, 255, 0.25));
+    background: linear-gradient(rgba(204, 228, 255, 0.15), rgba(204, 228, 255, 0.25)); 
+}
+
+/* ********************************************************* */
+/* tabular formatting                                        */
+/* ********************************************************* */
+.tabular p {
+    line-height: 24px;
+}
+
+/* ********************************************************* */
+/* icons for kind                                            */
+/* ********************************************************* */
+.icon-kind-group {
+    background-image: url(../images/icon-kind-group.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-kind-org,
+.icon-kind-organisation,
+.icon-kind-organization {
+    background-image: url(../images/icon-kind-org.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-kind-individual {
+    background-image: url(../images/icon-kind-individual.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-kind-location {
+    background-image: url(../images/icon-kind-location.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+/* ********************************************************* */
+/* icons for gender                                          */
+/* ********************************************************* */
+.icon-gender-m {
+    background-image: url(../images/icon-gender-m.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-gender-f {
+    background-image: url(../images/icon-gender-f.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-gender-o {
+    background-image: url(../images/icon-gender-o.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-gender-n {
+    background-image: url(../images/icon-gender-n.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-gender-u {
+    background-image: url(../images/icon-gender-u.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+/* ********************************************************* */
+/* icons for type param                                      */
+/* ********************************************************* */
+.icon-param-work {
+    background-image: url(../images/icon-param-work.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-param-home {
+    background-image: url(../images/icon-param-home.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-param-other {
+    background-image: url(../images/icon-param-other.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-param-pref {
+    background-image: url(../images/icon-param-pref.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+/* ********************************************************* */
+/* icons for tel                                             */
+/* ********************************************************* */
+.icon-tel-voice {
+    background-image: url(../images/icon-tel-voice.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-tel-fax {
+    background-image: url(../images/icon-tel-fax.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-tel-text {
+    background-image: url(../images/icon-tel-text.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-tel-cell {
+    background-image: url(../images/icon-tel-cell.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-tel-video {
+    background-image: url(../images/icon-tel-video.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-tel-pager {
+    background-image: url(../images/icon-tel-pager.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-tel-textphone {
+    background-image: url(../images/icon-tel-textphone.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+/* ********************************************************* */
+/* icons for fields                                          */
+/* ********************************************************* */
+.vcard.icon-org-1,
+.vcard.icon-org-2,
+.vcard.icon-org-3,
+.vcard.icon-org-4,
+.vcard.icon-org-5,
+.vcard.icon-org-6,
+.vcard.icon-org-7,
+.vcard.icon-org-8,
+.vcard.icon-org-9 {
+    background-image: url(../images/icon-field-org.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-n {
+    background-image: url(../images/icon-field-n.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-fn {
+    background-image: url(../images/icon-field-fn.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-nickname {
+    background-image: url(../images/icon-field-nickname.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-bday {
+    background-image: url(../images/icon-field-bday.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-anniversary {
+    background-image: url(../images/icon-field-bday.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-email {
+    background-image: url(../images/icon-field-email.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-url {
+    background-image: url(../images/icon-field-url.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-geo {
+    background-image: url(../images/icon-field-adr.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-note {
+    background-image: url(../images/icon-field-note.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.icon-lang-de,
+.icon-lang-en,
+.icon-lang-es,
+.icon-lang-fr,
+.icon-lang-pt,
+.icon-lang-ru,
+.icon-lang-jp,
+.icon-lang-zh {
+    background-image: url(../images/icon-field-lang.png);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+/* ********************************************************* */
+/* vcard                                                     */
+/* ********************************************************* */
+
+label.vcard.fields,
+label.vcard.list,
+label.vcard.symbol-with-list  {
+    text-decoration: underline;
+}
+
+span.vcard.label {
+    display:inline-block;
+}
+
+img.vcard.photo,
+img.vcard.logo {
+    display:inline-block;
+    max-width:200px;
+    max-height:150px;
+}
+
+

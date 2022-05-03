@@ -1,0 +1,91 @@
+# encoding: utf-8
+#
+# RedmineMorePreviews vcf (electronic business cards) previewer
+#
+# Copyright © 2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+ru:
+  vcard:
+    VERSION:              "версия"
+    PRODID:               "ID продукта"
+    N:                    "Имя"
+    FN:                   "Полный. Имя"
+    TEL:                  "Телефон"
+    ADR:                  "Адрес"
+    LABEL:                "Адресная этикетка"
+    ORG:                  "Организация"
+    EMAIL:                "E-mail"
+    GENDER:               "Пол"
+    GENDER_VALUE:
+      M:                  "Мужчина"
+      F:                  "Женщина"
+      O:                  "Водолазы"
+      U:                  "?"
+      N:                  "-"
+     
+    KIND:                 "Тип"
+    KIND_VALUE:
+      GROUP:              "Группа"
+      ORG:                "Организация"
+      ORGANISATION:       "Организация"
+      ORGANIZATION:       "Организация"
+      INDIVIDUAL:         "Индивидуум"
+      LOCATION:           "Место"
+      IANA-TOKEN:         "IANA Token"
+      X-NAME:             "Другое"
+      
+    LANG:                 "Язык"
+    LANG_VALUE:
+      de:                 "немец"
+      en:                 "english"
+      es:                 "испанский"
+      fr:                 "французский"
+      pt:                 "португальский"
+      ru:                 "Русский"
+      jp:                 "Японский"
+      zh:                 "китайский"
+      
+    TEL:                  "телефон"
+    TYPE_PARAM_TEL:
+      TEXT:               "текстовое сообщение"
+      VOICE:              "язык"
+      FAX:                "факс"
+      CELL:               "мобильный"
+      VIDEO:              "Видео"
+      PAGER:              "Пейджер"
+      TEXTPHONE:          "Голосовой текст"
+      
+    URL:                  "Веб-адрес"
+    NOTE:                 "Примечание"
+    NICKNAME:             "Псевдоним"
+    BDAY:                 "День рождения"
+    PHOTO:                "Фото"
+    REV:                  "Пересмотр"
+    X:                    "Экстра"
+    
+    TYPE_PARAM:
+      WORK:               "работа"
+      HOME:               "дом"
+      OTHER:              "другой"
+      PREF:               "предпочтительный"
+    
+    PREF_PARAM:           "предпочтительный"
+    
+  redmine_more_previews:
+    vince:
+      text_explanation:   "Предварительный просмотр vcf-файлов (электронные визитные карточки)"

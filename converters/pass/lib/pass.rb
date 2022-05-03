@@ -23,7 +23,7 @@ class Pass < RedmineMorePreviews::Conversion
 
   def convert
     # just copy the html to tmptarget, which is then copied to final 
-    # destination by the super clas
+    # destination by the super class
     command copy( source )
   end #def
 

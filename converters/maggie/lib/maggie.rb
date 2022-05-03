@@ -31,29 +31,26 @@ class Maggie < RedmineMorePreviews::Conversion
   
   def convert
     mime_type = File.open(source) {|f| MimeMagic.by_magic(f).try(:type) }
-    density = "-density #{get_density || "72"}"
     
     cmd = case mime_type
     when "image/jpeg", "image/png"
-      resample = "-resample #{get_density || "72"}x#{get_density || "72"}"
-      "#{shell_quote CONVERT_BIN} #{resample} #{shell_quote source} #{shell_quote "#{preview_format}:#{outfile}"}"
+      "#{shell_quote CONVERT_BIN} -resample #{get_density}x#{get_density} #{shell_quote source} #{shell_quote "#{preview_format}:#{outfile}"}"
       
     when "image/gif", "image/bmp"
-      resample = "-resample #{get_density || "72"}x#{get_density || "72"}"
-      "#{shell_quote CONVERT_BIN} -density 72x72 #{shell_quote source} #{resample} #{shell_quote "#{preview_format}:#{outfile}"}"
+      "#{shell_quote CONVERT_BIN} -density 72x72 #{shell_quote source} -resample #{get_density}x#{get_density} #{shell_quote "#{preview_format}:#{outfile}"}"
     
     when "application/pdf"
       if Redmine::Thumbnail.gs_available?
-      density = "-density #{get_density || "72"}"
-      "#{shell_quote CONVERT_BIN} #{density} #{shell_quote "#{source}[0]"} #{shell_quote outfile}"
+        "#{shell_quote CONVERT_BIN} -density #{get_density} #{shell_quote "#{source}[0]"} #{shell_quote outfile}"
+      else
+        copy( source, thisdir(outfile) )
       end
     end
-    Rails.logger.info cmd
     command( cd + join + cmd + join + move(thisdir(outfile))) if cmd
   end #def
   
   def get_density
-    converter_settings['density'] if MAGGIES_DENSITIES.map{|a| a[1]}.include? converter_settings['density']
+    MAGGIES_DENSITIES.map{|a| a[1]}.include? converter_settings['density'] ? converter_settings['density'] : "72"
   end #def
   
 end #class

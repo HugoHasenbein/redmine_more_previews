@@ -20,6 +20,8 @@
 #
 # 1.0.0
 #       - initial version
+# 1.0.1
+#       - simplified code version
 
 RedmineMorePreviews::Converter.register :maggie do
   name           'Maggie'

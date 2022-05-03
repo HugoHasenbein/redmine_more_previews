@@ -53,7 +53,8 @@ module RedmineMorePreviews
                   :tmpassetspaths,
                   :settings, :unique_id,
                   :transient, :reload, :unsafe,
-                  :version, :plugin_version
+                  :version, :plugin_version,
+                  :converter
     
     #-------------------------------------------------------------------------------------
     # initialize
@@ -66,6 +67,7 @@ module RedmineMorePreviews
       self.name           = options[:name].to_s
       self.version        = options[:version].to_s
       self.plugin_version = Redmine::Plugin.registered_plugins[:redmine_more_previews].version
+      self.converter      = Converter.find(id)
       
       self.settings       = options[:settings].presence || {}
       raise ConverterWrongArgument unless settings.is_a?(Hash)
@@ -297,15 +299,15 @@ module RedmineMorePreviews
     #
     ######################################################################################
     # move src to tmparget
-    def move( src )
+    def move( src, tgt= tmptarget)
       mv  = Redmine::Platform.mswin? ? "move" : "mv"
-      "#{mv} #{shell_quote src} #{shell_quote tmptarget} "
+      "#{mv} #{shell_quote src} #{shell_quote tgt} "
     end #def
     
     # copy src to tmparget
-    def copy( src )
+    def copy( src, tgt= tmptarget)
       cp  = Redmine::Platform.mswin? ? "copy" : "cp"
-      "#{cp} #{shell_quote src} #{shell_quote tmptarget} "
+      "#{cp} #{shell_quote src} #{shell_quote tgt} "
     end #def
     
     # cd to tmpdir

@@ -1,0 +1,49 @@
+<% @vcfs.each_with_index do |vcf, index| %>
+
+<%= vcf.fn.readable.join(", ") %>
+
+<% vcfn = vcf.select(:note) %>
+<% if vcfn.note.present? %>
+<%= vcfn.humanize %>
+------------------------------------------------------------------------------------------
+<% end %>
+
+<% vcfk = vcf.select(:kind) %>
+<% if vcfk.kind.present? %>
+<%= vcfk.humanize %>
+<% end %>
+
+<%= I18n.with_locale(Setting.default_language){I18n.translate(:"vcard.personal" )} %>
+---------------------------------------------
+<%= vcf.select(:org, :n, :nickname, :gender, :bday, :anniversary, :lang).humanize(fields:[:org, :n, :nickname, :gender, :bday, :anniversary, :lang]) %>
+
+<% %w(WORK HOME PREF).each do |where| %>
+<%  vcfr = vcf.select_by_any_attribute(:adr, :label, :geo, :tel, :email, :impp, :url, :TYPE => /#{where}/i) %>
+<% if vcfr.present? %>
+<%= I18n.with_locale(Setting.default_language){I18n.translate(:"vcard.TYPE_PARAM.#{where}" )} %>
+---------------------------------------------
+<%= vcfr.humanize(fields: [:adr, :geo, :label, :tel, :email, :impp, :url]) %>
+<% end %>
+<% end %>
+
+<%  vcfr = vcf.unselect_by_any_attribute(:adr, :label, :geo, :tel, :email, :impp, :url, :TYPE => [/WORK/i, /HOME/i, /PREF/i]) %>
+<% if vcfr.present? %>
+<%= I18n.with_locale(Setting.default_language){I18n.translate(:"vcard.TYPE_PARAM.OTHER" )} %>
+---------------------------------------------
+<%= vcfr.humanize(fields: [:adr, :geo, :label, :tel, :email, :impp, :url]) %>
+<% end %>
+
+
+<% vcfc = vcf.select(:categories) %>
+<% if vcfc.categories.present? %>
+------------------------------------------------------------------------------------------
+<%= vcfc.humanize %>
+<% end %>
+
+<% if index + 1 < @vcfs.length %>
+
+
+
+##########################################################################################
+<% end %>
+<% end %>
