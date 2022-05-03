@@ -13,6 +13,8 @@ The plugin was developed with thread safety in mind. With caching enabled, it sh
 
 Currently, there exist the following plugins:
 
+---
+
 ![Libre](doc/libre/logo.png "Libre")
 
 This plugin requires LibreOffice to be installed on your system. LibreOffice must be reachable with "soffice" to the user, the redmine service is executed by.
@@ -27,6 +29,8 @@ Please note, that not all conversions have been thoroughly tested yet. Please se
 
 Currently, thoroughly tested are: .csv, .doc, .docx, .ppt, .pptx, .xls, .xlsx, .oddt, .rtf
 
+---
+
 ![Cliff](doc/cliff/logo.png "Cliff")
 
 This plugin requires no additional software to be installed on your system. 
@@ -39,24 +43,51 @@ to html.
 
 You can view the .eml file almost like in a professional email viewer, see mail headers and download attachments. Cliff will sweep the .eml files from scripts, event attributes beginning with "on…", url() in css styles and external images. To do an unsafe preview, you can press a button do so and if you trust the .eml or .mime file
 
+---
+
 ![Mark](doc/mark/logo.png "##mark##")
 
 Mark uses Pandoc to do the conversion. Currently supported is:
 
 .md, .textile, .html
 
+---
+
 ![Peek](doc/peek/logo.png "Peek")
 
 Peek lets you preview pdf-Files in the browser. Peek uses imagemagick to do the conversion. Imagemagick uses Ghostscript as a delegate to handle pdf files. Pdf previews can be the full pdf or a png, jpg or gif of the first page. Please note, that the conversion resolution strongly depends on your ImageMagick's configuration in the delegates file. Please consult ImageMagick's configuration help to edit the delegates file.
 
+---
+
 ![Zippy](doc/zippy/logo.png "Zippy")
 
-Peek lets you preview zip, tgz or tar-Files in the browser. Click on an entry to download one individual file from within the compressed file.
+Zippy lets you preview zip, tgz or tar-Files in the browser. Click on an entry to download one individual file from within the compressed file.
+
+---
+
+![Maggie](doc/maggie/logo.png "Maggie")
+
+Maggie converts images from one format to another and downscales images.
+
+---
+
+![Pass](doc/pass/logo.png "Pass")
+
+Pass lets you pass through html.
+
+---
+
+![Vince](doc/vince/logo.png "Vince")
+
+Vince lets you preview .vcf (vCard) files.
+
+---
 
 ![NilText](doc/nil_text/logo.png "NilText") *DO NOT USE IN PRODUCTION* 
 
 NilText lets you see, which data are available for a file conversion. NilText not suited for production use. You can peruse this plugin to learn about the plugin functionality. Please note, that this plugin may reveal a password of a repository. Like all other plugins, **this plugin is deactivated by default**.
 
+---
 
 ### Install
 
