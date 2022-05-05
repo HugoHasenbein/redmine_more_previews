@@ -18,26 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
-# 1.0.0
-#       - initial version
-# 1.0.1
-#       - simplified code
-# 1.0.2
-#       - fixed japanese localization
-#
 
-RedmineMorePreviews::Converter.register :pass do
-  name           'Pass'
-  author         'Stephan Wenzel'
-  description    'Passthrough HTML'
-  version        '1.0.2'
-  url            'https://github.com/HugoHasenbein/redmine_more_previews_pass'
-  author_url     'https://github.com/HugoHasenbein/redmine_more_previews_pass'
-                 
-  settings       :logo    => "logo.png",
-                 :partial => 'settings/redmine_more_previews/pass/settings'
-                 
-  mime_types     :html  =>    {:formats => [:html], :mime => "text/html", :icon => "html.png" }
-end
-
-require 'pass'
+ja:
+  redmine_more_previews:
+    pass:
+      text_explanation:          "HTMLをループさせるだけ"

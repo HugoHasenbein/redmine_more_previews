@@ -50,7 +50,7 @@ class Maggie < RedmineMorePreviews::Conversion
   end #def
   
   def get_density
-    MAGGIES_DENSITIES.map{|a| a[1]}.include? converter_settings['density'] ? converter_settings['density'] : "72"
+    MAGGIES_DENSITIES.map{|a| a[1]}.include?(converter_settings['density'] ) ? converter_settings['density'] : "72"
   end #def
   
 end #class

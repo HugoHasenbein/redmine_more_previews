@@ -18,29 +18,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
-# 1.0.0
-#       - initial version
-# 1.0.1
-#       - required files for non eager loading
-# 1.1.0
-#       - added internationalization for de, en, es, fr, pt, ru, jp, zh
-# 1.1.1
-#       - fixed japanese localization
-#
-#
 
-RedmineMorePreviews::Converter.register :peek do
-  name           'Peek'
-  author         'Stephan Wenzel'
-  description    'Preview PDF in preview pane'
-  version        '1.1.1'
-  url            'https://github.com/HugoHasenbein/redmine_more_previews_peek'
-  author_url     'https://github.com/HugoHasenbein/redmine_more_previews_peek'
-                 
-  settings       :logo    => "logo.png",
-                 :partial => 'settings/redmine_more_previews/peek/settings'
-                 
-  mime_types     :pdf  =>    {:formats => [:pdf, :jpg, :png, :gif], :mime => "application/pdf" }
-end
-
-require 'peek'
+ja:
+  redmine_more_previews:
+    peek:
+      text_explanation:          "pdfファイルのプレビュー"

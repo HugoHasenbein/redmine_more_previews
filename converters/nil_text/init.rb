@@ -22,12 +22,15 @@
 #       - initial version
 # 1.0.1
 #       - required files for non eager loading
+# 1.0.2
+#       - fixed japanese localization
+#
 
 RedmineMorePreviews::Converter.register :nil_text do
   name           'Nil Text'
   author         'Stephan Wenzel'
   description    'Empty Converter'
-  version        '1.0.1'
+  version        '1.0.2'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_nil_text'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_nil_text'
                  

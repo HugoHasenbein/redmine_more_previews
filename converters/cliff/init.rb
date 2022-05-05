@@ -28,12 +28,14 @@
 #       - required files for non eager loading
 # 1.1.0
 #       - added internationalization for de, en, es, fr, pt, ru, jp, zh
+# 1.1.1
+#       - fixed japanese localization
 #
 RedmineMorePreviews::Converter.register :cliff do
   name           'Cliff'
   author         'Stephan Wenzel'
   description    'Preview email files in preview pane'
-  version        '1.1.0'
+  version        '1.1.1'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_cliff'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_cliff'
                  

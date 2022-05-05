@@ -28,13 +28,15 @@
 #        - fixed handling filenames with whitespace
 # 1.1.0
 #       - added internationalization for de, en, es, fr, pt, ru, jp, zh
-#
+# 1.1.1
+#       - fixed japanese localization
+##
 
 RedmineMorePreviews::Converter.register :mark do
   name           'Mark'
   author         'Stephan Wenzel'
   description    'Preview markup text files'
-  version        '1.1.0'
+  version        '1.1.1'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_mark'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_mark'
                  

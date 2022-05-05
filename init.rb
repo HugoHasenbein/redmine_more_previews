@@ -36,23 +36,23 @@
 #        - fixed missing assets bug
 # 2.0.3  
 #        - fixed windows glitch for File.read
-# 2.0.4
+# 2.0.4  
 #        - fixed dependency on mimemagick after license change
-# 2.0.5
+# 2.0.5  
 #        - fixed dependency on mimemagick after license change
-# 2.0.6
+# 2.0.6  
 #        - added timezone support for mail dates in cliff
-# 2.0.7
+# 2.0.7  
 #        - added support for non-ascii email headers in cliff
-# 2.0.8
+# 2.0.8  
 #        - fixed tmpfile scheme (internals)
-# 2.0.9
+# 2.0.9  
 #        - simplified hooks views for cliff
-# 2.0.10
+# 2.0.10 
 #        - fixed broken api calls for attachment
-# 2.0.11
+# 2.0.11 
 #        - amended autoload paths
-# 3.0.0b
+# 3.0.0b 
 #        - rearranged code and files to better match zeitwerk
 #        - made compatible with development mode
 #        - beta quality
@@ -72,7 +72,26 @@
 #        - minor code additions
 # 3.2.0  
 #        - added new previewer "vince" to preview vcf virtual business cards
+# 4.0.0a 
+#        - switched to patching existing redmine classes with 'prepend' instead of an 
+#          alias chain, therefore loosing compatibility with redmine versions less 
+#          than 4.0. Due to many redmine plugins now using the prepend method, introduced 
+#          with Rails 5, the coexistence of 'prepend' and an alias chain methodology,
+#          whereby 'prepend' and the alias chain methodology is incompatible with 
+#          each other, the coexistence cannot be further maintained.
+# 4.0.1a 
+#        - added method to prevent plugin from registering, if mimemagic is not installed.
+#          In this case. a permanent error message is displayed.
+#          
+# 4.1.1  - added pagination links to attachments preview page and 
+#          entry (repository) preview page
+#        - fixed japanese localization
+#
 
+#-----------------------------------------------------------------------------------------
+# Check, if mimemagic gem is correctly installed
+#-----------------------------------------------------------------------------------------
+if Gem::Specification.all_names.any?{|gem| gem =~ /mimemagic/}
 #-----------------------------------------------------------------------------------------
 # Register plugin
 #-----------------------------------------------------------------------------------------
@@ -80,7 +99,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '3.2.0'
+  version '4.1.1'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   
@@ -121,3 +140,10 @@ Rails.application.config.after_initialize do
   Redmine::AccessControl.permission(:browse_repository).actions.push("repositories/more_asset")
 end
 
+
+#-----------------------------------------------------------------------------------------
+# if gems are not correctly installed, then copy an error page
+#-----------------------------------------------------------------------------------------
+else
+  require_relative "config/install/error.rb"
+end

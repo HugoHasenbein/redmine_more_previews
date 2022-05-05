@@ -1,0 +1,45 @@
+# encoding: utf-8
+# frozen_string_literal: true
+
+# Redmine plugin to preview various file types in redmine's preview pane
+#
+# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+ja:
+  label_redmine_more_previews:                             "Redmine More Previews"
+  
+  label_redmine_more_previews_global_settings:             "グローバル設定"
+  
+  text_more_previews_embed_setting:                        "プレビューページにプレビューを埋め込む"
+  text_more_previews_use_object_embed:                     "イン <object><embed>タグ"
+  text_more_previews_use_iframe:                           "<iframe>タグで"
+  text_help_redmine_more_previews_embed_settings:          "<object>-tagオプションで<embed>-tagにフォールバックしたものは有効なHTMLではありませんが、古いブラウザを含むほとんどのブラウザで動作します。<iframe>タグオプションは有効なHTMLです。"
+  
+  label_use_cache:                                         "キャッシュ"
+  text_more_previews_cache:                                "生成されたプレビューのキャッシング"
+  text_help_redmine_more_previews_cache:                   "キャッシュはプレビューの繰り返し表示を高速化しますが、Redmineのルートディレクトリの/tmpディレクトリを肥大化させる可能性があります。"
+  
+  label_redmine_more_previews_plugins_settings:            "プラグインの設定"
+  
+  button_unsafe_update:                                    "安全でないリロード"
+  
+  label_debug:                                             "デバッグ"
+  text_help_redmine_more_previews_debug:                   "変換したファイルの代わりにデバッグ情報を表示する"
+  
+  label_use_absolute_path:                                 "ホスト付きURL"
+  text_help_redmine_more_previews_absolute:                "<iframe>タグまたは<embed>タグのための（スキームとホストを含むURLを使用する"

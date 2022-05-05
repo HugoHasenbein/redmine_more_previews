@@ -81,6 +81,7 @@
     <hr>
   <% end %>
   <% converter.mime_types.each do |mime_type, opts| %>
+<% Rails.logger.info opts.to_s %>
     <div class="<%= if settings.dig("converter", "#{converter.id}", "mime_types", "#{mime_type}", "active") == "1" && RedmineMorePreviews::Converter.mime_doublette?(converter, mime_type); 'flash warning'; end %>">
       <p>
         <label><%= ".#{mime_type}" %> <%= check_box_tag "settings[converter][#{converter.id}][mime_types][#{mime_type}][active]", 1, (settings.dig("converter", "#{converter.id}", "mime_types", "#{mime_type}", "active") == "1" ) %></label>

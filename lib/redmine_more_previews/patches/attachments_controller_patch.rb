@@ -25,13 +25,11 @@ module RedmineMorePreviews
   module Patches
     module AttachmentsControllerPatch
       def self.included(base)
-        base.send(:include, InstanceMethods)
         
         base.class_eval do
           #unloadable
-            
-          alias_method  :show_without_more_previews, :show
-          alias_method  :show,    :show_with_more_previews
+          
+          prepend ClassMethods
           
           alias_method  :find_attachment_for_more_preview, :find_attachment
           alias_method  :read_authorize_for_more_preview,  :read_authorize
@@ -136,13 +134,21 @@ module RedmineMorePreviews
         
       end #self
       
-      module InstanceMethods
+      module ClassMethods
       
-        def show_with_more_previews
+        def show
           if request.format.html? && @attachment.preview_convertible?
+            if @attachment.container.respond_to?(:attachments)
+              @attachments = @attachment.container.attachments.to_a
+              if index = @attachments.index(@attachment)
+                @paginator = Redmine::Pagination::Paginator.new(
+                  @attachments.size, 1, index+1
+                )
+              end
+            end
             render :action => 'more_preview', :formats => :html
           else
-            show_without_more_previews
+            super
           end
         end #def 
         

@@ -24,13 +24,11 @@ module RedmineMorePreviews
   module Patches
     module RepositoriesControllerPatch
       def self.included(base)
-        base.send(:include, InstanceMethods)
         
         base.class_eval do
           #unloadable
             
-          alias_method  :entry_without_more_previews, :entry
-          alias_method  :entry,    :entry_with_more_previews
+         prepend ClassMethods
             
           alias_method  :find_project_repository_for_more_preview, :find_project_repository
           before_action :find_project_repository_for_more_preview, :only => [:more_asset, :more_preview ]
@@ -137,11 +135,23 @@ module RedmineMorePreviews
         
       end #self
       
-      module InstanceMethods
+      module ClassMethods
       
-        def entry_with_more_previews
+        def entry
           @entry = @repository.entry(@path, @rev)
+          (show_error_not_found; return) unless @entry
+          
+          # If the entry is a dir, show the browser
+          (show; return) if @entry.is_dir?
+          
           if @entry&.convertible?
+          
+            parent_path = @path.split('/')[0...-1].join('/')
+            @entries = @repository.entries(parent_path, @rev).reject(&:is_dir?)
+            if index = @entries.index{|e| e.name == @entry.name}
+              @paginator = Redmine::Pagination::Paginator.new(@entries.size, 1, index+1)
+            end
+            
             if params[:asset]
               find_path_param; @disposition = "attachment"
               respond_to do |format|
@@ -151,7 +161,7 @@ module RedmineMorePreviews
               render :action => 'more_preview'
             end
           else
-            entry_without_more_previews
+            super
           end #if
         end #def 
         

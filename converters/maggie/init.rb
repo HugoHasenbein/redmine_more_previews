@@ -22,12 +22,15 @@
 #       - initial version
 # 1.0.1
 #       - simplified code version
+# 1.0.2
+#       - fixed japanese localization
+#
 
 RedmineMorePreviews::Converter.register :maggie do
   name           'Maggie'
   author         'Stephan Wenzel'
   description    'Convert images'
-  version        '1.0.0'
+  version        '1.0.2'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_maggie'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_maggie'
                  

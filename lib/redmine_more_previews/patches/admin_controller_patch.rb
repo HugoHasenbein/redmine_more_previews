@@ -23,22 +23,26 @@ module RedmineMorePreviews
   module Patches
     module AdminControllerPatch
       def self.included(base)
-        base.send(:include, InstanceMethods)
         
         base.class_eval do
           #unloadable
-            
-          alias_method :info_without_more_previews, :info
-          alias_method :info, :info_with_more_previews
+          
+          #
+          # calling prepend within self.included is a bit awkward, as the same effect
+          # could be achieved much easier with calling prepend in the below unless...
+          # block. We keep this awkward way to be able to later concurrently include
+          # and also prepend methods
+          #
+          prepend ClassMethods
          
         end #base
         
       end #self
       
-      module InstanceMethods
+      module ClassMethods
       
-        def info_with_more_previews
-         info_without_more_previews
+        def info
+         super
          RedmineMorePreviews::Converter.all.each do |converter|
            check = converter.worker.check
            @checklist << check if check

@@ -28,12 +28,15 @@
 #       - added internationalization for de, en, es, fr, pt, ru, jp, zh
 # 1.1.1
 #       - added fix to Gemfile
+# 1.1.2
+#       - fixed japanese localization
+#
 
 RedmineMorePreviews::Converter.register :zippy do
   name           'Zippy'
   author         'Stephan Wenzel'
   description    'Zip Converter'
-  version        '1.1.0'
+  version        '1.1.2'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_zippy'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_zippy'
                    
