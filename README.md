@@ -159,6 +159,8 @@ Native speakers: please help to improve localizations
     whereby 'prepend' and the alias chain methodology is incompatible with 
     each other, the coexistence cannot be further maintained.
          
+---
+         
 **3.2.0**
   - added new previewer "vince" to preview vcf virtual business cards
          
