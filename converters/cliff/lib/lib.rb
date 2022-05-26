@@ -20,8 +20,8 @@
 #
 
 # lib
-require 'cliff'
+require_relative 'cliff'
 
 # hooks
-require 'hooks/cliff_eml_top_hook'
-require 'hooks/cliff_eml_contextual_hook'
+require_relative 'hooks/cliff_eml_top_hook'
+require_relative 'hooks/cliff_eml_contextual_hook'

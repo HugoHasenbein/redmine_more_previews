@@ -20,11 +20,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-require 'redmine_more_previews/patches/entry_patch'
-require 'redmine_more_previews/patches/mime_type_patch'
-require 'redmine_more_previews/patches/repository_patch'
-require 'redmine_more_previews/patches/attachment_patch'
-require 'redmine_more_previews/patches/admin_controller_patch'
-require 'redmine_more_previews/patches/application_helper_patch'
-require 'redmine_more_previews/patches/attachments_controller_patch'
-require 'redmine_more_previews/patches/repositories_controller_patch'
+require_relative 'patches/entry_patch'
+require_relative 'patches/mime_type_patch'
+require_relative 'patches/repository_patch'
+require_relative 'patches/attachment_patch'
+require_relative 'patches/admin_controller_patch'
+require_relative 'patches/application_helper_patch'
+require_relative 'patches/attachments_controller_patch'
+require_relative 'patches/repositories_controller_patch'

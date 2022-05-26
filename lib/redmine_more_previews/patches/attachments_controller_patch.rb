@@ -137,7 +137,9 @@ module RedmineMorePreviews
       module ClassMethods
       
         def show
-          if request.format.html? && @attachment.preview_convertible?
+          if @attachment.project&.module_enabled?('redmine_more_previews') &&
+             request.format.html? &&
+             @attachment.preview_convertible?
             if @attachment.container.respond_to?(:attachments)
               @attachments = @attachment.container.attachments.to_a
               if index = @attachments.index(@attachment)

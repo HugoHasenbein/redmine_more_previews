@@ -44,6 +44,4 @@ class Vince < RedmineMorePreviews::Conversion
     
   end #def
   
-  private
-  
 end #class

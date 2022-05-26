@@ -20,4 +20,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-require_relative 'modules/shell'
+require_relative "exceptions/converter_bad_argument"
+require_relative "exceptions/converter_lock_time_out"
+require_relative "exceptions/converter_nil_argument"
+require_relative "exceptions/converter_no_converter"
+require_relative "exceptions/converter_not_found"
+require_relative "exceptions/converter_requirement_error"
+require_relative "exceptions/converter_shell_error"
+require_relative "exceptions/converter_wrong_argument"

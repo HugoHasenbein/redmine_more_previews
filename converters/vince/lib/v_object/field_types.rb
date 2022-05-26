@@ -18,25 +18,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
-# 1.0.0
-#       - initial version
-# 1.1.0
-#       - added internationalization for de, en, es, fr, pt, ru, jp, zh
-#
 
-RedmineMorePreviews::Converter.register :vince do
-  name           'Vince'
-  author         'Stephan Wenzel'
-  description    'Preview VCF in preview pane'
-  version        '1.1.0'
-  url            'https://github.com/HugoHasenbein/redmine_more_previews_vince'
-  author_url     'https://github.com/HugoHasenbein/redmine_more_previews_vince'
-                 
-  settings       :logo    => "logo.png",
-                 :partial => 'settings/redmine_more_previews/vince/settings'
-                 
-  mime_types     :vcf  =>    {:formats => [:txt, :html, :inline], :mime => "text/vcard", :synonyms => ["text/x-vcard"], :icon => "vcf.png" }
-end
-
-require 'v_object'
-require 'vince'
+require "v_object/field_types/default"
+require "v_object/field_types/v_array"
+require "v_object/field_types/v_date_or_time"
+require "v_object/field_types/v_list"
+require "v_object/field_types/v_symbol_with_list"
+require "v_object/field_types/v_symbol"
+require "v_object/field_types/v_text"
+require "v_object/field_types/v_timestamp"
+require "v_object/field_types/v_uri"

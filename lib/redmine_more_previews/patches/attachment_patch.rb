@@ -21,7 +21,7 @@
 #
 
 require 'mimemagic'
-require 'mimemagic/overlay'
+require 'mimemagic/overlay' if MimeMagic::VERSION < '0.4.1'
 
 module RedmineMorePreviews
   module Patches

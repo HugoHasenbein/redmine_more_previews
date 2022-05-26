@@ -83,11 +83,17 @@
 #        - added method to prevent plugin from registering, if mimemagic is not installed.
 #          In this case. a permanent error message is displayed.
 #          
-# 4.1.1  - added pagination links to attachments preview page and 
+# 4.1.1  
+#        - added pagination links to attachments preview page and 
 #          entry (repository) preview page
 #        - fixed japanese localization
+# 4.1.2   
+#        - added conditional loading of mimemgaic/overlay
+#        - added capability of activating on a per project base
+# 4.1.3   
+#        - fixed repositories controller patch not finding project
+#        - added supptort for development mode
 #
-
 #-----------------------------------------------------------------------------------------
 # Check, if mimemagic gem is correctly installed
 #-----------------------------------------------------------------------------------------
@@ -99,7 +105,7 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   name 'Redmine More Previews'
   author 'Stephan Wenzel'
   description 'Preview various file types in redmine\'s preview pane'
-  version '4.1.1'
+  version '4.1.3'
   url 'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
   
@@ -109,6 +115,11 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
                         'absolute'       => '0',  # no, use relative paths for iFrame- and embed-tags
                        },
            :partial => 'settings/redmine_more_previews/settings'
+           
+  project_module :redmine_more_previews do
+    permission :use_redmine_more_previews, {}, :public => true, :read => true
+  end #project_module
+  
 end
 
 #-----------------------------------------------------------------------------------------
@@ -122,6 +133,11 @@ Rails.application.config.to_prepare do
   unless defined?(MORE_PREVIEWS_STORAGE_PATH)
     MORE_PREVIEWS_STORAGE_PATH = File.join(Rails.root, "tmp", "more_previews")
   end
+  
+  #---------------------------------------------------------------------------------------
+  # Load files
+  #---------------------------------------------------------------------------------------
+  require_relative "lib/redmine_more_previews"
   
   #---------------------------------------------------------------------------------------
   # Load Converters

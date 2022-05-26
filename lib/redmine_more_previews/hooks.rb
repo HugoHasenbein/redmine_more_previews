@@ -20,4 +20,4 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-require 'redmine_more_previews/hooks/icon_css'
+require_relative 'hooks/icon_css'

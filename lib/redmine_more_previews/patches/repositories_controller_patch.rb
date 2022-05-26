@@ -144,8 +144,9 @@ module RedmineMorePreviews
           # If the entry is a dir, show the browser
           (show; return) if @entry.is_dir?
           
-          if @entry&.convertible?
-          
+          if @repository.project.module_enabled?('redmine_more_previews') &&
+             @entry.convertible?
+              
             parent_path = @path.split('/')[0...-1].join('/')
             @entries = @repository.entries(parent_path, @rev).reject(&:is_dir?)
             if index = @entries.index{|e| e.name == @entry.name}

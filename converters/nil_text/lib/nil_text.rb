@@ -81,7 +81,7 @@ class NilText < RedmineMorePreviews::Conversion
   # Concurrent conversions of the same plugin will all happen in their own tmpdir.
   #
   # If your plugin / delegate is threadsafe (define in init.rb), then each plugin
-  # will convert concurrently as controlled by the operating ssystem of the redmine host.
+  # will convert concurrently as controlled by the operating system of the redmine host.
   # 
   # Thread safety is assumed to false. If your plugin / delegate is not threadsafe
   # then each call to your plugin is controlled by the super method. This may lead to

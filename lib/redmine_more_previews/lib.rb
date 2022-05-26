@@ -20,4 +20,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-require_relative 'modules/shell'
+require_relative "lib/rmp_file"
+require_relative "lib/rmp_img"
+require_relative "lib/rmp_pdf"
+require_relative "lib/rmp_text"

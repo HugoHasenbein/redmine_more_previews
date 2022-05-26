@@ -20,4 +20,12 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-require_relative 'modules/shell'
+require_relative "redmine_more_previews/exceptions"
+require_relative "redmine_more_previews/patches"
+require_relative "redmine_more_previews/modules"
+require_relative "redmine_more_previews/hooks"
+require_relative "redmine_more_previews/lib"
+
+require_relative "redmine_more_previews/controller_helper"
+require_relative "redmine_more_previews/conversion"
+require_relative "redmine_more_previews/converter"
