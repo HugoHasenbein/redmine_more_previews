@@ -93,7 +93,8 @@
 # 4.1.3   
 #        - fixed repositories controller patch not finding project
 #        - added supptort for development mode
-#
+#        - added support for per project activation
+#        
 #-----------------------------------------------------------------------------------------
 # Check, if mimemagic gem is correctly installed
 #-----------------------------------------------------------------------------------------
