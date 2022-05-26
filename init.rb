@@ -91,9 +91,10 @@
 #        - added conditional loading of mimemgaic/overlay
 #        - added capability of activating on a per project base
 # 4.1.3   
+#        - added support for per project plugin activation
+#        - added better support for development mode
 #        - fixed repositories controller patch not finding project
-#        - added supptort for development mode
-#        - added support for per project activation
+#        - minor bug fixes
 #        
 #-----------------------------------------------------------------------------------------
 # Check, if mimemagic gem is correctly installed

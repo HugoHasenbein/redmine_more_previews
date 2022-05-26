@@ -143,8 +143,10 @@ Native speakers: please help to improve localizations
 ### Change-Log* 
 
 **4.1.3**
+  - added support for per project plugin activation
+  - added better support for development mode
   - fixed repositories controller patch not finding project
-  - added supptort for development mode
+  - minor bug fixes
          
 **4.1.2**
   - added conditional loading of mimemgaic/overlay
