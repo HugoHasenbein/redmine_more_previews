@@ -30,6 +30,8 @@
 #       - fixed japanese localization
 ##
 
+require_relative 'lib/libre'
+
 RedmineMorePreviews::Converter.register :libre do
   name           'Libre'
   author         'Stephan Wenzel'
@@ -107,4 +109,3 @@ RedmineMorePreviews::Converter.register :libre do
   
 end
 
-require 'libre'

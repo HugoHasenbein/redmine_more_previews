@@ -118,7 +118,7 @@ to install necessary gems. Install LibreOfiice (for Libre) and/or Pandoc for (fo
 * Go to Administration -> Plugins -> Redmine More Previews Configuration 
 
 Choose the following options
- - activate the plugin in the project configuration menu (new since version 4.1.3)
+
  - use embed-tag or iframe-tag
  - cache previews (speeds views, may bloat your rails root's tmp folder a bit)
  - activate sub plugins above
@@ -142,12 +142,13 @@ Native speakers: please help to improve localizations
 
 ### Change-Log* 
 
+**# **5.0.0**
+  - running under Redmine 5
+        
 **4.1.3**
-  - added support for per project plugin activation
-  - added better support for development mode
   - fixed repositories controller patch not finding project
-  - minor bug fixes
-         
+  - added support for development mode
+        
 **4.1.2**
   - added conditional loading of mimemgaic/overlay
   - added capability of activating on a per project base

@@ -32,6 +32,9 @@
 #       - fixed japanese localization
 #
 
+require_relative 'lib/array'
+require_relative 'lib/zippy'
+
 RedmineMorePreviews::Converter.register :zippy do
   name           'Zippy'
   author         'Stephan Wenzel'
@@ -48,5 +51,3 @@ RedmineMorePreviews::Converter.register :zippy do
                  :tgz    => {:formats => [:html, :inline], :mime => "application/gtar", :synonyms => ["application/x-gtar"], :icon => "tgz.png" }
 end
 
-require 'array'
-require 'zippy'

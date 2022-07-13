@@ -148,7 +148,7 @@ class Cliff < RedmineMorePreviews::Conversion
         end
         
         @text         = text
-        erb           = ERB.new(File.read(File.join(__dir__, 'cliff', 'pre.html.erb')))
+        erb           = ERB.new(File.read(File.join(views, 'cliff', 'pre.html.erb')))
         html          = erb.result(binding).html_safe
         charset       = "UTF-8"
         
@@ -157,7 +157,7 @@ class Cliff < RedmineMorePreviews::Conversion
         #  multipart: no html, no text -> empty message part      #
         ###########################################################
         @text         = ""
-        erb           = ERB.new(File.read(File.join(__dir__, 'cliff', 'pre.html.erb')))
+        erb           = ERB.new(File.read(File.join(views, 'cliff', 'pre.html.erb')))
         html          = erb.result(binding).html_safe
         charset       = 'UTF-8'
       end
@@ -201,7 +201,7 @@ class Cliff < RedmineMorePreviews::Conversion
         end
         
         @text         = text
-        erb           = ERB.new(File.read(File.join(__dir__, 'cliff', 'pre.html.erb')))
+        erb           = ERB.new(File.read(File.join(views, 'cliff', 'pre.html.erb')))
         html          = erb.result(binding).html_safe
         charset       = "UTF-8"
         
@@ -210,7 +210,7 @@ class Cliff < RedmineMorePreviews::Conversion
         #  single part: no html no text                           #
         ###########################################################
         @text         = ""
-        erb           = ERB.new(File.read(File.join(__dir__, 'cliff', 'pre.html.erb')))
+        erb           = ERB.new(File.read(File.join(views, 'cliff', 'pre.html.erb')))
         html          = erb.result(binding).html_safe
         charset       = 'UTF-8'
       end
@@ -243,7 +243,7 @@ class Cliff < RedmineMorePreviews::Conversion
   #---------------------------------------------------------------------------------------
   def save_headers( message )
     @mail      = message
-    erb        = ERB.new(File.read(File.join(__dir__, 'cliff', 'headers.html.erb')))
+    erb        = ERB.new(File.read(File.join(views, 'cliff', 'headers.html.erb')))
     headers    = erb.result(binding).html_safe
     File.open(File.join(tmpdir, "headers.html"), "w+b", 0644) {|f| f.write headers }
   end #def
@@ -253,7 +253,7 @@ class Cliff < RedmineMorePreviews::Conversion
   #---------------------------------------------------------------------------------------
   def save_fields( message )
     @mail      = message
-    erb        = ERB.new(File.read(File.join(__dir__, 'cliff', 'fields.html.erb')))
+    erb        = ERB.new(File.read(File.join(views, 'cliff', 'fields.html.erb')))
     fields     = erb.result(binding).html_safe
     File.open(File.join(tmpdir, "fields.html"), "w+b", 0644) {|f| f.write fields }
   end #def
@@ -374,7 +374,7 @@ class Cliff < RedmineMorePreviews::Conversion
     b = binding
     b.local_variable_set(:attachments, attachments)
     b.local_variable_set(:object, object)
-    erb = ERB.new(File.read(File.join(__dir__, 'cliff', 'attachments.html.erb')))
+    erb = ERB.new(File.read(File.join(views, 'cliff', 'attachments.html.erb')))
     erb.result(b).squish.html_safe
   end #def
   

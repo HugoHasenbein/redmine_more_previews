@@ -3,7 +3,7 @@
 
 # Redmine plugin to preview various file types in redmine's preview pane
 #
-# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+# Copyright © 2018 -2022 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -20,6 +20,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
+require_relative "redmine_more_previews/constants"
 require_relative "redmine_more_previews/exceptions"
 require_relative "redmine_more_previews/patches"
 require_relative "redmine_more_previews/modules"
@@ -28,4 +29,8 @@ require_relative "redmine_more_previews/lib"
 
 require_relative "redmine_more_previews/controller_helper"
 require_relative "redmine_more_previews/conversion"
+require_relative "redmine_more_previews/plugin_loader"
 require_relative "redmine_more_previews/converter"
+
+
+

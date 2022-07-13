@@ -3,7 +3,7 @@
 
 # Redmine plugin to preview various file types in redmine's preview pane
 #
-# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+# Copyright © 2018 -2022 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -20,12 +20,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-require 'mimemagic'
-require 'mimemagic/overlay' if MimeMagic::VERSION < '0.4.1'
-
 module RedmineMorePreviews
   class Converter
-  
+    Rails.logger.info "---------------------------- reload #{__FILE__}: #{::Rails.application.config.cache_classes}  "
     # Base class for Converters.
     # Converters are registered using the <tt>register</tt> class method that acts as the public constructor.
     #
@@ -96,7 +93,7 @@ module RedmineMorePreviews
     def_field(:name, :class_name, :threadsafe, :description, :directory, 
               :timeout, :shell_api, :url, :author, :author_url, :version)
     attr_reader :id
-    attr_accessor :mime_types, :converter_class, :semaphore
+    attr_accessor :mime_types, :converter_class, :semaphore, :path
     
     ######################################################################################
     # class methods
@@ -112,7 +109,6 @@ module RedmineMorePreviews
       c.name(id.to_s.humanize) if c.name.nil?
       # Set a default class if it was not provided during registration
       c.class_name(id.to_s.classify) if c.class_name.nil?
-      # Set the version of the plugin
       # Set a default directory if it was not provided during registration
       c.directory(File.join(self.directory, id.to_s)) if c.directory.nil?
       # create a semaphore unless threadsafe
@@ -126,6 +122,8 @@ module RedmineMorePreviews
         raise ConverterNotFound, "Converter not found. The directory for converter #{c.id} should be #{c.directory}."
       end
       
+      c.path = RedmineMorePreviews::PluginLoader.directories.find {|d| d.to_s == c.directory}
+      
       # Adds plugin locales if any
       # YAML translation files should be found under <plugin>/config/locales/
       Rails.application.config.i18n.load_path += Dir.glob(File.join(c.directory, 'config', 'locales', '*.yml'))
@@ -136,18 +134,6 @@ module RedmineMorePreviews
         ActionController::Base.prepend_view_path(view_path)
         ActionMailer::Base.prepend_view_path(view_path)
       end
-      
-      # Add the plugin directories to rails autoload paths
-      engine_cfg = Rails::Engine::Configuration.new(c.directory)
-      engine_cfg.paths.add 'lib', eager_load: true
-#     engine_cfg.paths['lib'].eager_load! # create all paths
-      Rails.application.config.eager_load_paths    += engine_cfg.eager_load_paths
-      Rails.application.config.autoload_once_paths += engine_cfg.autoload_once_paths
-      Rails.application.config.autoload_paths      += engine_cfg.autoload_paths
-      ActiveSupport::Dependencies.autoload_paths   += (engine_cfg.eager_load_paths + 
-                                                       engine_cfg.autoload_once_paths + 
-                                                       engine_cfg.autoload_paths -
-                                                       [File.join(c.directory, 'lib')]) # lib was already added in self.load
       
       # Warn for potential settings[:partial] collisions
       if c.configurable?
@@ -170,9 +156,6 @@ module RedmineMorePreviews
           Mime::Type.register(val[:mime], key, val[:synonyms].to_a)
         end
       end if c.mime_types.is_a?(Hash)
-      
-      # copy converter assets to plugin 'redmine_more_previews' directory
-      c.mirror_assets
       
       registered_converters[id] = c
     end #def
@@ -218,62 +201,12 @@ module RedmineMorePreviews
     #
     #
     def self.load
-      Dir.glob(File.join(self.directory, '*')).sort.each do |directory|
-        if File.directory?(directory)
-          lib = File.join(directory, "lib")
-          if File.directory?(lib)
-            $:.unshift lib
-            ActiveSupport::Dependencies.autoload_paths += [lib]
-          end
-          initializer = File.join(directory, "init.rb")
-          if File.file?(initializer)
-            require initializer
-          end
-        end
-      end
-    end
-    
-    # Copies converter assets to public directory
-    #
-    def mirror_assets
-      source = assets_directory
-      destination = public_directory
-      return unless File.directory?(source)
-      
-      source_files = Dir[source + "/**/*"]
-      source_dirs = source_files.select { |d| File.directory?(d) }
-      source_files -= source_dirs
-      
-      unless source_files.empty?
-        base_target_dir = File.join(destination, File.dirname(source_files.first).gsub(source, ''))
-        begin
-          FileUtils.mkdir_p(base_target_dir)
-        rescue => e
-          raise "Could not create directory #{base_target_dir}: " + e.message
-        end
-      end
-      
-      source_dirs.each do |dir|
-        # strip down these paths so we have simple, relative paths we can
-        # add to the destination
-        target_dir = File.join(destination, dir.gsub(source, ''))
-        begin
-          FileUtils.mkdir_p(target_dir)
-        rescue => e
-          raise "Could not create directory #{target_dir}: " + e.message
-        end
-      end
-      
-      source_files.each do |file|
-        begin
-          target = File.join(destination, file.gsub(source, ''))
-          unless File.exist?(target) && FileUtils.identical?(file, target)
-            FileUtils.cp(file, target)
-          end
-        rescue => e
-          raise "Could not copy #{file} to #{target}: " + e.message
-        end
-      end
+      RedmineMorePreviews::PluginLoader.load
+      plugin_assets_reloader = RedmineMorePreviews::PluginLoader.create_assets_reloader
+      Rails.application.reloaders << plugin_assets_reloader
+      unless Redmine::Configuration['mirror_plugins_assets_on_startup'] == false
+        plugin_assets_reloader.execute
+       end
     end
     
     ######################################################################################
@@ -300,7 +233,7 @@ module RedmineMorePreviews
     
       unless options[:pathonly]
       # try by file content
-      mime_type = nil; File.open( filepath ) {|f| mime_type = MimeMagic.by_magic(f).try(:type) }
+      mime_type = Marcel::MimeType.for Pathname.new(filepath), name: File.basename(filepath)
       mime      = active_mime_types.select{|m,opts| mime_type == opts["mime"] }.values.first if mime_type
       return mime if mime
       end
@@ -459,58 +392,6 @@ module RedmineMorePreviews
     def worker(options={})
       converter_class.new( id, worker_attributes.merge(options) )
     end #def
-    
-    ######################################################################################
-    # special methods
-    ######################################################################################
-    # Sets a requirement on Redmine version
-    # Raises a ConverterRequirementError exception if the requirement is not met
-    #
-    # Examples
-    #   # Requires Redmine 0.7.3 or higher
-    #   requires_redmine :version_or_higher => '0.7.3'
-    #   requires_redmine '0.7.3'
-    #
-    #   # Requires Redmine 0.7.x or higher
-    #   requires_redmine '0.7'
-    #
-    #   # Requires a specific Redmine version
-    #   requires_redmine :version => '0.7.3'              # 0.7.3 only
-    #   requires_redmine :version => '0.7'                # 0.7.x
-    #   requires_redmine :version => ['0.7.3', '0.8.0']   # 0.7.3 or 0.8.0
-    #
-    #   # Requires a Redmine version within a range
-    #   requires_redmine :version => '0.7.3'..'0.9.1'     # >= 0.7.3 and <= 0.9.1
-    #   requires_redmine :version => '0.7'..'0.9'         # >= 0.7.x and <= 0.9.x
-    def requires_redmine(arg)
-      arg = { :version_or_higher => arg } unless arg.is_a?(Hash)
-      arg.assert_valid_keys(:version, :version_or_higher)
-      
-      current = Redmine::VERSION.to_a
-      arg.each do |k, req|
-        case k
-        when :version_or_higher
-          raise ArgumentError.new(":version_or_higher accepts a version string only") unless req.is_a?(String)
-          unless compare_versions(req, current) <= 0
-            raise PluginRequirementError.new("#{id} converter requires Redmine #{req} or higher but current is #{current.join('.')}")
-          end
-        when :version
-          req = [req] if req.is_a?(String)
-          if req.is_a?(Array)
-            unless req.detect {|ver| compare_versions(ver, current) == 0}
-              raise ConverterRequirementError.new("#{id} converter requires one the following Redmine versions: #{req.join(', ')} but current is #{current.join('.')}")
-            end
-          elsif req.is_a?(Range)
-            unless compare_versions(req.first, current) <= 0 && compare_versions(req.last, current) >= 0
-              raise ConverterRequirementError.new("#{id} converter requires a Redmine version between #{req.first} and #{req.last} but current is #{current.join('.')}")
-            end
-          else
-            raise ArgumentError.new(":version option accepts a version string, an array or a range of versions")
-          end
-        end
-      end
-      true
-    end
     
     def compare_versions(requirement, current)
       requirement = requirement.split('.').collect(&:to_i)

@@ -25,6 +25,7 @@
 # 1.0.2
 #       - fixed japanese localization
 #
+require_relative 'lib/maggie'
 
 RedmineMorePreviews::Converter.register :maggie do
   name           'Maggie'
@@ -45,6 +46,4 @@ RedmineMorePreviews::Converter.register :maggie do
             )
 end
 
-MAGGIES_DENSITIES = [["72", "72"], ["96", "96"], ["144", "144"], ["300", "300"]]
 
-require 'maggie'

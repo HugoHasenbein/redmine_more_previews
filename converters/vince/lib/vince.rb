@@ -21,22 +21,20 @@
 
 class Vince < RedmineMorePreviews::Conversion
   
-  LINE_LENGTH = 1000
-  
   def convert
   
-    @vcfs    = VObject::Reader.new(:object => :vcard, :filepath => source).fileall
+    @vcfs    = VinceLib::VObject::Reader.new(:object => :vcard, :filepath => source).fileall
     @iconize = converter_settings["iconize"].to_i > 0
     
     # create preview
     case preview_format
     
     when "html", "inline"
-      erb  = ERB.new(File.read(File.join(__dir__, 'views', 'vince.html.erb')))
+      erb  = ERB.new(File.read(File.join(views, 'vince', 'vince.html.erb')))
       obj  = I18n.with_locale(Setting.default_language){erb.result(binding).html_safe}.squish
       
     when "txt"
-      erb  = ERB.new(File.read(File.join(__dir__, 'views', 'vince.txt.erb')))
+      erb  = ERB.new(File.read(File.join(views, 'vince', 'vince.txt.erb')))
       obj  = I18n.with_locale(Setting.default_language){erb.result(binding).html_safe}.gsub(/\n{3,}/, "\n")
     end
     

@@ -3,7 +3,7 @@
 
 # Redmine plugin to preview various file types in redmine's preview pane
 #
-# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+# Copyright © 2018 -2022 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -22,7 +22,7 @@
 
 module RedmineMorePreviews
   module Lib
-    module MorePreviewPDF
+    module RmpPdf
       class << self
         # Returns a PDF string for a converter
         def more_prewiew_to_pdf(locals={})

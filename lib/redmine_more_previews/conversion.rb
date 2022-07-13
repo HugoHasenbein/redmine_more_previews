@@ -3,7 +3,7 @@
 
 # Redmine plugin to preview various file types in redmine's preview pane
 #
-# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+# Copyright © 2018 -2022 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -54,7 +54,7 @@ module RedmineMorePreviews
                   :settings, :unique_id,
                   :transient, :reload, :unsafe,
                   :version, :plugin_version,
-                  :converter
+                  :converter, :views, :pub_dir
     
     #-------------------------------------------------------------------------------------
     # initialize
@@ -67,7 +67,10 @@ module RedmineMorePreviews
       self.name           = options[:name].to_s
       self.version        = options[:version].to_s
       self.plugin_version = Redmine::Plugin.registered_plugins[:redmine_more_previews].version
+      
       self.converter      = Converter.find(id)
+      self.views          = converter.path.views
+      self.pub_dir        = converter.path.public_directory
       
       self.settings       = options[:settings].presence || {}
       raise ConverterWrongArgument unless settings.is_a?(Hash)
@@ -349,6 +352,43 @@ module RedmineMorePreviews
     
     def converter_settings
       Setting["plugin_redmine_more_previews"].to_h.dig("converter", id).to_h
+    end #def
+    
+    ######################################################################################
+    #
+    # helper functios
+    #
+    ######################################################################################
+    def public_web_directory
+      converter.public_web_directory
+    end #def
+    
+    def assets_directory
+      File.join(public_web_directory, 'assets')
+    end #def
+    
+    def images_directory
+      File.join(public_web_directory, 'images')
+    end #def
+    
+    def javascripts_directory
+      File.join(public_web_directory, 'javascripts')
+    end #def
+    
+    def stylesheets_directory
+      File.join(public_web_directory, 'stylesheets')
+    end #def
+    
+    def javascript_include_tag(rel_path, **options, &block)
+      if block_given?
+        ApplicationController.helpers.content_tag(:script, :src => [javascripts_directory, rel_path].join('/'), &block)
+      else
+        ApplicationController.helpers.content_tag(:script, "", :src => [javascripts_directory, rel_path].join('/'))
+      end
+    end #def
+    
+    def stylesheet_link_tag(rel_path, **options)
+      ApplicationController.helpers.tag(:link, :rel => "stylesheet", :media => 'all', :href => [stylesheets_directory, rel_path].join('/'))
     end #def
     
     ######################################################################################

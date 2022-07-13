@@ -1,0 +1,46 @@
+<table style="width:100%">
+  <tbody>
+    <tr>
+      <td >
+      
+        <table class="white" style="width:100%">
+          <tbody>
+          
+            <% if @mail.has_date? %>
+              <%- datestr = I18n.localize(@mail.date) rescue @mail.date.to_s %>
+              <%- tzone   = @mail.date.strftime("%:::z") rescue "" %>
+              <tr >
+                <td style="width:5%;font-weight:bold;"><%= I18n.translate(:label_mail_field_date) %></td>
+                <td style="word-break: break-all;" ><%= datestr %>(<%= tzone %>)</td>
+              </tr>
+            <% end %>
+            
+            <% if @mail.from.present? %>
+              <tr >
+                <td style="width:5%;font-weight:bold;"><%= I18n.translate(:label_mail_field_from) %></td>
+                <% display_names = Array(@mail.header[:from].display_names) rescue [" -?- "]
+                   display_names.map!{|dn| Mail::Encodings.decode_encode( dn, :decode ) }
+                 %>
+                <td style="word-break: break-all;" ><%= @mail.from.is_a?(String) ? @mail.from : @mail.from.join(", ") rescue @mail.from %> <%= "(#{display_names.join(', ')})" if display_names.present?  %></td>
+              </tr>
+            <% end %>
+            
+            <tr >
+              <td style="width:5%;font-weight:bold;"><%= I18n.translate(:label_mail_field_to) %></td>
+              <td style="word-break: break-all;" ><%= @mail.to && @mail.to.is_a?(String) ? @mail.to : @mail.to.join(", ") rescue @mail.to %></td>
+            </tr>
+            <tr >
+              <td style="width:5%;font-weight:bold;"><%= I18n.translate(:label_mail_field_cc) %></td>
+              <td style="word-break: break-all;" ><%= @mail.cc && @mail.cc.is_a?(String) ? @mail.from : @mail.cc.join(", ") rescue @mail.cc %></td>
+            </tr>
+            <tr >
+              <td style="width:5%;font-weight:bold;"><%= I18n.translate(:label_mail_field_subject) %></td>
+              <td style="word-break: break-all;" ><%= @mail.subject %></td>
+            </tr>
+          </tbody>
+        </table>
+      
+      </td>
+    </tr>
+  </tbody>
+</table>

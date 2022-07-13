@@ -26,6 +26,8 @@
 #       - fixed japanese localization
 #
 
+require_relative 'lib/nil_text'
+
 RedmineMorePreviews::Converter.register :nil_text do
   name           'Nil Text'
   author         'Stephan Wenzel'
@@ -42,4 +44,3 @@ RedmineMorePreviews::Converter.register :nil_text do
   
 end
 
-require 'nil_text'

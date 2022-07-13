@@ -21,8 +21,11 @@
 # 1.0.0
 #       - initial version
 # 1.1.0
-#       - added internationalization for de, en, es, fr, pt, ru, jp, zh
+#       - added internationalization for de, en, es, fr, pt, ru, ja, zh
 #
+
+require_relative 'lib/vince_lib/v_object'
+require_relative 'lib/vince'
 
 RedmineMorePreviews::Converter.register :vince do
   name           'Vince'
@@ -38,5 +41,3 @@ RedmineMorePreviews::Converter.register :vince do
   mime_types     :vcf  =>    {:formats => [:txt, :html, :inline], :mime => "text/vcard", :synonyms => ["text/x-vcard"], :icon => "vcf.png" }
 end
 
-require 'v_object'
-require 'vince'

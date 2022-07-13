@@ -2,7 +2,7 @@
 #
 # Redmine plugin to preview various file types in redmine's preview pane
 #
-# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+# Copyright © 2018 -2022 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -25,7 +25,7 @@ module RedmineMorePreviews
       def self.included(base)
         
         base.class_eval do
-          #unloadable
+          unloadable
           
           #
           # calling prepend within self.included is a bit awkward, as the same effect
@@ -38,7 +38,7 @@ module RedmineMorePreviews
         end #base
         
       end #self
-      
+       
       module ClassMethods
       
         def info
@@ -58,4 +58,3 @@ end #module
 unless AdminController.included_modules.include?(RedmineMorePreviews::Patches::AdminControllerPatch)
   AdminController.send(:include, RedmineMorePreviews::Patches::AdminControllerPatch)
 end
-

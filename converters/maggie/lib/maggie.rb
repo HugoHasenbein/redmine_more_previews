@@ -23,14 +23,15 @@
 
 class Maggie < RedmineMorePreviews::Conversion
 
-  CONVERT_BIN   = (Redmine::Configuration['imagemagick_convert_command'] || 'convert').freeze
+  DENSITIES   = [["72", "72"], ["96", "96"], ["144", "144"], ["300", "300"]]
+  CONVERT_BIN = (Redmine::Configuration['imagemagick_convert_command'] || 'convert').freeze
     
   def status
     [:text_convert_available, Redmine::Thumbnail.convert_available?]
   end
   
   def convert
-    mime_type = File.open(source) {|f| MimeMagic.by_magic(f).try(:type) }
+    mime_type = Marcel::MimeType.for(Pathname.new(source), name: File.basename(source))
     
     cmd = case mime_type
     when "image/jpeg", "image/png"
@@ -50,7 +51,7 @@ class Maggie < RedmineMorePreviews::Conversion
   end #def
   
   def get_density
-    MAGGIES_DENSITIES.map{|a| a[1]}.include?(converter_settings['density'] ) ? converter_settings['density'] : "72"
+    DENSITIES.map{|a| a[1]}.include?(converter_settings['density'] ) ? converter_settings['density'] : "72"
   end #def
   
 end #class

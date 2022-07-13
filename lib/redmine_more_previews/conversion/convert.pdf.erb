@@ -1,1 +1,1 @@
-<%= ApplicationController.helpers.raw MorePreviewPDF.more_prewiew_to_pdf(instance_variables.map{|ivar| [ivar, instance_variable_get(ivar)]}.to_h ) %>
+<%= ApplicationController.helpers.raw RmpPdf.more_prewiew_to_pdf(instance_variables.map{|ivar| [ivar, instance_variable_get(ivar)]}.to_h ) %>

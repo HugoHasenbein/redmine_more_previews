@@ -3,7 +3,7 @@
 
 # Redmine plugin to preview various file types in redmine's preview pane
 #
-# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+# Copyright © 2018 -2022 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -19,7 +19,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
-
+#
 #
 # 1.0.4
 #        -support redmine 4
@@ -87,29 +87,29 @@
 #        - added pagination links to attachments preview page and 
 #          entry (repository) preview page
 #        - fixed japanese localization
-# 4.1.2   
+# 4.1.2  
 #        - added conditional loading of mimemgaic/overlay
 #        - added capability of activating on a per project base
-# 4.1.3   
-#        - added support for per project plugin activation
-#        - added better support for development mode
+# 4.1.3  
 #        - fixed repositories controller patch not finding project
-#        - minor bug fixes
+#        - added support for development mode
+# 5.0.0  
+#        - running under Redmine 5
 #        
-#-----------------------------------------------------------------------------------------
-# Check, if mimemagic gem is correctly installed
-#-----------------------------------------------------------------------------------------
-if Gem::Specification.all_names.any?{|gem| gem =~ /mimemagic/}
+#
+#
 #-----------------------------------------------------------------------------------------
 # Register plugin
 #-----------------------------------------------------------------------------------------
-redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
-  name 'Redmine More Previews'
-  author 'Stephan Wenzel'
-  description 'Preview various file types in redmine\'s preview pane'
-  version '4.1.3'
-  url 'https://github.com/HugoHasenbein/redmine_more_previews'
-  author_url 'https://github.com/HugoHasenbein/redmine_more_previews'
+Redmine::Plugin.register :redmine_more_previews do
+  name         'Redmine More Previews'
+  author       'Stephan Wenzel'
+  description  'Preview various file types in redmine\'s preview pane'
+  version      '5.0.0'
+  url          'https://github.com/HugoHasenbein/redmine_more_previews'
+  author_url   'https://github.com/HugoHasenbein/redmine_more_previews'
+  
+  requires_redmine(:version_or_higher => '4')
   
   settings :default => {'embedding'      => '0',  # use <object><embed>-tag or <iframe>-tag
                         'cache_previews' => '1',  # yes, cache previews
@@ -121,47 +121,38 @@ redmine_more_previews = Redmine::Plugin.register :redmine_more_previews do
   project_module :redmine_more_previews do
     permission :use_redmine_more_previews, {}, :public => true, :read => true
   end #project_module
-  
 end
 
 #-----------------------------------------------------------------------------------------
-# Load stuff, which needs to be loaded on boot and on each request in development mode
+# Load files
 #-----------------------------------------------------------------------------------------
-Rails.application.config.to_prepare do
+require_relative "lib/redmine_more_previews"
 
-  #---------------------------------------------------------------------------------------
-  # Constants
-  #---------------------------------------------------------------------------------------
-  unless defined?(MORE_PREVIEWS_STORAGE_PATH)
-    MORE_PREVIEWS_STORAGE_PATH = File.join(Rails.root, "tmp", "more_previews")
+#-----------------------------------------------------------------------------------------
+# Load Converters
+#-----------------------------------------------------------------------------------------
+RedmineMorePreviews::Converter.load
+
+#-----------------------------------------------------------------------------------------
+# File reloader for development environment. In Redmine 5 init.rb is called in to_prepare
+#-----------------------------------------------------------------------------------------
+if Redmine::VERSION.to_s < "5"
+  Rails.configuration.to_prepare do
+    Rails.logger.info "-------------reloading"
+    require_relative "lib/redmine_more_previews"
+    RedmineMorePreviews::Converter.load
   end
-  
-  #---------------------------------------------------------------------------------------
-  # Load files
-  #---------------------------------------------------------------------------------------
-  require_relative "lib/redmine_more_previews"
-  
-  #---------------------------------------------------------------------------------------
-  # Load Converters
-  #---------------------------------------------------------------------------------------
-  RedmineMorePreviews::Converter.load
 end
-
 
 #-----------------------------------------------------------------------------------------
 # Add permissions
 #-----------------------------------------------------------------------------------------
 Rails.application.config.after_initialize do
-  Redmine::AccessControl.permission(:view_changesets  ).actions.push("repositories/more_preview")
-  Redmine::AccessControl.permission(:view_changesets  ).actions.push("repositories/more_asset")
-  Redmine::AccessControl.permission(:browse_repository).actions.push("repositories/more_preview")
-  Redmine::AccessControl.permission(:browse_repository).actions.push("repositories/more_asset")
-end
-
-
-#-----------------------------------------------------------------------------------------
-# if gems are not correctly installed, then copy an error page
-#-----------------------------------------------------------------------------------------
-else
-  require_relative "config/install/error.rb"
+  [ [:view_changesets,   "repositories/more_preview"],
+    [:view_changesets,   "repositories/more_asset"],
+    [:browse_repository, "repositories/more_preview"],
+    [:browse_repository, "repositories/more_asset"]
+  ].each do |permission, action|
+    RedmineMorePreviews::Lib::RmpPerm.push_permission(permission, action)
+  end
 end

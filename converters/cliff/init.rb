@@ -31,6 +31,10 @@
 # 1.1.1
 #       - fixed japanese localization
 #
+
+require_relative 'lib/cliff'
+require_relative 'lib/cliff_lib/hooks'
+
 RedmineMorePreviews::Converter.register :cliff do
   name           'Cliff'
   author         'Stephan Wenzel'
@@ -46,4 +50,3 @@ RedmineMorePreviews::Converter.register :cliff do
                  :mime  =>   {:formats => [:html], :mime => 'message/rfc822', :icon => 'eml.png' }
 end
 
-require 'lib'

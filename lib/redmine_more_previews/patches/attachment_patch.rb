@@ -3,7 +3,7 @@
 
 # Redmine plugin to preview various file types in redmine's preview pane
 #
-# Copyright © 2018 -2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+# Copyright © 2018 -2022 Stephan Wenzel <stephan.wenzel@drwpatent.de>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -19,9 +19,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
-
-require 'mimemagic'
-require 'mimemagic/overlay' if MimeMagic::VERSION < '0.4.1'
 
 module RedmineMorePreviews
   module Patches
@@ -102,7 +99,7 @@ module RedmineMorePreviews
             )
             
             ApplicationController.helpers.link_to( asset, _link,
-             :class => "icon icon-file #{MimeMagic.by_path( asset ).type&.tr('/', '-')}",
+             :class => "icon icon-file #{Marcel::MimeType.for(Pathname.new(asset), name: File.basename(asset))&.tr('/', '-')}",
              :style => "padding-top:2px;padding-bottom:2px;"
             )
           end #def
@@ -146,7 +143,7 @@ module RedmineMorePreviews
           end #def
           
           def previews_storagepath
-            File.join(MORE_PREVIEWS_STORAGE_PATH, self.class.name.underscore.pluralize)
+            File.join(RedmineMorePreviews::Constants::Defaults::MORE_PREVIEWS_STORAGE_PATH, self.class.name.underscore.pluralize)
           end #def
           
           ################################################################################

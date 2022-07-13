@@ -32,6 +32,8 @@
 #       - fixed japanese localization
 ##
 
+require_relative 'lib/mark'
+
 RedmineMorePreviews::Converter.register :mark do
   name           'Mark'
   author         'Stephan Wenzel'
@@ -48,4 +50,3 @@ RedmineMorePreviews::Converter.register :mark do
                  :html    => {:formats => [:html, :inline, :txt], :mime => "text/html"                                   }
 end
 
-require 'mark'

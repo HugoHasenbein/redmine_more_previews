@@ -28,6 +28,7 @@
 #       - fixed japanese localization
 #
 #
+require_relative 'lib/peek'
 
 RedmineMorePreviews::Converter.register :peek do
   name           'Peek'
@@ -43,4 +44,3 @@ RedmineMorePreviews::Converter.register :peek do
   mime_types     :pdf  =>    {:formats => [:pdf, :jpg, :png, :gif], :mime => "application/pdf" }
 end
 
-require 'peek'

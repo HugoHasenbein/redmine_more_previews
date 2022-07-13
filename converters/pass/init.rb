@@ -26,6 +26,8 @@
 #       - fixed japanese localization
 #
 
+require_relative 'lib/pass'
+
 RedmineMorePreviews::Converter.register :pass do
   name           'Pass'
   author         'Stephan Wenzel'
@@ -40,4 +42,3 @@ RedmineMorePreviews::Converter.register :pass do
   mime_types     :html  =>    {:formats => [:html], :mime => "text/html", :icon => "html.png" }
 end
 
-require 'pass'
