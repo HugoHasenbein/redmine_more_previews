@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-ru:
+zh:
   redmine_more_previews:
     peek:
       text_explanation:          "预览pdf文件"

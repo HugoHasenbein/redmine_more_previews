@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-jp:
+ja:
   text_pandoc_available:          "Pandocが利用可能"
   redmine_more_previews:
     mark:

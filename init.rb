@@ -96,6 +96,8 @@
 # 5.0.0  
 #        - running under Redmine 5
 #        
+# 5.0.1  
+#        - fixed some new locale files
 #
 #
 #-----------------------------------------------------------------------------------------
@@ -105,7 +107,7 @@ Redmine::Plugin.register :redmine_more_previews do
   name         'Redmine More Previews'
   author       'Stephan Wenzel'
   description  'Preview various file types in redmine\'s preview pane'
-  version      '5.0.0'
+  version      '5.0.1'
   url          'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url   'https://github.com/HugoHasenbein/redmine_more_previews'
   

@@ -19,7 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
-ru:
+zh:
   redmine_more_previews:
     pass:
       text_explanation:          "通过HTML进行循环即可"
