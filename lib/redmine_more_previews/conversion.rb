@@ -34,6 +34,7 @@ module RedmineMorePreviews
     include RedmineMorePreviews::Lib
     include RedmineMorePreviews::Modules::Shell
     include RedmineMorePreviews::Exceptions
+    include RedmineMorePreviews::Converter
     
     #-------------------------------------------------------------------------------------
     # delegations
