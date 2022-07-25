@@ -104,10 +104,12 @@
 #        
 # 5.0.3  
 #       - removed legacy code to please Zeitwerk
-#
+#        
 # 5.0.4  
-#       - aaded more include statements to please Zeitwerk
-#
+#       - added more include statements to please Zeitwerk
+#        
+# 5.0.5  
+#       - yet another patch to please Zeitwerk
 #-----------------------------------------------------------------------------------------
 # Register plugin
 #-----------------------------------------------------------------------------------------
@@ -115,7 +117,7 @@ Redmine::Plugin.register :redmine_more_previews do
   name         'Redmine More Previews'
   author       'Stephan Wenzel'
   description  'Preview various file types in redmine\'s preview pane'
-  version      '5.0.4'
+  version      '5.0.5'
   url          'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url   'https://github.com/HugoHasenbein/redmine_more_previews'
   
