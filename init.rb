@@ -113,6 +113,9 @@
 #        
 # 5.0.6  
 #       - yet another patch to please Zeitwerk
+#        
+# 5.0.7  
+#       - yet another patch to please Zeitwerk
 #-----------------------------------------------------------------------------------------
 # Register plugin
 #-----------------------------------------------------------------------------------------
@@ -120,7 +123,7 @@ Redmine::Plugin.register :redmine_more_previews do
   name         'Redmine More Previews'
   author       'Stephan Wenzel'
   description  'Preview various file types in redmine\'s preview pane'
-  version      '5.0.6'
+  version      '5.0.7'
   url          'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url   'https://github.com/HugoHasenbein/redmine_more_previews'
   
@@ -150,8 +153,13 @@ RedmineMorePreviews::Converter.load
 
 #-----------------------------------------------------------------------------------------
 # File reloader for development environment. In Redmine 5 init.rb is called in to_prepare
+# fix proposed in
+# https://zenn-dev.translate.goog/tohosaku/articles/3ccdeb2f38bb07?_x_tr_sl=auto&_x_tr_tl\
+# =en&_x_tr_hl=ja&_x_tr_pto=wapp
 #-----------------------------------------------------------------------------------------
-if Redmine::VERSION.to_s < "5"
+if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
+    # リロード時の処理 
+else
   Rails.configuration.to_prepare do
     Rails.logger.info "-------------reloading"
     require_relative "lib/redmine_more_previews"

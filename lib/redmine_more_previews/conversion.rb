@@ -68,7 +68,7 @@ module RedmineMorePreviews
       self.version        = options[:version].to_s
       self.plugin_version = Redmine::Plugin.registered_plugins[:redmine_more_previews].version
       
-      self.converter      = Converter.find(id)
+      self.converter      = RedmineMorePreviews::Converter.find(id)
       self.views          = converter.path.views
       self.pub_dir        = converter.path.public_directory
       
