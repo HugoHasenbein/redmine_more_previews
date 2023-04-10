@@ -111,6 +111,10 @@
 # 5.0.5  
 #       - yet another patch to please Zeitwerk
 # 5.0.6  
+#       - yet another patch to please Zeitwerk
+# 5.0.7  
+#       - yet another patch to please Zeitwerk
+# 5.0.8  
 #       - fixed File.exists? to File.exist?
 #       - fixed URI.esacape to URI.encode_www_form_component for zippy
 #         (this may break downward compatibility, prior to ruby 2.7)
@@ -124,7 +128,7 @@ Redmine::Plugin.register :redmine_more_previews do
   name         'Redmine More Previews'
   author       'Stephan Wenzel'
   description  'Preview various file types in redmine\'s preview pane'
-  version      '5.0.6'
+  version      '5.0.8'
   url          'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url   'https://github.com/HugoHasenbein/redmine_more_previews'
   
