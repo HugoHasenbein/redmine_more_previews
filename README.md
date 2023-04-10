@@ -142,7 +142,33 @@ Native speakers: please help to improve localizations
 
 ### Change-Log* 
 
-**# **5.0.0**
+**5.0.8**  
+  - fixed File.exists? to File.exist?
+  - fixed URI.esacape to URI.encode\_www\_form\_component for zippy
+  - fixed long standing issue with links in zippy's inline zip file content tables
+        
+**5.0.7**  
+  - yet another patch to please Zeitwerk
+        
+**5.0.6**  
+  - yet another patch to please Zeitwerk
+        
+**5.0.5**  
+  - yet another patch to please Zeitwerk
+        
+**5.0.4**  
+  - added more include statements to please Zeitwerk
+        
+**5.0.3**
+  - removed legacy code to please Zeitwerk
+        
+**5.0.2**
+  - altered sequence of file loading to please Zeitwerk
+        
+**5.0.1**
+  - fixed some new locale files
+        
+**5.0.0**
   - running under Redmine 5
         
 **4.1.3**

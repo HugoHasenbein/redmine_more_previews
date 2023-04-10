@@ -115,10 +115,8 @@
 # 5.0.7  
 #       - yet another patch to please Zeitwerk
 # 5.0.8  
-#       - fixed File.exists? to File.exist?
+#       - fixed File.exists? to File.exist? in zippy
 #       - fixed URI.esacape to URI.encode_www_form_component for zippy
-#         (this may break downward compatibility, prior to ruby 2.7)
-#         # 1.0.1  
 #       - fixed long standing issue with links in zippy's inline zip file content tables
 
 #-----------------------------------------------------------------------------------------
