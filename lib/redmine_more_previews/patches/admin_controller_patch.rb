@@ -25,7 +25,7 @@ module RedmineMorePreviews
       def self.included(base)
         
         base.class_eval do
-          unloadable
+          #unloadable
           
           #
           # calling prepend within self.included is a bit awkward, as the same effect

@@ -20,6 +20,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
+module RedmineMorePreviews
+  module Patches
+  end
+end
+
 require_relative 'patches/entry_patch'
 require_relative 'patches/mime_type_patch'
 require_relative 'patches/repository_patch'

@@ -105,6 +105,10 @@ module RedmineMorePreviews
     def self.load
       setup
       add_autoload_paths
+      Rails.logger.info "RedmineMorePreviews: scanning plugins"
+      PluginLoader.directories.each do |dir|
+        Rails.logger.info dir.to_s
+      end
       PluginLoader.directories.each(&:run_initializer)
       Redmine::Hook.call_hook :after_redmine_more_previews_plugins_loaded
     end

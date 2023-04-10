@@ -110,6 +110,13 @@
 #        
 # 5.0.5  
 #       - yet another patch to please Zeitwerk
+# 5.0.6  
+#       - fixed File.exists? to File.exist?
+#       - fixed URI.esacape to URI.encode_www_form_component for zippy
+#         (this may break downward compatibility, prior to ruby 2.7)
+#         # 1.0.1  
+#       - fixed long standing issue with links in zippy's inline zip file content tables
+
 #-----------------------------------------------------------------------------------------
 # Register plugin
 #-----------------------------------------------------------------------------------------
@@ -117,7 +124,7 @@ Redmine::Plugin.register :redmine_more_previews do
   name         'Redmine More Previews'
   author       'Stephan Wenzel'
   description  'Preview various file types in redmine\'s preview pane'
-  version      '5.0.5'
+  version      '5.0.6'
   url          'https://github.com/HugoHasenbein/redmine_more_previews'
   author_url   'https://github.com/HugoHasenbein/redmine_more_previews'
   
@@ -148,13 +155,30 @@ RedmineMorePreviews::Converter.load
 #-----------------------------------------------------------------------------------------
 # File reloader for development environment. In Redmine 5 init.rb is called in to_prepare
 #-----------------------------------------------------------------------------------------
-if Redmine::VERSION.to_s < "5"
+# if Redmine::VERSION.to_s < "5"
+#   Rails.configuration.to_prepare do
+#     Rails.logger.info "-------------reloading"
+#     require_relative "lib/redmine_more_previews"
+#     RedmineMorePreviews::Converter.load
+#   end
+# end
+
+#-----------------------------------------------------------------------------------------
+# File reloader for development environment. In Redmine 5 init.rb is called in to_prepare
+# fix proposed in
+# https://zenn-dev.translate.goog/tohosaku/articles/3ccdeb2f38bb07?_x_tr_sl=auto&_x_tr_tl\
+# =en&_x_tr_hl=ja&_x_tr_pto=wapp
+#-----------------------------------------------------------------------------------------
+if Rails.version > '6.0' && Rails.autoloaders.zeitwerk_enabled?
+    # リロード時の処理 
+else
   Rails.configuration.to_prepare do
     Rails.logger.info "-------------reloading"
     require_relative "lib/redmine_more_previews"
     RedmineMorePreviews::Converter.load
   end
 end
+
 
 #-----------------------------------------------------------------------------------------
 # Add permissions
@@ -168,3 +192,5 @@ Rails.application.config.after_initialize do
     RedmineMorePreviews::Lib::RmpPerm.push_permission(permission, action)
   end
 end
+
+ActiveSupport::Dependencies.explicitly_unloadable_constants += ['RedmineMorePreviews'] 

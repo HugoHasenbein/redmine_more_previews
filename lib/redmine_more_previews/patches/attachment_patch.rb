@@ -49,7 +49,7 @@ module RedmineMorePreviews
           def more_asset(options={}, &block)
             RedmineMorePreviews::Converter.convert(
               diskfile, 
-              preview_filepath(options),
+              preview_assetpath(options),
               options.merge(
                 :object => {:type => :attachment, :object => self},
                 :preview_format => preview_format

@@ -22,7 +22,7 @@
 
 module RedmineMorePreviews
   class Converter
-    
+     
     # Base class for Converters.
     # Converters are registered using the <tt>register</tt> class method that acts as the public constructor.
     #

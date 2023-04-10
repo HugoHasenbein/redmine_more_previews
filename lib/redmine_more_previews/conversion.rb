@@ -24,8 +24,8 @@
 require 'fileutils'
 
 module RedmineMorePreviews 
-
   class Conversion
+  
     
     #-------------------------------------------------------------------------------------
     # include libraries
@@ -68,7 +68,7 @@ module RedmineMorePreviews
       self.version        = options[:version].to_s
       self.plugin_version = Redmine::Plugin.registered_plugins[:redmine_more_previews].version
       
-      self.converter      = Converter.find(id)
+      self.converter      = RedmineMorePreviews::Converter.find(id)
       self.views          = converter.path.views
       self.pub_dir        = converter.path.public_directory
       
@@ -417,7 +417,7 @@ module RedmineMorePreviews
       # returns true, if data in cache is valid, else false
       #
       #
-      @target && File.exists?(@target)
+      @target && File.exist?(@target)
     end #def
     
     def convert

@@ -20,6 +20,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
+module RedmineMorePreviews
+  module Exceptions
+  end
+end
+
 require_relative "exceptions/converter_bad_argument"
 require_relative "exceptions/converter_lock_time_out"
 require_relative "exceptions/converter_nil_argument"

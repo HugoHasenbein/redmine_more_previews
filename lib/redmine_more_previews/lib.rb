@@ -20,6 +20,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
+module RedmineMorePreviews
+  module Lib
+  end
+end
+
 require_relative "lib/rmp_file"
 require_relative "lib/rmp_img"
 require_relative "lib/rmp_pdf"

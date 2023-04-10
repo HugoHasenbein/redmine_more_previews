@@ -30,7 +30,8 @@
 #       - added fix to Gemfile
 # 1.1.2
 #       - fixed japanese localization
-#
+# 1.1.3  
+#       - fixed long standing issue with links in inline zip file content tables
 
 require_relative 'lib/array'
 require_relative 'lib/zippy'
@@ -39,7 +40,7 @@ RedmineMorePreviews::Converter.register :zippy do
   name           'Zippy'
   author         'Stephan Wenzel'
   description    'Zip Converter'
-  version        '1.1.2'
+  version        '1.1.3'
   url            'https://github.com/HugoHasenbein/redmine_more_previews_zippy'
   author_url     'https://github.com/HugoHasenbein/redmine_more_previews_zippy'
                    

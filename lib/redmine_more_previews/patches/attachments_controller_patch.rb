@@ -111,14 +111,14 @@ module RedmineMorePreviews
               if params[:reload] || stale?(:etag => @attachment.asset_mtime(preview_params))
                 send_data @attachment.more_asset(preview_params),
                   :filename    => filename_for_content_disposition( File.basename(@asset) ),
-                   :type       => Rack::Mime.mime_type( File.extname(@asset) ),
+                  :type        => Rack::Mime.mime_type( File.extname(@asset) ),
                   :disposition => @disposition || 'inline'
               end
             else #no cache
               @attachment.more_asset(preview_params) do |preview_data, asset_data|
                  send_data asset_data,
                   :filename    => filename_for_content_disposition( File.basename(@asset) ),
-                   :type       => Rack::Mime.mime_type( File.extname(@asset) ),
+                  :type        => Rack::Mime.mime_type( File.extname(@asset) ),
                   :disposition => @disposition || 'inline'
               end
             end

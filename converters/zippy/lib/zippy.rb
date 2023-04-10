@@ -119,14 +119,8 @@ class Zippy < RedmineMorePreviews::Conversion
   # tarlink
   #---------------------------------------------------------------------------------------
   def tarlink( entry, asset=nil )
-    path   = URI.parse(request.fullpath).path
-    params = request.query_parameters.to_h.symbolize_keys
-    uri    = [path, params.
-                      merge(:asset => URI::escape(entry.full_name)).
-                      compact.
-                      map{|k,v| "#{k}=#{v}"}.join("&")
-             ].select(&:present?).join("?")
-    link_to File.basename(RmpText.to_utf8(entry.full_name)), uri, :download => File.basename(RmpText.to_utf8(entry.full_name))
+    path   = url_helpers.more_preview_path(request.params.symbolize_keys.merge(:asset => URI.encode_www_form_component(entry.name)))
+    link_to File.basename(RmpText.to_utf8(entry.full_name)), path, :download => File.basename(RmpText.to_utf8(entry.full_name))
   end #def
   
   #---------------------------------------------------------------------------------------
@@ -201,14 +195,8 @@ class Zippy < RedmineMorePreviews::Conversion
   # ziplink
   #---------------------------------------------------------------------------------------
   def ziplink( entry, asset=nil )
-    path   = URI.parse(request.fullpath).path
-    params = request.query_parameters.to_h.symbolize_keys
-    uri    = [path, params.
-                      merge(:asset => URI::escape(entry.name)).
-                      compact.
-                      map{|k,v| "#{k}=#{v}"}.join("&")
-             ].select(&:present?).join("?")
-    link_to File.basename(RmpText.to_utf8(entry.name)), uri, :download => File.basename(RmpText.to_utf8(entry.name))
+    path   = url_helpers.more_preview_path(request.params.symbolize_keys.merge(:asset => URI.encode_www_form_component(entry.name)))
+    link_to File.basename(RmpText.to_utf8(entry.name)), path, :download => File.basename(RmpText.to_utf8(entry.name))
   end #def
   
   #---------------------------------------------------------------------------------------
