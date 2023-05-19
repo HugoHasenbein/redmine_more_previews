@@ -20,7 +20,7 @@
 #
 
 pt:
-  text_pandoc_available:         "LibreOffice disponível"
+  text_pandoc_available:         "Pandoc disponível"
   redmine_more_previews:
     mark:
       text_explanation:          "Pré-visualização de ficheiros de markdown com Pandoc"
