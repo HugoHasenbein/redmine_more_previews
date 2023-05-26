@@ -119,7 +119,7 @@ class Zippy < RedmineMorePreviews::Conversion
   # tarlink
   #---------------------------------------------------------------------------------------
   def tarlink( entry, asset=nil )
-    path   = url_helpers.more_preview_path(request.params.symbolize_keys.merge(:asset => URI.encode_www_form_component(entry.name)))
+    path   = url_helpers.more_preview_path(request.params.symbolize_keys.merge(:asset => URI.encode_www_form_component(entry.full_name)))
     link_to File.basename(RmpText.to_utf8(entry.full_name)), path, :download => File.basename(RmpText.to_utf8(entry.full_name))
   end #def
   
