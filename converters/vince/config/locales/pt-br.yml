@@ -1,0 +1,125 @@
+# encoding: utf-8
+#
+# RedmineMorePreviews vcf (electronic business cards) previewer
+#
+# Copyright © 2020 Stephan Wenzel <stephan.wenzel@drwpatent.de>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+
+pt-BR:
+  vcard:
+    VERSION:              "Versão"
+    PRODID:               "Identificação do produto"
+                          
+    N:                    "Nome"
+    N_FIELD:              
+      familyname:         "Apelido"
+      givenname:          "Primeiro nome"
+      addtionalname:      "Outro(s) nome(s)"
+      prefix:             "Título"
+      suffix:             "Adição"
+                          
+    FN:                   "Cheio"
+    TEL:                  "Telefone"
+                          
+    ADR:                  "Endereço"
+    ADR_FIELD:            
+      pobox:              "Caixa postal"
+      ext:                "Departamento"
+      street:             "Rua"
+      locality:           "Cidade"
+      region:             "Região"
+      code:               "Código postal"
+      country:            "País"
+                          
+    LABEL:                "Etiqueta de endereço"
+    ORG:                  "Organização"
+    EMAIL:                "Email"
+    
+    GENDER:               "Género"
+    GENDER_VALUE:         
+      M:                  "Masculino"
+      F:                  "Feminino"
+      O:                  "Mergulhadores"
+      U:                  "?"
+      N:                  "-"
+    GENDER_FIELD:         
+      gender:             "Tipo"
+      identity:           "Identidade"
+                          
+    KIND:                 "Carinhoso"
+    KIND_VALUE:           
+      GROUP:              "Grupo"
+      ORG:                "Organização"
+      ORGANISATION:       "Organização"
+      ORGANIZATION:       "Organização"
+      INDIVIDUAL:         "Individual"
+      LOCATION:           "Localização"
+      IANA-TOKEN:         "Ficha IANA"
+      X-NAME:             "Outros"
+                          
+    LANG:                 "Língua"
+    LANG_VALUE:           
+      de:                 "Alemão"
+      en:                 "Inglês"
+      es:                 "Espanhol"
+      fr:                 "Francês"
+      pt:                 "Português"
+      pt-BR:              "Português (Brasil)"
+      ru:                 "Russo"
+      ja:                 "Japonês"
+      zh:                 "Chinês"
+                          
+    TEL:                  "Telefone"
+    TYPE_PARAM_TEL:       
+      TEXT:               "Mensagem de texto"
+      VOICE:              "Voz"
+      FAX:                "Fax"
+      CELL:               "Celular"
+      VIDEO:              "vídeo"
+      PAGER:              "Pager"
+      TEXTPHONE:          "Texto de voz"
+                          
+    URL:                  "Endereço web"
+    GEO:                  "Geo-coordenadas"
+    NOTE:                 "Nota"
+    NICKNAME:             "Apelido"
+    BDAY:                 "Aniversário"
+    ANNIVERSARY:          "Aniversário"
+    ROLE:                 "Papel"
+    PHOTO:                "Foto"
+    LOGO:                 "Logotipo"
+    SOURCE:               "Fonte"
+    CATEGORIES:           "Categorias"
+    XML:                  "XML"
+    REV:                  "Revisão"
+    X:                    "Extra"
+                          
+    TYPE_PARAM:           
+      WORK:               "Trabalho"
+      HOME:               "Casa"
+      OTHER:              "Outros"
+      PREF:               "Preferido"
+                          
+    PREF_PARAM:           "Preferido"
+                          
+    personal:             "Pessoal"
+                          
+  redmine_more_previews:  
+    vince:                
+      text_explanation:   "Pré-visualização de arquivos vcf (cartões de visita eletrônicos)"
+      label_iconize:      "Iconize"
+      
