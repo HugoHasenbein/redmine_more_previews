@@ -38,7 +38,9 @@ class Libre < RedmineMorePreviews::Conversion
   
     Dir.mktmpdir do |tdir| 
     user_installation = File.join(tdir, "user_installation")
-    command(cd + join + soffice( source, user_installation ) + join + move(thisdir(outfile)) )
+    command(cd + join + soffice( source, user_installation ) )
+    fix_image_path
+    command(cd + join + move(thisdir(outfile)) )
     end
     
   end #def
@@ -50,5 +52,17 @@ class Libre < RedmineMorePreviews::Conversion
     "#{LIBRE_OFFICE_BIN} --headless --convert-to #{preview_format} --outdir #{shell_quote tmpdir} -env:UserInstallation=file://#{user_installation} #{shell_quote src}"
     end
   end #def
+
+  def fix_image_path
+    filepath = Dir[tmpdir+"/*.html"][0]
+    return if filepath.nil?
+    basefilename = filepath.split('/')[-1].split('.')[0]
+    return if basefilename.ascii_only?
+    if File.exists?(filepath)
+      text = File.read(filepath)
+      new_contents = text.gsub(/(?<=img src=")([a-zA-z%\d]+)(?=_html)/, URI::encode_www_form_component(basefilename))
+      File.open(filepath, "w") {|file| file.puts new_contents }
+    end
+  end
   
 end #class
