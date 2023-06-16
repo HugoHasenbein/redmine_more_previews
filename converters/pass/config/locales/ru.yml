@@ -22,4 +22,4 @@
 ru:
   redmine_more_previews:
     pass:
-      text_explanation:          "Просто пройдитесь по HTML"
+      text_explanation:          "Предпросмотр в HTML"

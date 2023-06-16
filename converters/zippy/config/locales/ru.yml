@@ -27,4 +27,4 @@ ru:
   label_compressed_filesize:     "Сжатый размер"
   redmine_more_previews:
     zippy:
-      text_explanation:          "Предварительный просмотр zip-файлов"
+      text_explanation:          "Предварительный просмотр архивов"

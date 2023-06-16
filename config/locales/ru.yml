@@ -26,14 +26,14 @@ ru:
   
   label_redmine_more_previews_global_settings:             "Глобальные настройки"
   
-  text_more_previews_embed_setting:                        "Встраивание предварительного просмотра в панель предварительного просмотра"
+  text_more_previews_embed_setting:                        "Встраивание предварительного просмотрав панель предварительного просмотра"
   text_more_previews_use_object_embed:                     "c <object><embed>-tag"
   text_more_previews_use_iframe:                           "c <iframe>-tag"
-  text_help_redmine_more_previews_embed_settings:          "Опция <object>-тег с откатом к <embed>-тегу не является допустимым html, но будет работать с большинством браузеров, даже со старыми браузерами. Опция <iframe>-тег является допустимым HTML."
+  text_help_redmine_more_previews_embed_settings:          "Теги <object> и <embed> не являются допустимым HTML тегами, но будут работать в большинстве браузерах, даже на старых. Тег <iframe> является допустимым HTML тегом."
   
   label_use_cache:                                         "Кэш"
   text_more_previews_cache:                                "Кэширование созданного просмотра"
-  text_help_redmine_more_previews_cache:                   "Докучание делает повторный просмотр превью намного быстрее, но может раздуть /tmp-директорию в корневой директории Redmine."
+  text_help_redmine_more_previews_cache:                   "Кеширование позволяет повторно не генерировать превью и просмотр работает намного быстрее, но может раздуть директорию /tmp в корне Redmine."
   
   label_redmine_more_previews_plugins_settings:            "Настройки плагинов"
   
@@ -44,4 +44,4 @@ ru:
   
   
   label_use_absolute_path:                                 "URL с хостом"
-  text_help_redmine_more_previews_absolute:                "(используйте URL со схемой и хостом) для <iframe>-тега или <embed>-тега."
+  text_help_redmine_more_previews_absolute:                "Используется URL со схемой и хостом в тегах <iframe> или <embed>."
