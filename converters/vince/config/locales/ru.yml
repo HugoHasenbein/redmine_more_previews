@@ -26,18 +26,18 @@ ru:
                           
     N:                    "Имя"
     N_FIELD:              
-      familyname:         "LastName"
+      familyname:         "Фамилия"
       givenname:          "Имя"
-      addtionalname:      "Другое имя (имена)"
+      addtionalname:      "Дополнительное имя (отчество)"
       prefix:             "Название"
       suffix:             "Дополнение"
                           
-    FN:                   "Full. Имя"
+    FN:                   "Полное Имя"
     TEL:                  "Телефон"
                           
     ADR:                  "Адрес"
     ADR_FIELD:            
-      pobox:              "абонентский ящик"
+      pobox:              "Абонентский ящик"
       ext:                "Отдел"
       street:             "Улица"
       locality:           "Город"
@@ -53,7 +53,7 @@ ru:
     GENDER_VALUE:         
       M:                  "Мужской"
       F:                  "Женщина"
-      O:                  "Дайверы"
+      O:                  "Другой"
       U:                  "?"
       N:                  "-"
     GENDER_FIELD:         
@@ -66,20 +66,20 @@ ru:
       ORG:                "Организация"
       ORGANISATION:       "Организация"
       ORGANIZATION:       "Организация"
-      INDIVIDUAL:         "Individual"
-      LOCATION:           "Location"
+      INDIVIDUAL:         "Инживидуальный предприниматель"
+      LOCATION:           "Местоположение"
       IANA-TOKEN:         "Токен IANA"
-      X-NAME:             "Other"
+      X-NAME:             "Другок"
                           
     LANG:                 "Язык"
     LANG_VALUE:           
       de:                 "Немецкий"
-      en:                 "English"
+      en:                 "Английский"
       es:                 "Испанский"
       fr:                 "Французский"
       pt:                 "Португальский"
-      ru:                 "русский"
-      ja:                 "японский"
+      ru:                 "Русский"
+      ja:                 "Японский"
       zh:                 "Китайский"
                           
     TEL:                  "Телефон"
@@ -88,7 +88,7 @@ ru:
       VOICE:              "Голос"
       FAX:                "Факс"
       CELL:               "Сотовый"
-      VIDEO:              "видео"
+      VIDEO:              "Видео"
       PAGER:              "Пейджер"
       TEXTPHONE:          "Голосовой текст"
                           
