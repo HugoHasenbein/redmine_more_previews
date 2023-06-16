@@ -22,7 +22,7 @@
 ru:
   label_example:                                   "Пример"
   text_nil_program_available:                      "Пример программы доступен"
-  text_warning_do_not_use_in_production:           "Не используйте в производственном режиме, так как внутренние данные раскрыты!"
+  text_warning_do_not_use_in_production:           "Не используйте в производственном режиме, так как внутренние данные будут раскрыты!"
   redmine_more_previews:
     nil_text:
       text_explanation:                            "Пример плагина для изучения функциональности для написания собственных плагинов."
