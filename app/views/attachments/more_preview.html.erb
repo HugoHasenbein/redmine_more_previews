@@ -51,8 +51,8 @@
   <%- else %>
     <script type="text/javascript">  
       $( document ).ready(function() {
-        $('#preview_frame').load(function() {
-            $('#ajax-indicator').hide();
+        $('#preview_frame').on('load', function() {
+          $('#ajax-indicator').hide();
         });
       });
     </script>
