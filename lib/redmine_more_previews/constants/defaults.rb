@@ -22,7 +22,7 @@
 module RedmineMorePreviews
   module Constants
     module Defaults
-      MORE_PREVIEWS_STORAGE_PATH = File.join(Rails.root, "tmp", "more_previews")
+      MORE_PREVIEWS_STORAGE_PATH = Redmine.root.join('tmp','more_previews').to_s
     end
   end
 end
