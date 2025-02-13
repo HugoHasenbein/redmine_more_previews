@@ -90,7 +90,7 @@ module RedmineMorePreviews
           ###########################################################
           #  now, try the most often string encodings               #
           ###########################################################
-          encodings = %w(Windows-1252 Windows-1251 ISO-8859-1 Macintosh)
+          encodings = %w(ISO-8859-1 Windows-1252 Windows-1251 Macintosh)
           encodings.each do |enc|
             return enc if str.force_encoding( enc ).valid_encoding?
           end

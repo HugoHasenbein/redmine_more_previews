@@ -12,7 +12,6 @@
       <%= call_hook(:preview_attachment_contextual, :attachment => @attachment, :project => @project ) %>
     </p>
   </div><div style="clear:both;"></div>
-  
   <%- case RedmineMorePreviews::Converter.conversion_ext(@attachment.diskfile) %>
   <%- when "inline" %>
     <div id="preview_repository_entry_top">

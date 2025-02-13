@@ -47,7 +47,7 @@ module RedmineMorePreviews
           pdf.RDMMultiCell(190, 5, buf)
           
           imgfile = "emoji#{rand(1..5)}.png"
-          imgpath = File.join(__dir__, "../conversion", imgfile)
+          imgpath = File.join(__dir__, "conversion", imgfile)
           atta = Attachment.create(
             :file           =>File.open(imgpath),
             :filename       =>imgfile, 

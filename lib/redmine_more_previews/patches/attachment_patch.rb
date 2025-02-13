@@ -98,10 +98,14 @@ module RedmineMorePreviews
               self, basename, extname[1..-1]
             )
             
-            ApplicationController.helpers.link_to( asset, _link,
-             :class => "icon icon-file #{Marcel::MimeType.for(Pathname.new(asset), name: File.basename(asset))&.tr('/', '-')}",
-             :style => "padding-top:2px;padding-bottom:2px;"
-            )
+            if asset_available?(:asset => asset)
+              ApplicationController.helpers.link_to( asset, _link,
+               :class => "icon icon-file #{Marcel::MimeType.for(Pathname.new(preview_assetpath(:asset => asset)), name: File.basename(asset))&.tr('/', '-')}",
+               :style => "padding-top:2px;padding-bottom:2px;"
+              )
+            else
+              "" # asset does not exist
+            end
           end #def
           
           ################################################################################
@@ -109,42 +113,53 @@ module RedmineMorePreviews
           # preview file functions
           #
           ################################################################################
-          # file
-          def preview_filename(options={})
-            format = options[:format].presence || preview_format.presence
-            ["index", format].compact.join(".")
+          
+          #
+          # directories
+          #
+          
+          # directory of all previews
+          def previews_storagepath
+            File.join(RedmineMorePreviews::Constants::Defaults::MORE_PREVIEWS_STORAGE_PATH, self.class.name.underscore.pluralize)
           end #def
           
-          # filepath
-          def preview_filepath(options={})
-            File.join(preview_dirname(options), preview_filename(options) )
+          # directory of this preview
+          def preview_storagepath
+            File.join(previews_storagepath, id.to_s)
           end #def
           
-          # asset
-          def preview_assetname(options={})
-            assetformat = options[:assetformat].presence
-            [options[:asset], assetformat].compact.join(".")
-          end #def
-          
-          # assetpath
-          def preview_assetpath(options={})
-            File.join(preview_dirname(options.merge(:format => preview_format)), preview_filename(options) )
-          end #def
-          
-          # dir
+          # directory containing all preview files and assets
           def preview_dirname(options={})
             format = options[:format].presence || preview_format.presence
             File.join(preview_storagepath, ["preview", format ].compact.join("."))
           end #def
           
-          # upper dir
-          def preview_storagepath
-            File.join(previews_storagepath, id.to_s)
+          #
+          # files
+          #
+          
+          # preview file name
+          def preview_filename(options={})
+            format = options[:format].presence || preview_format.presence
+            ["index", format].compact.join(".")
           end #def
           
-          def previews_storagepath
-            File.join(RedmineMorePreviews::Constants::Defaults::MORE_PREVIEWS_STORAGE_PATH, self.class.name.underscore.pluralize)
+          # full path to preview file on disk
+          def preview_filepath(options={})
+            File.join(preview_dirname(options), preview_filename(options) )
           end #def
+          
+          # asset file name
+          def preview_assetname(options={})
+            assetformat = options[:assetformat].presence
+            [options[:asset], assetformat].compact.join(".")
+          end #def
+          
+          # full path to asset file on disk
+          def preview_assetpath(options={})
+#            File.join(preview_dirname(options.merge(:format => preview_format)), preview_filename(options) )
+             File.join(preview_dirname(options.merge(:format => preview_format)), preview_assetname(options) )
+         end #def
           
           ################################################################################
           #

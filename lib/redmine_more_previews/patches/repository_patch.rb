@@ -1,5 +1,7 @@
 # encoding: utf-8
 # frozen_string_literal: true
+# encoding: utf-8
+# frozen_string_literal: true
 
 # Redmine plugin to preview various file types in redmine's preview pane
 #
@@ -125,10 +127,14 @@ module RedmineMorePreviews
               :only_path     => true
             )
             
-            ApplicationController.helpers.link_to( asset, _link,
-              :class => "icon icon-file #{Marcel::MimeType.for(Pathname.new(asset), name: File.basename(asset))&.tr('/', '-')}",
-              :style => "padding-top:2px;padding-bottom:2px;"
-            )
+            if asset_available?(path, rev, :asset => asset)
+              ApplicationController.helpers.link_to( asset, _link,
+                :class => "icon icon-file #{Marcel::MimeType.for(Pathname.new(path, rev, preview_assetpath(:asset => asset)), name: File.basename(asset))&.tr('/', '-')}",
+                :style => "padding-top:2px;padding-bottom:2px;"
+              )
+            else
+              "" # asset does not exist
+            end
           end #def
           
           ################################################################################
@@ -136,41 +142,52 @@ module RedmineMorePreviews
           # preview file functions
           #
           ################################################################################
-          # file
-          def preview_filename(path, rev, options={})
-            format = options[:format].presence || preview_format(path, rev).presence
-            ["index", format].compact.join(".")
+          
+          #
+          # directories
+          #
+          
+          # directory of all previews
+          def previews_storagepath
+            File.join(RedmineMorePreviews::Constants::Defaults::MORE_PREVIEWS_STORAGE_PATH, self.class.name.underscore.pluralize)
           end #def
           
-          # filepath
-          def preview_filepath(path, rev, options={})
-            File.join(preview_dirname(path, rev, options), preview_filename(path, rev, options) )
+          # directory of this preview
+          def preview_storagepath
+            File.join(previews_storagepath, identifier.to_s)
           end #def
           
-          # asset
-          def preview_assetname(path, rev, options={})
-            format = options[:format].presence || preview_format(path, rev).presence
-            [options[:asset], format].compact.join(".")
-          end #def
-          
-          # assetpath
-          def preview_assetpath(path, rev, options={})
-            File.join(preview_dirname(path, rev, options.merge(:format => preview_format(path, rev))), preview_filename(path, rev, options) )
-          end #def
-          
-          # dir
+          # directory containing all preview files and assets
           def preview_dirname(path, rev, options={})
             format = options[:format].presence || preview_format(path, rev).presence
             File.join(preview_storagepath, path, ["preview", format ].compact.join("."))
           end #def
           
-          # upper dir
-          def preview_storagepath
-            File.join(previews_storagepath, identifier.to_s)
+          #
+          # files
+          #
+          
+          # preview file name
+          def preview_filename(path, rev, options={})
+            format = options[:format].presence || preview_format(path, rev).presence
+            ["index", format].compact.join(".")
           end #def
           
-          def previews_storagepath
-            File.join(RedmineMorePreviews::Constants::Defaults::MORE_PREVIEWS_STORAGE_PATH, self.class.name.underscore.pluralize)
+          # full path to preview file on disk
+          def preview_filepath(path, rev, options={})
+            File.join(preview_dirname(path, rev, options), preview_filename(path, rev, options) )
+          end #def
+          
+          # asset file name
+          def preview_assetname(path, rev, options={})
+            format = options[:format].presence || preview_format(path, rev).presence
+            [options[:asset], format].compact.join(".")
+          end #def
+          
+          # full path to asset file on disk
+          def preview_assetpath(path, rev, options={})
+#           File.join(preview_dirname(path, rev, options.merge(:format => preview_format(path, rev))), preview_filename(path, rev, options) )
+            File.join(preview_dirname(path, rev, options.merge(:format => preview_format(path, rev))), preview_assetname(path, rev, options) )
           end #def
           
         end #base
