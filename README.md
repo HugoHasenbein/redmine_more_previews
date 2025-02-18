@@ -124,6 +124,24 @@ Choose the following options
  - activate sub plugins above
  - for each sub plugin activate the file extension for files you want to preview (if you choose two sub plugins converting the same file type, then a warning will be issued and the last activated sub plugin will do the conversion).
 
+#### Enable module in any project 
+
+Module is active but not enable in each project. To use it you need to enable to each project.
+
+##### Global and futur project
+
+You can enable it to all **new** project from /settings?tab=projects
+
+![Redmine_More_Preview_Configuration_Global](https://github.com/user-attachments/assets/91832e0c-e5ba-4780-a99d-ca36f218ac72)
+
+
+##### Existing project
+
+You can enable to any **existing** project from /projects/[any-project]/settings
+
+![Redmine_More_Preview_Configuration_Project](https://github.com/user-attachments/assets/1d4b2299-34ab-413d-8f58-1ae368eaf94b)
+
+
 **Have fun!**
 
 ### Localisations
